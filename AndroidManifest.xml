@@ -5,6 +5,9 @@
     android:versionName="1.0" >
 
     <uses-sdk android:minSdkVersion="10" />
+    
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    
 
     <application
         android:icon="@drawable/musicdroid_launcher"
@@ -20,6 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="FolderBrowserActivity"></activity>
     </application>
   <instrumentation
       android:targetPackage="at.tugraz.ist.musicdroid"

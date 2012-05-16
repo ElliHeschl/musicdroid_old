@@ -24,7 +24,8 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="FolderBrowserActivity"></activity>
+        <activity android:name="FolderBrowserActivity" />
+        <activity android:name="SaveSoundFileActivity" />
 
 
         <activity

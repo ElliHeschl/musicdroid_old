@@ -50,48 +50,14 @@ public class MusicdroidActivity extends Activity {
     
     public void openFolderBrowser(View v)
     {
-    	Intent myIntent = new Intent(MusicdroidActivity.this, FolderBrowserActivity.class);
-        this.startActivityForResult(myIntent, 1001);
-        
+    	Intent myIntent = new Intent(MusicdroidActivity.this, SaveSoundFileActivity.class);
+        this.startActivityForResult(myIntent, 2001);        
     }
     
     public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-		if(requestCode == 1001)  // FolderBrowser
-	    {
-	      if(resultCode == RESULT_OK)
-	      {	    	  
-			  try
-			  {			  
-				  String project_name = "project";
-				  String extension = ".mp3";
-				  
-				  String src_path = SoundFile.GetInstance().getFilePath();
-				  if(src_path == null)
-				  {
-					  Log.v("musicdroid", "onActivityResult(): No Src-File!");
-					  return;	    	  
-				  }
-				  File src_file = new File(src_path);    	  
-				  
-				  
-				  String dest_path = data.getStringExtra("location") + "/" + project_name + extension;
-				  File dest_file = new File(dest_path);
-				  
-				  SoundFile.GetInstance().SaveFile(src_file, dest_file);
-			  }
-			  catch (Exception e) {
-				// TODO: handle exception
-				  Log.v("musicdroid", "Exception: " + e.getMessage());
-			  }
-			}
-	      
-	    }
-	    else
-	    {
-    		super.onActivityResult(requestCode, resultCode, data);		
-			SoundFile.GetInstance().LoadFile(requestCode, resultCode, data);
-		}
+    {		
+		super.onActivityResult(requestCode, resultCode, data);		
+		SoundFile.GetInstance().LoadFile(requestCode, resultCode, data);
     
     }
 }

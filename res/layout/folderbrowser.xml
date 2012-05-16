@@ -36,31 +36,34 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="No Data" />
-
-    
-
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="88dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.18"
+                android:onClick="onOkClick"
+                android:text="OK" />
 
             <Button
                 android:id="@+id/button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Folder" android:onClick="onNewFolderClick"/>
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="OK" android:onClick="onOkClick"/>
-
+                android:layout_weight="0.57"
+                android:onClick="onNewFolderClick"
+                android:text="New Folder" />
+
             <Button
                 android:id="@+id/button3"
-                android:layout_width="match_parent"
+                android:layout_width="96dp"
                 android:layout_height="wrap_content"
-                android:text="Cancel" android:onClick="onCancelClick"/>
+                android:onClick="onCancelClick"
+                android:text="Cancel" />
+
         </LinearLayout>
- 
 
 </LinearLayout>

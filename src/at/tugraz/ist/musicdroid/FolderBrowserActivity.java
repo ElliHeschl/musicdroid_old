@@ -63,7 +63,7 @@ public class FolderBrowserActivity extends ListActivity{
     				item.add(file.getName() + "/");
     				path.add(file.getPath());
     			}
-    			/*else {
+    			/*else {  // only directories!!
     				item.add(file.getName());
     				path.add(file.getPath());
     			}*/
@@ -85,8 +85,7 @@ public class FolderBrowserActivity extends ListActivity{
 				getDir(path.get(position));
 			else
 			{
-				new AlertDialog.Builder(this)
-				.setIcon(R.drawable.musicdroid_launcher)
+				new AlertDialog.Builder(this)		
 				.setTitle("[" + file.getName() + "] folder can't be read!")
 				.setPositiveButton("OK", 
 						new DialogInterface.OnClickListener() {
@@ -97,7 +96,7 @@ public class FolderBrowserActivity extends ListActivity{
 						}).show();
 			}
 		}
-		else
+		/*else
 		{
 			new AlertDialog.Builder(this)
 				.setIcon(R.drawable.musicdroid_launcher)
@@ -109,7 +108,7 @@ public class FolderBrowserActivity extends ListActivity{
 								// TODO Auto-generated method stub
 							}
 						}).show();
-		}
+		}*/
 	}
 	
 	public void onOkClick(View v)
@@ -122,40 +121,22 @@ public class FolderBrowserActivity extends ListActivity{
 	
 	public void onNewFolderClick(View v)
     {
-		try
+		String currentPath = myPath.getText().toString();
+    	String newPath = currentPath + "/" + "new_folder" + "/";
+		File directory = new File(newPath);	
+		String postfix = "0";
+		while(directory.exists())
 		{
+			int temp = Integer.parseInt(postfix);
+			temp++;
+			postfix = Integer.toString(temp);
 			
-			String currentPath = myPath.getText().toString();
-			PromptDialog dlg = new PromptDialog(FolderBrowserActivity.this, "New Folder", "Enter name: ", currentPath)  {  
-				 @Override  
-				 public boolean onOkClicked(String input,String tag) {  
-				  
-					 String folderName =  input;
-			        	String newPath = tag + "/" + folderName + "/";
-						File directory = new File(newPath);	
-						directory.mkdirs();					 
-				  return true; // true = close dialog  
-				 }  
-				};  
-				
-				dlg.show();
-				
-			this.getDir(currentPath);
-			
-			
+			newPath = currentPath + "/" + "new_folder_" + postfix + "/";
+			directory = new File(newPath);	
 		}
-		catch (Exception e) {
-			new AlertDialog.Builder(this)
-			.setTitle("Exception")
-			.setMessage( e.getMessage())
-			.setPositiveButton("OK", 
-					new DialogInterface.OnClickListener() {
-						
-						public void onClick(DialogInterface dialog, int which) {
-							// TODO Auto-generated method stub
-						}
-					}).show();
-		}
+		
+		directory.mkdirs();	
+		getDir(currentPath);
     }
 	
 	public void onCancelClick(View v)

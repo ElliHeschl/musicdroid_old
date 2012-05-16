@@ -1,8 +1,5 @@
 package at.tugraz.ist.musicdroid;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -60,13 +57,13 @@ public abstract class PromptDialog extends AlertDialog.Builder implements OnClic
   } else {  
    onCancelClicked(dialog);  
   }  
- }  
+ }
   
  /** 
   * called when "ok" pressed. 
   * @param input 
   * @return true, if the dialog should be closed. false, if not. 
-  */  
+  */   
  
  abstract public boolean onOkClicked(String input, String tag);  
 }  

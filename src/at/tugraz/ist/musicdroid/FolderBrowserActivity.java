@@ -143,17 +143,17 @@ public class FolderBrowserActivity extends ListActivity{
 	@Override
 	public void onBackPressed() {
 		String currentPath = myPath.getText().toString();
+		File directoy = new File(currentPath);
+		String parent = directoy.getParent();
 		
-		if(currentPath == "/")
+		if(parent == null)
 		{
 			setResult(Activity.RESULT_CANCELED);
 			finish();		
 		}
 		else
 		{
-			File f = new File(currentPath);
-			getDir(f.getParent());
-			
+			getDir(parent);			
 		}
 		
 	}

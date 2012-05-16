@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 import at.tugraz.ist.musicdroid.common.SoundFile;
 
 public class SaveSoundFileActivity extends Activity{
@@ -27,7 +27,8 @@ public class SaveSoundFileActivity extends Activity{
 			  String file_name = ((EditText)findViewById(R.id.filenameEdit)).getText().toString();
 			  String path = ((EditText)findViewById(R.id.locationEdit)).getText().toString();
 			  
-			  if(!file_name.contains("."))
+			  
+			  if(!file_name.endsWith(".mp3"))
 			  {				  
 				  file_name = file_name + ".mp3";
 			  }
@@ -49,6 +50,7 @@ public class SaveSoundFileActivity extends Activity{
 		  catch (Exception e) {
 			// TODO: handle exception
 			  Log.v("musicdroid", "Exception: " + e.getMessage());
+			  Toast.makeText(this, "Error while saving sound-file!", Toast.LENGTH_SHORT).show();
 		  }
 		
     	setResult(Activity.RESULT_OK);

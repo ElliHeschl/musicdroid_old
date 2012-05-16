@@ -45,11 +45,10 @@
     </EditText>
 
     <Button
-        android:id="@+id/openSoundButton"
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Open" 
-        android:onClick="handleLoadFileButton"/>
+        android:text="Button" />
 
     <SeekBar
         android:id="@+id/seekBar1"

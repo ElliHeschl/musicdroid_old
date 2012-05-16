@@ -1,19 +1,25 @@
 package at.tugraz.ist.musicdroid;
 
 
-import java.io.File;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 import at.tugraz.ist.musicdroid.common.SoundFile;
 
 
-public class MusicdroidActivity extends Activity {
+public class MusicdroidActivity extends Activity implements OnClickListener {
     /** Called when the activity is first created. */
+
+    
+    private Button OpenRecorderButton;
+    private Button OpenPlayerButton;
+    private Button OpenProjectButton;
+    private Button NewProjectButton;
 
 	SoundFile sound_file;
 	private final int REQUEST_SELECT_MUSIC = 0;
@@ -24,18 +30,17 @@ public class MusicdroidActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+        setContentView(R.layout.main);
+        OpenRecorderButton = (Button)findViewById(R.id.soundRecorderButton);
+        OpenRecorderButton.setOnClickListener(this);
+        OpenPlayerButton = (Button)findViewById(R.id.soundPlayerButton);
+        OpenPlayerButton.setOnClickListener(this);
+        OpenProjectButton = (Button)findViewById(R.id.openProjectButton);
+        OpenProjectButton.setOnClickListener(this);
+        NewProjectButton = (Button)findViewById(R.id.newProjectButton);
+        NewProjectButton.setOnClickListener(this);
 
-		//sound_file = new SoundFile();
-		// Branch: open_soundfile!!!
 		my_list_view = (TextView) findViewById(R.id.textView1);
-	}
-    
-    public void handleLoadFileButton(View v){
-			Log.v("musicdroid", "button geklickt!!");
-			LoadFile();
-			
-			
 	}
 	
 	
@@ -48,16 +53,33 @@ public class MusicdroidActivity extends Activity {
 
 	}
     
-    public void openFolderBrowser(View v)
-    {
-    	Intent myIntent = new Intent(MusicdroidActivity.this, SaveSoundFileActivity.class);
-        this.startActivityForResult(myIntent, 2001);        
-    }
-    
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {		
 		super.onActivityResult(requestCode, resultCode, data);		
 		SoundFile.GetInstance().LoadFile(requestCode, resultCode, data);
     
     }
+
+	public void onClick(View arg0) {
+		// TODO Auto-generated method stub
+		if (arg0 == NewProjectButton)
+		{
+		// new project
+			Intent myIntent = new Intent(MusicdroidActivity.this, SaveSoundFileActivity.class);
+	        this.startActivity(myIntent); 
+		}
+		if (arg0 == OpenProjectButton)
+		{
+		// open project
+		}
+		if (arg0 == OpenPlayerButton)
+		{
+		// open player
+		}
+		if (arg0 == OpenRecorderButton)
+		{
+		// open Recorder
+		}
+	}
 }
+

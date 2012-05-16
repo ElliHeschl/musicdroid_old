@@ -1,10 +1,10 @@
 package at.tugraz.ist.musicdroid.tests;
 
-import com.jayway.android.robotium.solo.Solo;
-
 import android.test.ActivityInstrumentationTestCase2;
 import at.tugraz.ist.musicdroid.MusicdroidActivity;
 import at.tugraz.ist.musicdroid.R;
+
+import com.jayway.android.robotium.solo.Solo;
 
 public class MusicdroidActivityTest extends ActivityInstrumentationTestCase2<MusicdroidActivity> { //aktivity gibt an, wo test startet
     private
@@ -22,7 +22,7 @@ public class MusicdroidActivityTest extends ActivityInstrumentationTestCase2<Mus
 	protected void tearDown() throws Exception {
 		super.tearDown();
 		try {
-			solo.clickOnButton(R.id.openSoundButton);
+			//solo.clickOnButton(R.id.openSoundButton);
 			
 			solo.finalize(); 
 			
@@ -33,7 +33,11 @@ public class MusicdroidActivityTest extends ActivityInstrumentationTestCase2<Mus
 	}
 	
 	public void testMainScreen(){
-	  assertTrue("TextView Load Project not found", solo.searchText(solo.getString(R.string.load_project))); 
+	  //assertTrue("TextView Load Project not found", solo.searchText(solo.getString(R.string.load_project))); 
+	assertTrue("Open Sound-Recorder Button not found", solo.searchButton(solo.getString(R.string.load_sound_recorder), true));
+	assertTrue("Open Sound-Player Button not found", solo.searchButton(solo.getString(R.string.load_sound_player), true));
+	assertTrue("New Project Button not found", solo.searchButton(solo.getString(R.string.new_project), true));
+	assertTrue("Open Project Button not found", solo.searchButton(solo.getString(R.string.open_project), true));
 	}
 
 }

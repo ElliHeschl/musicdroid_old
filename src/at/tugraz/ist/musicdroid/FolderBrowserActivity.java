@@ -2,18 +2,18 @@ package at.tugraz.ist.musicdroid;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class FolderBrowserActivity extends ListActivity{
 	private List<String> item = null;
@@ -43,6 +43,25 @@ public class FolderBrowserActivity extends ListActivity{
         getDir(root);
     }
     
+    private void getDir(String dirPath, String selection)
+    {
+    	getDir(dirPath);
+    	ListView lv = (ListView)this.findViewById(android.R.id.list);
+    	int pos = 0;
+    	while(pos < lv.getAdapter().getCount())
+    	{
+    		TextView element = (TextView)lv.getAdapter().getView(pos, null, null);
+			String text = element.getText().toString();
+			if(text.equals(selection))
+			{
+				lv.setSelection(pos);
+				return;
+			}
+				
+			pos++;
+    	}
+    }
+    
     private void getDir(String dirPath)
     {
     	myPath.setText(dirPath);
@@ -52,6 +71,7 @@ public class FolderBrowserActivity extends ListActivity{
     	
     	File f = new File(dirPath);
     	File[] files = f.listFiles();
+    	Arrays.sort(files);
     	
     	if(!dirPath.equals(root))
     	{
@@ -93,15 +113,7 @@ public class FolderBrowserActivity extends ListActivity{
 				getDir(path.get(position));
 			else
 			{
-				new AlertDialog.Builder(this)		
-				.setTitle("[" + file.getName() + "] folder can't be read!")
-				.setPositiveButton("OK", 
-						new DialogInterface.OnClickListener() {
-							
-							public void onClick(DialogInterface dialog, int which) {
-								// TODO Auto-generated method stub
-							}
-						}).show();
+				Toast.makeText(this, "[" + file.getName() + "] folder can't be read!", Toast.LENGTH_SHORT).show();
 			}
 		}
 		/*else
@@ -130,21 +142,27 @@ public class FolderBrowserActivity extends ListActivity{
 	public void onNewFolderClick(View v)
     {
 		String currentPath = myPath.getText().toString();
-    	String newPath = currentPath + "/" + "new_folder" + "/";
+		String newFileName = "new_folder" + "/";
+    	String newPath = currentPath + "/" + newFileName;
 		File directory = new File(newPath);	
 		String postfix = "0";
+		
 		while(directory.exists())
 		{
 			int temp = Integer.parseInt(postfix);
 			temp++;
 			postfix = Integer.toString(temp);
 			
-			newPath = currentPath + "/" + "new_folder_" + postfix + "/";
+			newFileName = "new_folder_" + postfix + "/";
+			newPath = currentPath + "/" + newFileName;
 			directory = new File(newPath);	
 		}
 		
-		directory.mkdirs();	
-		getDir(currentPath);
+		if(!directory.mkdirs())
+		{
+			Toast.makeText(this, "folder could not be created!", Toast.LENGTH_SHORT).show();
+		}
+		getDir(currentPath,newFileName);
     }
 	
 	public void onCancelClick(View v)

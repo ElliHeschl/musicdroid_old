@@ -27,6 +27,19 @@ public class FolderBrowserActivity extends ListActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.folderbrowser);
         myPath = (TextView)findViewById(R.id.path);
+
+        String start_location = getIntent().getStringExtra("start_location");
+        
+        if(start_location != null)
+        {
+        	File f = new File(start_location);
+        	if(f.exists() && f.isDirectory())
+        	{
+        		getDir(start_location);
+        		return;
+        	}
+        }
+        
         getDir(root);
     }
     

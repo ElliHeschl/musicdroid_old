@@ -64,6 +64,9 @@ public class SaveSoundFileActivity extends Activity{
 	public void onBrowseClick(View v)
     {
 		Intent myIntent = new Intent(SaveSoundFileActivity.this, FolderBrowserActivity.class);
+		String path = ((EditText)findViewById(R.id.locationEdit)).getText().toString();
+		myIntent.putExtra("start_location", path);
+
         this.startActivityForResult(myIntent, 1001);
     }
 	

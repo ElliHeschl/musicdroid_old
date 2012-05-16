@@ -1,9 +1,9 @@
 package at.tugraz.ist.musicdroid;
 
 
+import java.io.File;
+
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -61,19 +61,31 @@ public class MusicdroidActivity extends Activity {
 	    {
 	      if(resultCode == RESULT_OK)
 	      {	    	  
-	    	  // data.getStringExtra("location") returns the selected path
-	    	  // there's no file to save yet, so we create dialog and present the selected path!
-	    	  new AlertDialog.Builder(this)
-				.setIcon(R.drawable.musicdroid_launcher)
-				.setTitle(data.getStringExtra("location"))
-				.setPositiveButton("OK", 
-						new DialogInterface.OnClickListener() {
-							
-							public void onClick(DialogInterface dialog, int which) {
-								// TODO Auto-generated method stub
-							}
-						}).show();
-	      }
+			  try
+			  {			  
+				  String project_name = "project";
+				  String extension = ".mp3";
+				  
+				  String src_path = SoundFile.GetInstance().getFilePath();
+				  if(src_path == null)
+				  {
+					  Log.v("musicdroid", "onActivityResult(): No Src-File!");
+					  return;	    	  
+				  }
+				  File src_file = new File(src_path);    	  
+				  
+				  
+				  String dest_path = data.getStringExtra("location") + "/" + project_name + extension;
+				  File dest_file = new File(dest_path);
+				  
+				  SoundFile.GetInstance().SaveFile(src_file, dest_file);
+			  }
+			  catch (Exception e) {
+				// TODO: handle exception
+				  Log.v("musicdroid", "Exception: " + e.getMessage());
+			  }
+			}
+	      
 	    }
 	    else
 	    {

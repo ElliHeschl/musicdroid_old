@@ -10,10 +10,8 @@ import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,8 +20,6 @@ public class FolderBrowserActivity extends ListActivity{
 	private List<String> path = null;
 	private String root="/";
 	private TextView myPath;
-	
-
 	
     /** Called when the activity is first created. */
     @Override
@@ -46,7 +42,6 @@ public class FolderBrowserActivity extends ListActivity{
     	
     	if(!dirPath.equals(root))
     	{
-
     		item.add(root);
     		path.add(root);
     		
@@ -57,16 +52,16 @@ public class FolderBrowserActivity extends ListActivity{
     	
     	for(int i=0; i < files.length; i++)
     	{
-    			File file = files[i];
-    			
-    			if(file.isDirectory()) {    				
-    				item.add(file.getName() + "/");
-    				path.add(file.getPath());
-    			}
-    			/*else {  // only directories!!
-    				item.add(file.getName());
-    				path.add(file.getPath());
-    			}*/
+			File file = files[i];
+			
+			if(file.isDirectory()) {    				
+				item.add(file.getName() + "/");
+				path.add(file.getPath());
+			}
+			/*else {  // only directories!!
+				item.add(file.getName());
+				path.add(file.getPath());
+			}*/
     	}
 
     	ArrayAdapter<String> fileList =

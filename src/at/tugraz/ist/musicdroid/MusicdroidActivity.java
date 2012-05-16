@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+
 public class MusicdroidActivity extends Activity {
     /** Called when the activity is first created. */
     @Override
@@ -28,10 +29,12 @@ public class MusicdroidActivity extends Activity {
     
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-		if(requestCode == 1001)
+		if(requestCode == 1001)  // FolderBrowser
 	    {
 	      if(resultCode == RESULT_OK)
-	      {
+	      {	    	  
+	    	  // data.getStringExtra("location") returns the selected path
+	    	  // there's no file to save yet, so we create dialog and present the selected path!
 	    	  new AlertDialog.Builder(this)
 				.setIcon(R.drawable.musicdroid_launcher)
 				.setTitle(data.getStringExtra("location"))

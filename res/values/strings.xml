@@ -10,5 +10,12 @@
     <string name="load_sound_player">Open Sound Player</string>
     <string name="new_project">New Project</string>
     <string name="open_project">Open Project</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="browse">Browse...</string>
+    <string name="new_folder">New folder</string>
+    <string name="ok">OK</string>
+    <string name="filename">Filename</string>
+    <string name="location">Location</string>
 
 </resources>

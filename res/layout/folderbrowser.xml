@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.18"
                 android:onClick="onOkClick"
-                android:text="OK" />
+                android:text="@string/ok" />
 
             <Button
                 android:id="@+id/button1"
@@ -55,14 +55,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.57"
                 android:onClick="onNewFolderClick"
-                android:text="New Folder" />
+                android:text="@string/new_folder" />
 
             <Button
                 android:id="@+id/button3"
                 android:layout_width="96dp"
                 android:layout_height="wrap_content"
                 android:onClick="onCancelClick"
-                android:text="Cancel" />
+                android:text="@string/cancel" />
 
         </LinearLayout>
 

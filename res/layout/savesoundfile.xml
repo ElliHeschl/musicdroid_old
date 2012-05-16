@@ -13,7 +13,8 @@
             android:layout_width="117dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.76"
-            android:text="Save" android:onClick="onSaveClick"/>
+            android:text="@string/save"
+            android:onClick="onSaveClick"/>
 
 
 
@@ -21,7 +22,8 @@
             android:id="@+id/button3"
             android:layout_width="157dp"
             android:layout_height="wrap_content"
-            android:text="Cancel" android:onClick="onCancelClick"/>
+            android:text="@string/cancel" 
+            android:onClick="onCancelClick"/>
 
     </LinearLayout>
     
@@ -29,13 +31,14 @@
         android:id="@+id/textView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Filename" />
+        android:text="@string/filename" />
 
     <EditText
         android:id="@+id/filenameEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" android:text="out.mp3">
+        android:ems="10" 
+        android:text="out.mp3">
 
         <requestFocus />
     </EditText>
@@ -44,7 +47,7 @@
         android:id="@+id/textView2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Location" />
+        android:text="@string/location" />
 
     <EditText
         android:id="@+id/locationEdit"
@@ -56,7 +59,7 @@
         android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Browse..." android:onClick="onBrowseClick"/>
+        android:text="@string/browse" android:onClick="onBrowseClick"/>
 
 
 

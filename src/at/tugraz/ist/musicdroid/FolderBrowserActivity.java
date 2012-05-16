@@ -139,4 +139,23 @@ public class FolderBrowserActivity extends ListActivity{
     	setResult(Activity.RESULT_CANCELED);
     	finish();
     }
+	
+	@Override
+	public void onBackPressed() {
+		String currentPath = myPath.getText().toString();
+		
+		if(currentPath == "/")
+		{
+			setResult(Activity.RESULT_CANCELED);
+			finish();		
+		}
+		else
+		{
+			File f = new File(currentPath);
+			getDir(f.getParent());
+			
+		}
+		
+	}
+
 }

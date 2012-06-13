@@ -75,6 +75,8 @@ public class RecordSoundActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        
+        //change to project directory
         directory = new File(Environment.getExternalStorageDirectory()+File.separator+"records");
   	    directory.mkdirs();
   	    newFile = new File(directory, "test.wav");
@@ -89,7 +91,7 @@ public class RecordSoundActivity extends Activity {
         stopButton.setBackgroundResource(R.drawable.stopdisabled);
         stopButton.setEnabled(false);
         playButton.setBackgroundResource(R.drawable.playdisabled);
-        playButton.setEnabled(false); //todo  
+        playButton.setEnabled(false);  
         recordlight = (ImageView) findViewById(R.id.recordlight);
         recordlight.setImageResource(R.drawable.recordlighton);
       //  testoutput = (TextView) findViewById(R.id.textView1);	
@@ -118,6 +120,7 @@ public class RecordSoundActivity extends Activity {
         	  PdBase.sendSymbol("status", status);	
         	  File file = new File(dir, "firstrecord.wav");
         	  patch = file;
+        	  // ask user where to save
         	  try {
 				copyFile(patch, newFile);
 			} catch (IOException e) {

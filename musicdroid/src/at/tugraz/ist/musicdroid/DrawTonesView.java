@@ -48,7 +48,7 @@ public class DrawTonesView extends View {
 	private int width_ = 0;
 	double downx = 0, downy = 0, upx = 0, upy = 0, down_help_ = 0;
 
-	
+
 	public OnTouchListener touchlis = new OnTouchListener() {
 
 		//@Override
@@ -202,7 +202,9 @@ public class DrawTonesView extends View {
 	}
 	
 	public int getTonesSize(){
-		return tones.size();
+		if(tones != null)
+			return tones.size();
+		return 0;
 	}
 	
 	

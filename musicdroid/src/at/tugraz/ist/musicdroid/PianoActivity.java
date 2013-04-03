@@ -36,7 +36,8 @@ public class PianoActivity extends Activity implements OnTouchListener {
 	private DrawTonesView toneView;
 	private Button playMidi;
 	private Button stopMidi;
-
+	private String name = "abc";
+	
 	private MidiPlayer midiplayer;
 	private NoteMapper mapper;
 	private SoundPlayer soundplayer;
@@ -83,10 +84,31 @@ public class PianoActivity extends Activity implements OnTouchListener {
 		midi_values = new ArrayList<Integer>(12);
 
 	}
+	
+	public DrawTonesView getToneView()
+	{
+		return toneView;
+	}
+	
+	public boolean[] getButtonStates()
+	{
+		return newButtonStates;
+	}
+	
+	public ArrayList<Integer> getMidiValues()
+	{
+		return midi_values;
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
 
 	// @Override
 	public boolean onTouch(View v, MotionEvent event) {
 
+		name = "abc";
 		int action = event.getAction();
 		boolean isDownAction = (action & 0x5) == 0x5
 				|| action == MotionEvent.ACTION_DOWN
@@ -149,21 +171,25 @@ public class PianoActivity extends Activity implements OnTouchListener {
 				midivalue = index + 35;
 				toggleSound(midivalue, newButtonStates[index]);
 			}
+			Log.i("Button State: ", ""+index+": "+buttonStates[index]);
 
 		}
+		
 		newButtonStates = new boolean[Constants.NUMBER_PIANO_BUTTONS];
 
 	}
 
 	@SuppressWarnings("unchecked")
 	private void toggleSound(int midivalue, boolean down) {
-
+		
+		name = "cde";
 		if (down) {
 			if (!soundplayer.isNotePlaying(midivalue)) {
 				soundplayer.playNote(midivalue);
 
 				Object test = new ArrayList<Integer>(12);
 				test = midi_values.clone();
+				Log.i("MIDI VALUES: ", "Size: " + midi_values.size());
 				toneView.addElement((ArrayList<Integer>) test);
 
 			}

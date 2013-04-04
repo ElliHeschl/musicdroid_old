@@ -81,6 +81,7 @@ public class SoundPlayer {
 		return threadMap.containsKey(note);
 	}
 	
+	
 	public void stopNote(int note)
 	{
 		PlayThread thread = threadMap.get(note);
@@ -90,9 +91,7 @@ public class SoundPlayer {
 			threadMap.remove(note);
 		}
 	}
-	
-	
-	
+
 	
 	private class PlayThread extends Thread
 	{

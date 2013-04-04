@@ -347,5 +347,15 @@ public class PianoActivity extends Activity implements OnTouchListener {
 		}
 		return success;
 	}
+	
+	public boolean toggleSoundTest(int midivalue, boolean down) {
+	   toggleSound(midivalue, down);
+	   return soundplayer.isNotePlaying(midivalue);
+	}
+	
+	public boolean isPlaying()
+	{
+		return midiplayer.isPlaying();
+	}
 
 }

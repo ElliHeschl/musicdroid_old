@@ -31,6 +31,16 @@ public class MidiPlayer {
 		context = cxt;
 	}
 	
+	public boolean isPlaying()
+	{
+		if(mediaPlayer != null)
+		{
+			return mediaPlayer.isPlaying();
+		}
+		return false;
+			
+	}
+	
 	public String createMidifile(){
 		File directory;
 		File playFile;

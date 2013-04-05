@@ -26,11 +26,8 @@ public class SoundPlayer {
 	}
 	
 	private void fillSoundpool (String path){
-		
 		soundPoolMap.put(soundID, soundPool.load(path, PRIORITY));
-	    soundID++;
-		
-		
+	    soundID++;		
 	}
 	
 	
@@ -44,10 +41,8 @@ public class SoundPlayer {
 	
 	@SuppressLint("UseSparseArrays")
 	public void setSoundpool(String path){
-		
 		fillSoundpool(path);
-	}
-	
+	}	
 	
 	
 	public void playSound(int midiValue){
@@ -61,8 +56,6 @@ public class SoundPlayer {
 		int no_loop = 0;
 		float normal_playback_rate = 1f;
 		soundPool.play(soundPoolMap.get(midiValue), leftVolume, rightVolume, priority, no_loop, normal_playback_rate);
-		
-		
 	}
 	
 	public void playNote(int note)
@@ -91,7 +84,11 @@ public class SoundPlayer {
 			threadMap.remove(note);
 		}
 	}
-
+	
+	public int getSoundID()
+	{
+		return soundID;
+	}
 	
 	private class PlayThread extends Thread
 	{
@@ -123,8 +120,7 @@ public class SoundPlayer {
 		}
 		
 		public synchronized void requestStop()
-		{
-			
+		{			
 			soundPool.stop(streamId);
 			stop = true;
 		}

@@ -31,7 +31,7 @@ public class MidiPlayer {
 		context = cxt;
 	}
 	
-	public String createMidifile(){
+	public String createMidifilePath(){
 		File directory;
 		File playFile;
 		String path;
@@ -53,7 +53,7 @@ public class MidiPlayer {
 		MidiFile midiFile = new MidiFile();
 		int numberOfTones = toneView.getTonesSize();
 		List<Tone> tonesArray = toneView.getTonesList();
-		String path = createMidifile();
+		String path = createMidifilePath();
 		for(int counter= 0; counter < numberOfTones; counter++){
 			Tone chordtones = (Tone) tonesArray.get(counter);
 			ArrayList<Integer> midiValues = chordtones.getMidiValues();

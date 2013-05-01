@@ -9,6 +9,7 @@ import java.util.Vector;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 
 public class DataManagement {
 
@@ -30,8 +31,10 @@ public class DataManagement {
 		File directory;
 		String new_path = "";
 		String[] splittArray = directory_path.split("/");
-
-		for (int i = 0; i < splittArray.length - 1; i++) {
+		int length = splittArray.length;
+		if(!directory_path.endsWith("/")) length -= 1; 
+		  
+		for (int i = 0; i < length; i++) {
 			new_path += splittArray[i] + "/";
 			directory = new File(new_path);
 			if (!(directory.exists() && directory.isDirectory() && directory
@@ -40,12 +43,11 @@ public class DataManagement {
 			}
 		}
 	}
-
-	public void LoadSoundFile(Intent data) {
+	
+	//Changed from LoadSoundFile(Intent data) to LoadSoundFile(String path)
+	public void LoadSoundFile(String path) {
 		try {
-			Uri sound_file_uri = data.getData();
-
-			File input = new File(sound_file_uri.getPath());
+			File input = new File(path);
 			File output = new File(Constants.MAIN_DIRECTORY
 					+ Constants.SOUND_FILE_SUB_DIRECTORY + input.getName());
 
@@ -60,7 +62,9 @@ public class DataManagement {
 	};
 
 	public void deleteFile(String filename) {
-
+		File file = new File(filename);
+		if(file.isDirectory()) return;
+		file.delete();
 	}
 
 	public Vector<String> LoadDirectory(String directoryPath) {

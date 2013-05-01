@@ -69,7 +69,7 @@ public class MusicdroidActivity extends SherlockFragmentActivity implements OnCl
 
 		if (resultCode == Activity.RESULT_OK && requestCode == 0) {
 			DataManagement management = new DataManagement();
-			management.LoadSoundFile(data);
+			management.LoadSoundFile(data.getData().getPath());
 		}
 	}
 

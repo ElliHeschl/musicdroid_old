@@ -263,6 +263,11 @@ public class DataManagementTest extends AndroidTestCase {
 	
 	public void testLoadSoundFile()
 	{
-		
+		int number_of_files = Projekt.imported_files_.size();
+		String path = "" + Environment.getExternalStorageDirectory() + "/test/in.mp3";
+		dm.checkDirectory(path);
+		dm.LoadSoundFile(path);
+		assert(Projekt.imported_files_.size() > number_of_files);
+		cleanUp(path);
 	}
 }

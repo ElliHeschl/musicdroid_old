@@ -85,4 +85,11 @@
   <string name="recorder_context_title">Recorder Settings</string>
   <string name="recorder_menu_entry_playback">Play Playback</string>
   <string name="recorder_menu_entry_metronom">Play Metronom</string>  
+  
+  <string name="base_drum">Base Drum</string>
+  <string name="snare_drum">Snare Drum</string>
+  <string name="high_hat_closed">High Hat Closed</string>
+  <string name="high_hat_open">High Hat Open</string>
+  <string name="high_tom">High Tom</string>
+  <string name="low_tom">Low Tom</string>
 </resources>

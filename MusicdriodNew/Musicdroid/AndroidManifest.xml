@@ -33,6 +33,11 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name="at.tugraz.musicdroid.DrumsActivity"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name="at.tugraz.musicdroid.preferences.PreferenceActivity"
             android:screenOrientation="landscape"
             android:label="@string/app_name" >

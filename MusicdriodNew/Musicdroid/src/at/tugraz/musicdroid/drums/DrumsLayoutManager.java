@@ -26,36 +26,42 @@ public class DrumsLayoutManager {
 		LayoutParams layoutParamsBase = (LayoutParams) baseDrum.getLayoutParams();
 		layoutParamsBase.addRule(RelativeLayout.ALIGN_PARENT_TOP);
 		layout.addView(baseDrum, layoutParamsBase);
+		((DrumsActivity)context).addObserverToEventHandler(baseDrum);
 		
 		DrumSoundRow snareDrum = new DrumSoundRow(context, R.string.snare_drum, R.raw.snare_drum);
 		snareDrum.setId(getNewId());
 		LayoutParams layoutParamsSnare = (LayoutParams) snareDrum.getLayoutParams();
 		layoutParamsSnare.addRule(RelativeLayout.BELOW, baseDrum.getId());
 		layout.addView(snareDrum, layoutParamsSnare);
+		((DrumsActivity)context).addObserverToEventHandler(snareDrum);
 		
 		DrumSoundRow highHatClosed = new DrumSoundRow(context, R.string.high_hat_closed, R.raw.high_hat_closed);
 		highHatClosed.setId(getNewId());
 		LayoutParams layoutParamsHighHatClosed = (LayoutParams) highHatClosed.getLayoutParams();
 		layoutParamsHighHatClosed.addRule(RelativeLayout.BELOW, snareDrum.getId());
 		layout.addView(highHatClosed, layoutParamsHighHatClosed);
+		((DrumsActivity)context).addObserverToEventHandler(highHatClosed);
 		
 		DrumSoundRow highHatOpen = new DrumSoundRow(context, R.string.high_hat_open, R.raw.high_hat_open);
 		highHatOpen.setId(getNewId());
 		LayoutParams layoutParamsHighHatOpen = (LayoutParams) highHatOpen.getLayoutParams();
 		layoutParamsHighHatOpen.addRule(RelativeLayout.BELOW, highHatClosed.getId());
 		layout.addView(highHatOpen, layoutParamsHighHatOpen);
+		((DrumsActivity)context).addObserverToEventHandler(highHatOpen);
 		
 		DrumSoundRow highTom = new DrumSoundRow(context, R.string.high_tom, R.raw.tom_high);
 		highTom.setId(getNewId());
 		LayoutParams layoutParamsHighTom = (LayoutParams) highTom.getLayoutParams();
 		layoutParamsHighTom.addRule(RelativeLayout.BELOW, highHatOpen.getId());
 		layout.addView(highTom, layoutParamsHighTom);
+		((DrumsActivity)context).addObserverToEventHandler(highTom);
 		
 		DrumSoundRow lowTom = new DrumSoundRow(context, R.string.low_tom, R.raw.tom_low);
 		lowTom.setId(getNewId());
 		LayoutParams layoutParamsLowTom = (LayoutParams) lowTom.getLayoutParams();
 		layoutParamsLowTom.addRule(RelativeLayout.BELOW, highTom.getId());
 		layout.addView(lowTom, layoutParamsLowTom);
+		((DrumsActivity)context).addObserverToEventHandler(lowTom);
 	}
 	
 	private int getNewId()

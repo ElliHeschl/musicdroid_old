@@ -7,20 +7,27 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import at.tugraz.musicdroid.drums.DrumLoopEventHandler;
+import at.tugraz.musicdroid.drums.DrumSoundRow;
 import at.tugraz.musicdroid.drums.DrumsLayoutManager;
+import at.tugraz.musicdroid.drums.StatusbarDrums;
 import at.tugraz.musicdroid.recorder.AudioHandler;
+import at.tugraz.musicdroid.soundmixer.Statusbar;
 
 public class DrumsActivity extends FragmentActivity {
 	private DrumsLayoutManager drumsLayout = null;
+	private DrumLoopEventHandler drumLoopEventHandler = null;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drums);
         
-        
+        drumLoopEventHandler = new DrumLoopEventHandler();
         drumsLayout = new DrumsLayoutManager(this);
         
+        initTopStatusBar();
+        StatusbarDrums.getInstance().initStatusbar(this);
 	}
 
 	
@@ -55,6 +62,15 @@ public class DrumsActivity extends FragmentActivity {
 		}
 		return false;
 	}	
+	
+    private void initTopStatusBar()
+    {
+		getActionBar().setCustomView(R.layout.status_bar_drums);
+		getActionBar().setDisplayShowHomeEnabled(true);
+		getActionBar().setHomeButtonEnabled(true);
+		getActionBar().setDisplayShowCustomEnabled(true);
+		getActionBar().setIcon(R.drawable.ic_launcher); 		
+    }
     
     public void returnToMainActivtiy()
     {
@@ -64,6 +80,26 @@ public class DrumsActivity extends FragmentActivity {
     	 finish();
     }
 
+    public void addObserverToEventHandler(DrumSoundRow dsr)
+    {
+    	drumLoopEventHandler.addObserver(dsr);
+    }
+    
+    public void startPlayLoop()
+    {
+    	drumLoopEventHandler.play();
+    }
+    
+    public void stopPlayLoop()
+    {
+    	drumLoopEventHandler.stop();
+    }
+    
+    public DrumLoopEventHandler getDrumLoopEventHandler()
+    {
+    	return drumLoopEventHandler;
+    }
+    
 
     
 }

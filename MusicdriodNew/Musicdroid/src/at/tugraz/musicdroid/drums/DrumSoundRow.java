@@ -1,5 +1,8 @@
 package at.tugraz.musicdroid.drums;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -11,7 +14,7 @@ import android.view.View.OnClickListener;
 import at.tugraz.musicdroid.R;
 import at.tugraz.musicdroid.SoundManager;
 
-public class DrumSoundRow extends RelativeLayout implements OnClickListener {
+public class DrumSoundRow extends RelativeLayout implements OnClickListener, Observer {
 	private Context context = null;
 	private TextView drumRowText = null;
 	private int[] beatArray = {0,0,0,0,0,0,0,0};
@@ -63,6 +66,16 @@ public class DrumSoundRow extends RelativeLayout implements OnClickListener {
 			((DrumButton)v).changeDrawableOnClick(beatArray[position-1]);
 		}	
 		else if(v.getId() == ((RelativeLayout) findViewById(R.id.drum_row_descriptor_box)).getId())
+		{
+			SoundManager.playSound(soundpoolId, 1, 1);
+		}
+	}
+
+	@Override
+	public void update(Observable observable, Object data) {
+		int currentBeat = (Integer)data;
+		Log.i("DrumSoundRow", "Incoming Object: " + currentBeat);
+		if(beatArray[currentBeat] == 1)
 		{
 			SoundManager.playSound(soundpoolId, 1, 1);
 		}

@@ -35,7 +35,7 @@ public class DrumsActivity extends FragmentActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.recorder_menu, menu);
+		inflater.inflate(R.menu.drums_menu, menu);
 		return true;
 	}
     

@@ -33,7 +33,7 @@ public class DrumLoopEventHandler extends Observable {
 		        			notifyObservers(beat);
 		        			beat = beat + 1;
 		        			if(beat == 8) beat = 0;
-		                    Thread.sleep(400);
+		                    Thread.sleep(110);
 		                } catch (Exception e) {
 		                }
 		            }

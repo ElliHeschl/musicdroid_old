@@ -7,12 +7,5 @@
         android:icon="@drawable/sm_action_bpm"
         android:showAsAction="ifRoom|withText"  
     />
-    
-    <item
-        android:id="@+id/recorder_context_playback"
-        android:title="@string/recorder_menu_entry_playback"
-        android:icon="@drawable/checkbox_unchecked"
-        android:showAsAction="ifRoom|withText"  
-    />
 
 </menu>

@@ -1096,7 +1096,6 @@ containing a value of this type.
         public static final int play_button=0x7f06005e;
         public static final int recorder_activity_layout=0x7f060035;
         public static final int recorder_context_bpm=0x7f060077;
-        public static final int recorder_context_playback=0x7f060078;
         public static final int seekbar_bpm=0x7f060055;
         public static final int settings_menu_layout=0x7f060045;
         public static final int settings_sound_track_length_descriptor=0x7f060056;
@@ -1108,17 +1107,17 @@ containing a value of this type.
         public static final int sound_mixer_view=0x7f060033;
         public static final int sound_track_text=0x7f06005c;
         public static final int sound_track_view_sub_layout=0x7f06005b;
-        public static final int soundmixer_context_bpm=0x7f060079;
-        public static final int soundmixer_context_length=0x7f06007a;
-        public static final int soundtrack_context_copy=0x7f06007c;
-        public static final int soundtrack_context_delete=0x7f06007d;
-        public static final int soundtrack_context_edit=0x7f06007b;
+        public static final int soundmixer_context_bpm=0x7f060078;
+        public static final int soundmixer_context_length=0x7f060079;
+        public static final int soundtrack_context_copy=0x7f06007b;
+        public static final int soundtrack_context_delete=0x7f06007c;
+        public static final int soundtrack_context_edit=0x7f06007a;
         public static final int states_spinner=0x7f060053;
         public static final int tabMode=0x7f060003;
         public static final int timeline=0x7f060067;
         public static final int timeline_bottom=0x7f06006a;
-        public static final int timeline_context_add_end_point=0x7f06007f;
-        public static final int timeline_context_add_start_point=0x7f06007e;
+        public static final int timeline_context_add_end_point=0x7f06007e;
+        public static final int timeline_context_add_start_point=0x7f06007d;
         public static final int timeline_currentPosition=0x7f06006b;
         public static final int timeline_end_point=0x7f06006d;
         public static final int timeline_seperator=0x7f06006e;
@@ -1173,12 +1172,13 @@ containing a value of this type.
         public static final int timeline_layout=0x7f030024;
     }
     public static final class menu {
-        public static final int main_menu=0x7f0e0000;
-        public static final int recorder_callback_menu=0x7f0e0001;
-        public static final int recorder_menu=0x7f0e0002;
-        public static final int sound_mixer_menu=0x7f0e0003;
-        public static final int sound_track_dialog_menu=0x7f0e0004;
-        public static final int timeline_menu=0x7f0e0005;
+        public static final int drums_menu=0x7f0e0000;
+        public static final int main_menu=0x7f0e0001;
+        public static final int recorder_callback_menu=0x7f0e0002;
+        public static final int recorder_menu=0x7f0e0003;
+        public static final int sound_mixer_menu=0x7f0e0004;
+        public static final int sound_track_dialog_menu=0x7f0e0005;
+        public static final int timeline_menu=0x7f0e0006;
     }
     public static final class raw {
         public static final int base_drum=0x7f050000;

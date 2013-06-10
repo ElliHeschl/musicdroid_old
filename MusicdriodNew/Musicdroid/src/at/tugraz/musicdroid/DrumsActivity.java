@@ -8,15 +8,19 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import at.tugraz.musicdroid.drums.DrumLoopEventHandler;
+import at.tugraz.musicdroid.drums.DrumPresetHandler;
 import at.tugraz.musicdroid.drums.DrumSoundRow;
 import at.tugraz.musicdroid.drums.DrumsLayoutManager;
+import at.tugraz.musicdroid.drums.DrumsMenuCallback;
 import at.tugraz.musicdroid.drums.StatusbarDrums;
 import at.tugraz.musicdroid.recorder.AudioHandler;
+import at.tugraz.musicdroid.recorder.RecorderMenuCallback;
 import at.tugraz.musicdroid.soundmixer.Statusbar;
 
 public class DrumsActivity extends FragmentActivity {
 	private DrumsLayoutManager drumsLayout = null;
 	private DrumLoopEventHandler drumLoopEventHandler = null;
+	private DrumPresetHandler drumPresetHandler = null;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,8 @@ public class DrumsActivity extends FragmentActivity {
         
         initTopStatusBar();
         StatusbarDrums.getInstance().initStatusbar(this);
+        
+        drumPresetHandler = new DrumPresetHandler(this);
 	}
 
 	
@@ -55,13 +61,27 @@ public class DrumsActivity extends FragmentActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
-		Log.i("RecorderActivity", "onOptionsItemSelected");
+		Log.i("DrumsActivity", "onOptionsItemSelected");
 		switch (item.getItemId()) {
 		case R.id.btn_settings:
+			DrumsMenuCallback callbackDrumsMenu = new DrumsMenuCallback(this);
+			startActionMode(callbackDrumsMenu);
 			return true;
 		}
 		return false;
 	}	
+	
+	
+	public void saveCurrentPreset(String name)
+	{
+		drumPresetHandler.writeDrumLoopToPreset(name, drumsLayout.getDrumSoundRowsArray());
+	}
+	
+	public void loadPresetByName(String name)
+	{
+		drumPresetHandler.readPresentByName(name);
+		
+	}
 	
     private void initTopStatusBar()
     {

@@ -18,13 +18,11 @@ public class RecorderMenuCallback implements ActionMode.Callback {
 			metronomDialog = new MetronomQuickSettingsDialog();
 		}
 	
-        /** Invoked whenever the action mode is shown. This is invoked immediately after onCreateActionMode */
         @Override
         public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
             return false;
         }
 
-        /** Called when user exits action mode */
         @Override
         public void onDestroyActionMode(ActionMode mode) {
         	MenuItem item = mode.getMenu().getItem(1);
@@ -34,7 +32,6 @@ public class RecorderMenuCallback implements ActionMode.Callback {
         		PreferenceManager.getInstance().setPreference(PreferenceManager.PLAY_PLAYBACK_KEY, 1);
         }
 
-        /** This is called when the action mode is created. This is called by startActionMode() */
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
             parent.getMenuInflater().inflate(R.menu.recorder_callback_menu, menu);
@@ -49,7 +46,6 @@ public class RecorderMenuCallback implements ActionMode.Callback {
             return true;
         }
 
-        /** This is called when an item in the context menu is selected */
         @Override
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
             switch(item.getItemId()){

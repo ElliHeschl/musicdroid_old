@@ -5,12 +5,12 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="7dp"
-    android:minHeight="30dp">
+    android:minHeight="25dp">
     
     <LinearLayout 
         android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
-    	android:minHeight="30dp"
+    	android:minHeight="25dp"
         >
     
 	    <RelativeLayout
@@ -46,7 +46,7 @@
 		     android:layout_alignParentLeft="true"
 		     android:layout_marginLeft="5dp"
 		     custom:position="1"
-		     android:src="@drawable/drum_button_unclicked"
+		     android:src="@drawable/drum_button_unclicked_dark"
 		     android:id="@+id/drum_button_1_1"
 	         />  
 	         
@@ -58,7 +58,7 @@
 		     android:layout_toRightOf="@+id/drum_button_1_1"
 		     android:layout_marginLeft="5dp"
 		     custom:position="2"
-		     android:src="@drawable/drum_button_unclicked"
+		     android:src="@drawable/drum_button_unclicked_dark"
 		     android:id="@+id/drum_button_1_2"
 	         />  
 	         
@@ -70,7 +70,7 @@
 		     android:layout_toRightOf="@+id/drum_button_1_2"
 		     android:layout_marginLeft="5dp"
 		     custom:position="3"
-		     android:src="@drawable/drum_button_unclicked"
+		     android:src="@drawable/drum_button_unclicked_dark"
 		     android:id="@+id/drum_button_1_3"
 	         />  
 	         
@@ -82,7 +82,7 @@
 		     android:layout_toRightOf="@+id/drum_button_1_3"
 		     android:layout_marginLeft="5dp"
 		     custom:position="4"
-		     android:src="@drawable/drum_button_unclicked"
+		     android:src="@drawable/drum_button_unclicked_dark"
 		     android:id="@+id/drum_button_1_4"
 	         />  
 	         
@@ -94,7 +94,7 @@
 		     android:layout_toRightOf="@+id/drum_button_1_4"
 		     android:layout_marginLeft="5dp"
 		     custom:position="5"
-		     android:src="@drawable/drum_button_unclicked"
+		     android:src="@drawable/drum_button_unclicked_bright"
 		     android:id="@+id/drum_button_2_1"
 	         />  
 	         
@@ -106,7 +106,7 @@
 		     android:layout_toRightOf="@+id/drum_button_2_1"
 		     android:layout_marginLeft="5dp"
 		     custom:position="6"
-		     android:src="@drawable/drum_button_unclicked"
+		     android:src="@drawable/drum_button_unclicked_bright"
 		     android:id="@+id/drum_button_2_2"
 	         />  
 	         
@@ -118,7 +118,7 @@
 		     android:layout_toRightOf="@+id/drum_button_2_2"
 		     android:layout_marginLeft="5dp"
 		     custom:position="7"
-		     android:src="@drawable/drum_button_unclicked"
+		     android:src="@drawable/drum_button_unclicked_bright"
 		     android:id="@+id/drum_button_2_3"
 	         />  
 	         
@@ -130,7 +130,7 @@
 		     android:layout_toRightOf="@+id/drum_button_2_3"
 		     android:layout_marginLeft="5dp"
 		     custom:position="8"
-		     android:src="@drawable/drum_button_unclicked"
+		     android:src="@drawable/drum_button_unclicked_bright"
 		     android:id="@+id/drum_button_2_4"
 	         /> 
 	         

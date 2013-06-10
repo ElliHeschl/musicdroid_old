@@ -1,5 +1,7 @@
 package at.tugraz.musicdroid.drums;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
@@ -8,13 +10,15 @@ import at.tugraz.musicdroid.R;
 
 public class DrumsLayoutManager {
 	private Context context = null;
-	private RelativeLayout layout = null;
+	private RelativeLayout soundRowBox = null; 
 	private int localId = 5010;
+	private ArrayList<DrumSoundRow> drumSoundRowsArray;
 	
 	public DrumsLayoutManager(Context c)
 	{
 		this.context = c;
-		this.layout = (RelativeLayout) ((DrumsActivity)context).findViewById(R.id.drums_activity_layout);
+		this.soundRowBox = (RelativeLayout) ((DrumsActivity)context).findViewById(R.id.drums_drum_row_box);
+		this.drumSoundRowsArray = new ArrayList<DrumSoundRow>();
         initializeDrumSoundRows();
 	}
 	
@@ -25,42 +29,50 @@ public class DrumsLayoutManager {
 		baseDrum.setId(getNewId());
 		LayoutParams layoutParamsBase = (LayoutParams) baseDrum.getLayoutParams();
 		layoutParamsBase.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-		layout.addView(baseDrum, layoutParamsBase);
+		soundRowBox.addView(baseDrum, layoutParamsBase);
+		drumSoundRowsArray.add(baseDrum);
 		((DrumsActivity)context).addObserverToEventHandler(baseDrum);
 		
 		DrumSoundRow snareDrum = new DrumSoundRow(context, R.string.snare_drum, R.raw.snare_drum);
 		snareDrum.setId(getNewId());
 		LayoutParams layoutParamsSnare = (LayoutParams) snareDrum.getLayoutParams();
 		layoutParamsSnare.addRule(RelativeLayout.BELOW, baseDrum.getId());
-		layout.addView(snareDrum, layoutParamsSnare);
+		soundRowBox.addView(snareDrum, layoutParamsSnare);
+		drumSoundRowsArray.add(snareDrum);
 		((DrumsActivity)context).addObserverToEventHandler(snareDrum);
 		
 		DrumSoundRow highHatClosed = new DrumSoundRow(context, R.string.high_hat_closed, R.raw.high_hat_closed);
 		highHatClosed.setId(getNewId());
 		LayoutParams layoutParamsHighHatClosed = (LayoutParams) highHatClosed.getLayoutParams();
 		layoutParamsHighHatClosed.addRule(RelativeLayout.BELOW, snareDrum.getId());
-		layout.addView(highHatClosed, layoutParamsHighHatClosed);
+		soundRowBox.addView(highHatClosed, layoutParamsHighHatClosed);
+		drumSoundRowsArray.add(highHatClosed);
 		((DrumsActivity)context).addObserverToEventHandler(highHatClosed);
 		
 		DrumSoundRow highHatOpen = new DrumSoundRow(context, R.string.high_hat_open, R.raw.high_hat_open);
 		highHatOpen.setId(getNewId());
 		LayoutParams layoutParamsHighHatOpen = (LayoutParams) highHatOpen.getLayoutParams();
 		layoutParamsHighHatOpen.addRule(RelativeLayout.BELOW, highHatClosed.getId());
-		layout.addView(highHatOpen, layoutParamsHighHatOpen);
+		soundRowBox.addView(highHatOpen, layoutParamsHighHatOpen);
+		drumSoundRowsArray.add(highHatOpen);
 		((DrumsActivity)context).addObserverToEventHandler(highHatOpen);
 		
 		DrumSoundRow highTom = new DrumSoundRow(context, R.string.high_tom, R.raw.tom_high);
 		highTom.setId(getNewId());
 		LayoutParams layoutParamsHighTom = (LayoutParams) highTom.getLayoutParams();
 		layoutParamsHighTom.addRule(RelativeLayout.BELOW, highHatOpen.getId());
-		layout.addView(highTom, layoutParamsHighTom);
+		soundRowBox.addView(highTom, layoutParamsHighTom);
+		drumSoundRowsArray.add(highTom);
 		((DrumsActivity)context).addObserverToEventHandler(highTom);
 		
 		DrumSoundRow lowTom = new DrumSoundRow(context, R.string.low_tom, R.raw.tom_low);
 		lowTom.setId(getNewId());
 		LayoutParams layoutParamsLowTom = (LayoutParams) lowTom.getLayoutParams();
 		layoutParamsLowTom.addRule(RelativeLayout.BELOW, highTom.getId());
-		layout.addView(lowTom, layoutParamsLowTom);
+		layoutParamsLowTom.bottomMargin = 0;
+		lowTom.setLayoutParams(layoutParamsLowTom);
+		soundRowBox.addView(lowTom, layoutParamsLowTom);
+		drumSoundRowsArray.add(lowTom);
 		((DrumsActivity)context).addObserverToEventHandler(lowTom);
 	}
 	
@@ -68,5 +80,10 @@ public class DrumsLayoutManager {
 	{
 		localId = localId + 1;
 		return localId;
+	}
+	
+	public ArrayList<DrumSoundRow> getDrumSoundRowsArray()
+	{
+		return drumSoundRowsArray;
 	}
 }

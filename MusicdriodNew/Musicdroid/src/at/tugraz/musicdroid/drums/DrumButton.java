@@ -2,6 +2,7 @@ package at.tugraz.musicdroid.drums;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ImageButton;
@@ -9,6 +10,7 @@ import at.tugraz.musicdroid.R;
 
 public class DrumButton extends ImageButton {
 	private int position = 0;
+	private Drawable drumButtonUnclicked = null;
 		
 	public DrumButton(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
@@ -34,9 +36,14 @@ public class DrumButton extends ImageButton {
 	public void changeDrawableOnClick(int beat)
 	{
 		if(beat == 1)
+		{
+			if(drumButtonUnclicked == null) drumButtonUnclicked = getDrawable();
 			setImageDrawable(getResources().getDrawable(R.drawable.drum_button_clicked));
+		}
 		else
-			setImageDrawable(getResources().getDrawable(R.drawable.drum_button_unclicked));
+		{
+			setImageDrawable(drumButtonUnclicked);
+		}
 	}
 	
 	public void setPosition(int pos)

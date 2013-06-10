@@ -5,4 +5,41 @@
    android:layout_height="fill_parent"
    android:id="@+id/drums_activity_layout"
    android:background="@color/background_holo_light">
+   
+    		<RelativeLayout 
+    		 	android:layout_width="fill_parent"
+            	android:layout_height="wrap_content"
+            	android:layout_alignParentTop="true"
+            	android:id="@+id/drums_drum_row_box">
+    		</RelativeLayout>
+   		    
+		    <RelativeLayout
+			    android:clickable="true"
+	            android:background="@color/custom_background_color"
+	            android:minHeight="40dp"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+	            android:layout_alignParentBottom="true"
+            	android:layout_marginTop="5dp"  
+	            android:id="@+id/drums_add_to_sound_mixer_box">
+			    
+			    	<TextView
+			        android:id="@+id/drums_add_to_sound_mixer_text"
+	                android:textSize="14sp"
+	                android:textColor="@color/background_holo_light"
+	                android:text="@string/drums_add_to_sound_mixer_text"
+			        android:layout_centerInParent="true"
+			        android:layout_marginRight="5dp"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"/>
+			    		            
+  				    <ImageView
+			        android:id="@+id/drums_add_to_sound_mixer_button"
+			        android:src="@drawable/add_drum_button"
+			        android:layout_toRightOf="@id/drums_add_to_sound_mixer_text"
+			        android:layout_centerVertical="true"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"/>
+
+	        </RelativeLayout>
 </RelativeLayout>

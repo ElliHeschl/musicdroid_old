@@ -27,13 +27,15 @@ public class DrumLoopEventHandler extends Observable {
 		        public void run() {
 		        	shouldContinue = true;
 		        	int beat = 0;
+		        	int sleepDuration = computeSleep();
+		        	Log.i("DrumLoopEventHandler", "Sleep = " + sleepDuration);
 		            while (shouldContinue) {
 		                try {
 		        			setChanged();
 		        			notifyObservers(beat);
 		        			beat = beat + 1;
 		        			if(beat == 8) beat = 0;
-		                    Thread.sleep(110);
+		                    Thread.sleep(sleepDuration);
 		                } catch (Exception e) {
 		                }
 		            }
@@ -41,6 +43,12 @@ public class DrumLoopEventHandler extends Observable {
 		        }
 		    }).start();
 		}
+	}
+	
+	private int computeSleep()
+	{
+		int bpm = PreferenceManager.getInstance().getPreference(PreferenceManager.METRONOM_BPM_KEY);
+		return 60000/(bpm*4); //return millisec
 	}
 	
 	public void stop()

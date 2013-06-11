@@ -42,7 +42,10 @@ public class DrumButton extends ImageButton {
 		}
 		else
 		{
-			setImageDrawable(drumButtonUnclicked);
+			if(position <=4)
+			  setImageDrawable(getResources().getDrawable(R.drawable.drum_button_unclicked_dark));
+			else
+			  setImageDrawable(getResources().getDrawable(R.drawable.drum_button_unclicked_bright));
 		}
 	}
 	

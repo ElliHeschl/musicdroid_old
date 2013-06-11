@@ -3,6 +3,7 @@ package at.tugraz.musicdroid.drums;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import at.tugraz.musicdroid.DrumsActivity;
@@ -26,54 +27,75 @@ public class DrumsLayoutManager {
 	private void initializeDrumSoundRows() 
 	{
 		DrumSoundRow baseDrum = new DrumSoundRow(context, R.string.base_drum, R.raw.base_drum);
-		baseDrum.setId(getNewId());
-		LayoutParams layoutParamsBase = (LayoutParams) baseDrum.getLayoutParams();
+		DrumSoundRowLayout baseDrumLayout = baseDrum.getLayout();
+		baseDrumLayout.setId(getNewId());
+		LayoutParams layoutParamsBase = (LayoutParams) baseDrumLayout.getLayoutParams();
 		layoutParamsBase.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-		soundRowBox.addView(baseDrum, layoutParamsBase);
+		soundRowBox.addView(baseDrumLayout, layoutParamsBase);
 		drumSoundRowsArray.add(baseDrum);
 		((DrumsActivity)context).addObserverToEventHandler(baseDrum);
 		
 		DrumSoundRow snareDrum = new DrumSoundRow(context, R.string.snare_drum, R.raw.snare_drum);
-		snareDrum.setId(getNewId());
-		LayoutParams layoutParamsSnare = (LayoutParams) snareDrum.getLayoutParams();
-		layoutParamsSnare.addRule(RelativeLayout.BELOW, baseDrum.getId());
-		soundRowBox.addView(snareDrum, layoutParamsSnare);
+		DrumSoundRowLayout snareDrumLayout = snareDrum.getLayout();
+		snareDrumLayout.setId(getNewId());
+		LayoutParams layoutParamsSnare = (LayoutParams) snareDrumLayout.getLayoutParams();
+		layoutParamsSnare.addRule(RelativeLayout.BELOW, baseDrumLayout.getId());
+		soundRowBox.addView(snareDrumLayout, layoutParamsSnare);
 		drumSoundRowsArray.add(snareDrum);
 		((DrumsActivity)context).addObserverToEventHandler(snareDrum);
 		
 		DrumSoundRow highHatClosed = new DrumSoundRow(context, R.string.high_hat_closed, R.raw.high_hat_closed);
-		highHatClosed.setId(getNewId());
-		LayoutParams layoutParamsHighHatClosed = (LayoutParams) highHatClosed.getLayoutParams();
-		layoutParamsHighHatClosed.addRule(RelativeLayout.BELOW, snareDrum.getId());
-		soundRowBox.addView(highHatClosed, layoutParamsHighHatClosed);
+		DrumSoundRowLayout highHatClosedLayout = highHatClosed.getLayout();
+		highHatClosedLayout.setId(getNewId());
+		LayoutParams layoutParamsHighHatClosed = (LayoutParams) highHatClosedLayout.getLayoutParams();
+		layoutParamsHighHatClosed.addRule(RelativeLayout.BELOW, snareDrumLayout.getId());
+		soundRowBox.addView(highHatClosedLayout, layoutParamsHighHatClosed);
 		drumSoundRowsArray.add(highHatClosed);
 		((DrumsActivity)context).addObserverToEventHandler(highHatClosed);
 		
 		DrumSoundRow highHatOpen = new DrumSoundRow(context, R.string.high_hat_open, R.raw.high_hat_open);
-		highHatOpen.setId(getNewId());
-		LayoutParams layoutParamsHighHatOpen = (LayoutParams) highHatOpen.getLayoutParams();
-		layoutParamsHighHatOpen.addRule(RelativeLayout.BELOW, highHatClosed.getId());
-		soundRowBox.addView(highHatOpen, layoutParamsHighHatOpen);
+		DrumSoundRowLayout highHatOpenLayout = highHatOpen.getLayout();
+		highHatOpenLayout.setId(getNewId());
+		LayoutParams layoutParamsHighHatOpen = (LayoutParams) highHatOpenLayout.getLayoutParams();
+		layoutParamsHighHatOpen.addRule(RelativeLayout.BELOW, highHatClosedLayout.getId());
+		soundRowBox.addView(highHatOpenLayout, layoutParamsHighHatOpen);
 		drumSoundRowsArray.add(highHatOpen);
 		((DrumsActivity)context).addObserverToEventHandler(highHatOpen);
 		
 		DrumSoundRow highTom = new DrumSoundRow(context, R.string.high_tom, R.raw.tom_high);
-		highTom.setId(getNewId());
-		LayoutParams layoutParamsHighTom = (LayoutParams) highTom.getLayoutParams();
-		layoutParamsHighTom.addRule(RelativeLayout.BELOW, highHatOpen.getId());
-		soundRowBox.addView(highTom, layoutParamsHighTom);
+		DrumSoundRowLayout highTomLayout = highTom.getLayout();
+		highTomLayout.setId(getNewId());
+		LayoutParams layoutParamsHighTom = (LayoutParams) highTomLayout.getLayoutParams();
+		layoutParamsHighTom.addRule(RelativeLayout.BELOW, highHatOpenLayout.getId());
+		soundRowBox.addView(highTomLayout, layoutParamsHighTom);
 		drumSoundRowsArray.add(highTom);
 		((DrumsActivity)context).addObserverToEventHandler(highTom);
 		
 		DrumSoundRow lowTom = new DrumSoundRow(context, R.string.low_tom, R.raw.tom_low);
-		lowTom.setId(getNewId());
-		LayoutParams layoutParamsLowTom = (LayoutParams) lowTom.getLayoutParams();
-		layoutParamsLowTom.addRule(RelativeLayout.BELOW, highTom.getId());
+		DrumSoundRowLayout lowTomLayout = lowTom.getLayout();
+		lowTomLayout.setId(getNewId());
+		LayoutParams layoutParamsLowTom = (LayoutParams) lowTomLayout.getLayoutParams();
+		layoutParamsLowTom.addRule(RelativeLayout.BELOW, highTomLayout.getId());
 		layoutParamsLowTom.bottomMargin = 0;
-		lowTom.setLayoutParams(layoutParamsLowTom);
-		soundRowBox.addView(lowTom, layoutParamsLowTom);
+		lowTomLayout.setLayoutParams(layoutParamsLowTom);
+		soundRowBox.addView(lowTomLayout, layoutParamsLowTom);
 		drumSoundRowsArray.add(lowTom);
 		((DrumsActivity)context).addObserverToEventHandler(lowTom);
+	}
+	
+	public void loadPresetToDrumLayout(DrumPreset preset)
+	{
+		Log.i("DrumsLayoutManager", "loadPresetToDrumLayout");
+		if(preset.getDrumSoundRowsArray().size() != drumSoundRowsArray.size())
+		{
+			Log.e("DrumsLayoutManager", "Error at loading preset: to few/much drum rows");
+		}
+		for(int i = 0; i < drumSoundRowsArray.size(); i++)
+		{
+		    DrumSoundRow r = preset.getDrumSoundRowsArray().get(i);
+		    drumSoundRowsArray.get(i).setSoundPoolId(r.getSoundPoolId());
+		    drumSoundRowsArray.get(i).setBeatArray(r.getBeatArray());
+		}
 	}
 	
 	private int getNewId()

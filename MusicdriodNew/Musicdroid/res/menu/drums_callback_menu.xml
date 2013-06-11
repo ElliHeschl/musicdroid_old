@@ -5,17 +5,17 @@
         android:id="@+id/drums_context_load_preset"
         android:icon="@drawable/load_drum_preset"
         android:showAsAction="always" 
-        android:title="@string/menu_item_add"  />
+        android:title="@string/drums_menu_entry_load_preset"  />
             
     <item
         android:id="@+id/drums_context_save_preset"
         android:icon="@drawable/save_drum_preset"
         android:showAsAction="always" 
-        android:title="@string/menu_item_add"  />
+        android:title="@string/drums_menu_entry_save_preset"  />
         
     <item
         android:id="@+id/drums_context_bpm"
-        android:title="@string/sound_mixer_menu_entry_bpm"
+        android:title="@string/drums_menu_entry_bpm"
         android:icon="@drawable/sm_action_bpm"
         android:showAsAction="always"  
     />

@@ -36,17 +36,19 @@ public class DrumPresetHandler {
 	}
 	
 	
-	public void readPresentByName(String name)
+	public DrumPreset readPresentByName(String name)
 	{
 		Serializer serializer2 = new Persister();
 		File source = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+name + ".xml");
 
 		try {
 			DrumPreset preset = serializer2.read(DrumPreset.class, source);
+			return preset;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 	}
 	
 	

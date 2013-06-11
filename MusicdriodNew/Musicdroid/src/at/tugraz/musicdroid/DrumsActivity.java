@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import at.tugraz.musicdroid.drums.DrumLoopEventHandler;
+import at.tugraz.musicdroid.drums.DrumPreset;
 import at.tugraz.musicdroid.drums.DrumPresetHandler;
 import at.tugraz.musicdroid.drums.DrumSoundRow;
 import at.tugraz.musicdroid.drums.DrumsLayoutManager;
@@ -79,8 +80,9 @@ public class DrumsActivity extends FragmentActivity {
 	
 	public void loadPresetByName(String name)
 	{
-		drumPresetHandler.readPresentByName(name);
-		
+		DrumPreset preset = null;
+		if((preset = drumPresetHandler.readPresentByName(name)) != null)
+		  drumsLayout.loadPresetToDrumLayout(preset);
 	}
 	
     private void initTopStatusBar()

@@ -19,75 +19,74 @@ import at.tugraz.musicdroid.R;
 import at.tugraz.musicdroid.SoundManager;
 
 @Root
-public class DrumSoundRow extends RelativeLayout implements OnClickListener, Observer {
+public class DrumSoundRow implements Observer {
 	private Context context = null;
-	private TextView drumRowText = null;
+	private DrumSoundRowLayout layout = null;
 	@ElementArray
 	private int[] beatArray = {0,0,0,0,0,0,0,0};
 	@Element
 	private int rawId = 0;
 	@Element
-	private int soundpoolId = 0;
+	private int soundPoolId = 0;
+	
+	public DrumSoundRow()
+	{
+		
+	}
 	
 	public DrumSoundRow(Context context, int rowStringId, int soundRawId) {
-		super(context);
+		//super(context);
 		this.context = context;
 		this.rawId = soundRawId;
 		
-        LayoutInflater inflater = LayoutInflater.from(this.context);
-        inflater.inflate(R.layout.drum_sound_row_layout, this);
-        soundpoolId = SoundManager.loadSound(soundRawId);
-        initDrumSoundRow(rowStringId);
-	}
-	
-	public DrumSoundRow(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		this.context = context;
-	}
-	
-	private void initDrumSoundRow(int rowStringId)
-	{
-		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		setLayoutParams(layoutParams);
-		drumRowText = (TextView) findViewById(R.id.drum_row_text);
-		drumRowText.setText(rowStringId);
-		setDrumButtonOnClickListener();
-	}
-	
-	private void setDrumButtonOnClickListener()
-	{
-		((DrumButton) findViewById(R.id.drum_button_1_1)).setOnClickListener(this);
-		((DrumButton) findViewById(R.id.drum_button_1_2)).setOnClickListener(this);
-		((DrumButton) findViewById(R.id.drum_button_1_3)).setOnClickListener(this);
-		((DrumButton) findViewById(R.id.drum_button_1_4)).setOnClickListener(this);
-		((DrumButton) findViewById(R.id.drum_button_2_1)).setOnClickListener(this);
-		((DrumButton) findViewById(R.id.drum_button_2_2)).setOnClickListener(this);
-		((DrumButton) findViewById(R.id.drum_button_2_3)).setOnClickListener(this);
-		((DrumButton) findViewById(R.id.drum_button_2_4)).setOnClickListener(this);
-		((RelativeLayout) findViewById(R.id.drum_row_descriptor_box)).setOnClickListener(this);
+		layout = new DrumSoundRowLayout(this.context, this, rowStringId);
+		
+        soundPoolId = SoundManager.loadSound(soundRawId);
 	}
 
-	@Override
-	public void onClick(View v) {
-		if(v instanceof DrumButton)
-		{
-			int position = ((DrumButton)v).getPosition();
-			beatArray[position-1] = beatArray[position-1] == 0 ? 1 : 0;
-			((DrumButton)v).changeDrawableOnClick(beatArray[position-1]);
-		}	
-		else if(v.getId() == ((RelativeLayout) findViewById(R.id.drum_row_descriptor_box)).getId())
-		{
-			SoundManager.playSound(soundpoolId, 1, 1);
-		}
+	public void togglePosition(int position)
+	{
+		beatArray[position] = beatArray[position] == 0 ? 1 : 0;
 	}
-
+	
+	public int getBeatArrayValueAtPosition(int position)
+	{
+		return beatArray[position];
+	}
+	
 	@Override
 	public void update(Observable observable, Object data) {
 		int currentBeat = (Integer)data;
 		//Log.i("DrumSoundRow", "Incoming Object: " + currentBeat);
 		if(beatArray[currentBeat] == 1)
 		{
-			SoundManager.playSound(soundpoolId, 1, 1);
+			SoundManager.playSound(soundPoolId, 1, 1);
 		}
+	}
+	
+	public int getSoundPoolId()
+	{
+		return soundPoolId;
+	}
+	
+	public int[] getBeatArray()
+	{
+		return beatArray;
+	}
+	
+	public void setBeatArray(int[] beatArray)
+	{
+		this.beatArray = beatArray;
+		layout.updateOnPresetLoad(this.beatArray);
+	}
+	
+	public void setSoundPoolId(int spId)
+	{
+		soundPoolId =  spId;
+	}
+	
+	public DrumSoundRowLayout getLayout()
+	{
+		return layout;
 	}
 }

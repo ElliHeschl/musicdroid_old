@@ -14,7 +14,7 @@
   <string name="sound_track_menu_entry_copy">Copy</string>
   <string name="sound_mixer_menu_entry_length">Track Length</string>
   <string name="sound_mixer_menu_entry_bpm">Beats per Minute</string>
-  
+   
   <string name="menu_new_song">New song</string>
   <string name="menu_load_song">Load song</string>
   <string name="menu_save_song">Save song</string>
@@ -26,6 +26,7 @@
   <string name="dialog_sound_track_menu">What do you want to do</string>
   <string name="dialog_warning_file_overwritten_at_record">A file with this name already exists. It will be lost if you record a new sound. Continue anyways?</string>
   <string name="dialog_change_filename_title">Enter a new Filename</string>
+  <string name="dialog_save_preset_title">Save Preset</string>
   
   <string name="timeline_menu_entry_start_point">Set Start</string>
   <string name="timeline_menu_entry_end_point">Set End</string>
@@ -37,6 +38,7 @@
   <string name="no">No</string>
   <string name="dialog_continue">Continue</string>
   <string name="dialog_abort">Abort</string>
+  <string name="dialog_save">Save</string>
   
   <string name ="play_button_text">Play Song</string>
   <string name ="stop_button_text">Stop Song</string>
@@ -96,4 +98,8 @@
   <string name="low_tom">Low Tom</string>
   <string name="drums_add_to_sound_mixer_text">Add Drum-Loop to SoundMixer</string>
   <string name="drums_load_preset_text">Load Preset</string>
+  
+  <string name="drums_menu_entry_bpm">Beats per Minute</string>
+  <string name="drums_menu_entry_load_preset">Load Preset</string>
+  <string name="drums_menu_entry_save_preset">Save Preset</string>
 </resources>

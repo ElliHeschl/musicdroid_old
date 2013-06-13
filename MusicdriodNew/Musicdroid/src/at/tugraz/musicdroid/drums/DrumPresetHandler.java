@@ -12,6 +12,7 @@ import android.os.Environment;
 import android.util.Log;
 
 public class DrumPresetHandler {
+	public final static String path = Environment.getExternalStorageDirectory().getAbsolutePath()+"/presets/";
 	Context context = null;
 	HashMap<Integer, DrumPreset> presetMap = null;
 	
@@ -19,13 +20,16 @@ public class DrumPresetHandler {
 	{
 		context = c;
 		presetMap = new HashMap<Integer, DrumPreset>();
+		checkPathExistsAndCreateDirectory();
 	}
 	
 	public void writeDrumLoopToPreset(String name, ArrayList<DrumSoundRow> drumSoundRowsArray)
 	{
 		Serializer serializer = new Persister();
 		DrumPreset test = new DrumPreset(name, drumSoundRowsArray);
-		File result = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/" + name + ".xml");
+		checkPathExistsAndCreateDirectory();
+		File result = new File(path+"/" + name + ".xml");
+		
 		
 		try {
 			serializer.write(test, result);
@@ -35,11 +39,12 @@ public class DrumPresetHandler {
 		}
 	}
 	
-	
 	public DrumPreset readPresentByName(String name)
 	{
 		Serializer serializer2 = new Persister();
-		File source = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+name + ".xml");
+		String filename = path+"/"+name;
+		if(!filename.endsWith(".xml")) filename = filename + ".xml";
+		File source = new File(filename);
 
 		try {
 			DrumPreset preset = serializer2.read(DrumPreset.class, source);
@@ -51,6 +56,12 @@ public class DrumPresetHandler {
 		return null;
 	}
 	
+	private void checkPathExistsAndCreateDirectory()
+	{
+		File f = new File(path);
+		if(!f.exists())
+			f.mkdir();
+	}
 	
 	public void writeTestPreset()
 	{ 
@@ -75,5 +86,7 @@ public class DrumPresetHandler {
 			e.printStackTrace();
 		}
 	}
+	
+	
 	
 }

@@ -42,7 +42,7 @@ public class SavePresetDialog extends DialogFragment {
         builder.setTitle(R.string.dialog_save_preset_title)
                .setNegativeButton(R.string.dialog_save, new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {
-                	   filename = editText.getText()+FTYPE;
+                	   filename = editText.getText()+"";
                 	   ((DrumsActivity)getActivity()).saveCurrentPreset(filename);
                    }
                })

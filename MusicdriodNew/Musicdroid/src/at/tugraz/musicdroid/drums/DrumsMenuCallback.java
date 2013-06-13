@@ -1,5 +1,6 @@
 package at.tugraz.musicdroid.drums;
 
+import android.content.Loader;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -8,19 +9,25 @@ import at.tugraz.musicdroid.DrumsActivity;
 import at.tugraz.musicdroid.R;
 import at.tugraz.musicdroid.RecorderActivity;
 import at.tugraz.musicdroid.dialog.MetronomQuickSettingsDialog;
+import at.tugraz.musicdroid.dialog.OpenFileDialog;
 import at.tugraz.musicdroid.dialog.SavePresetDialog;
+import at.tugraz.musicdroid.dialog.listener.DialogListener;
+import at.tugraz.musicdroid.dialog.listener.LoadFileDialogListener;
 import at.tugraz.musicdroid.preferences.PreferenceManager;
 
 public class DrumsMenuCallback implements ActionMode.Callback {
-		DrumsActivity parent = null;
+		private DrumsActivity parent = null;
 		private MetronomQuickSettingsDialog metronomDialog = null;
 		private SavePresetDialog savePresetDialog = null;
+		private OpenFileDialog openFileDialog = null;
 	
 		public DrumsMenuCallback(DrumsActivity p)
 		{
 			parent = p;
 			metronomDialog = new MetronomQuickSettingsDialog();
 			savePresetDialog = new SavePresetDialog();
+			openFileDialog = new OpenFileDialog(parent, new LoadFileDialogListener(parent), DrumPresetHandler.path, ".xml");
+			
 		}
 	
         @Override
@@ -39,7 +46,7 @@ public class DrumsMenuCallback implements ActionMode.Callback {
         @Override
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
             switch(item.getItemId()){
-            case R.id.recorder_context_bpm:
+            case R.id.drums_context_bpm:
             	metronomDialog.show(parent.getFragmentManager(), null);
                 mode.finish();
                 break;
@@ -51,7 +58,8 @@ public class DrumsMenuCallback implements ActionMode.Callback {
             	break;
             case R.id.drums_context_load_preset:
             	Log.i("DrumsMenuCallback", "LoadPreset");
-            	parent.loadPresetByName("example");
+            	openFileDialog.showDialog();
+            	//parent.loadPresetByName("example");
             	mode.finish();
             	break;
             }

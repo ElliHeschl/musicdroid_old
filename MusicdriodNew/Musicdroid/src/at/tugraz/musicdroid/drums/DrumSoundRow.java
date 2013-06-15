@@ -10,6 +10,7 @@ import org.simpleframework.xml.Root;
 import android.content.Context;
 import android.util.Log;
 import at.tugraz.musicdroid.SoundManager;
+import at.tugraz.musicdroid.types.DrumType;
 
 @Root
 public class DrumSoundRow implements Observer {
@@ -28,16 +29,16 @@ public class DrumSoundRow implements Observer {
 	//need this one for marshaling
 	public DrumSoundRow() {}
 	
-	public DrumSoundRow(Context context, DrumsLayoutManager manager, int rowStringId, int soundRawId) {
+	public DrumSoundRow(Context context, DrumsLayoutManager manager, DrumType drumType) { //int rowStringId, int soundRawId) {
 		//super(context);
 		this.context = context;
 		this.layoutManager = manager;
-		this.rawId = soundRawId;
-		this.soundRowName = this.context.getResources().getString(rowStringId);
+		this.rawId = drumType.getSoundResource();
+		this.soundRowName = this.context.getResources().getString(drumType.getNameResource());
 		
 		layout = new DrumSoundRowLayout(this.context, this, this.soundRowName);
 		
-        soundPoolId = SoundManager.loadSound(soundRawId);
+        soundPoolId = SoundManager.loadSound(rawId);
 	}
 
 	public void togglePosition(int position)
@@ -62,8 +63,9 @@ public class DrumSoundRow implements Observer {
 	
 	public void setSoundPoolIdByDrumString(String drumString)
 	{
-		soundPoolId = SoundManager.loadSound(layoutManager.getRawIdByString(drumString));
-		soundRowName = drumString;
+		DrumType type = layoutManager.getDrumTypeByString(drumString);
+		soundPoolId = SoundManager.loadSound(type.getSoundResource());
+		soundRowName = context.getResources().getString(type.getNameResource());
 	}
 	
 	public int getSoundPoolId()

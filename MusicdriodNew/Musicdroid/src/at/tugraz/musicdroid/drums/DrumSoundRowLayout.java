@@ -1,5 +1,7 @@
 package at.tugraz.musicdroid.drums;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -14,12 +16,13 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import at.tugraz.musicdroid.R;
 import at.tugraz.musicdroid.SoundManager;
+import at.tugraz.musicdroid.types.DrumType;
 
 public class DrumSoundRowLayout extends RelativeLayout implements OnClickListener, OnLongClickListener, OnItemSelectedListener{
 	private DrumSoundRow drumSoundRow = null;
 	private Context context = null;
 	private String soundRowName = null;
-	private ArrayAdapter<CharSequence> adapter = null;
+	private ArrayAdapter<String> adapter = null;
 	private Spinner drumSoundSpinner = null; 
 	private boolean spinnerInitialized = false;
 		
@@ -52,8 +55,9 @@ public class DrumSoundRowLayout extends RelativeLayout implements OnClickListene
 	private void initDrumSoundSpinner()
 	{	
 		drumSoundSpinner = (Spinner) findViewById(R.id.drum_sound_spinner);
-		adapter = ArrayAdapter.createFromResource(context,
-		        R.array.drum_sounds_array, R.layout.custom_simple_spinner_item);
+		
+		ArrayList<String> spinnerArray = DrumType.getTypeArray(context);
+		adapter = new ArrayAdapter<String>(context, R.layout.custom_simple_spinner_item, spinnerArray);
 		adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
 		drumSoundSpinner.setAdapter(adapter);
 		

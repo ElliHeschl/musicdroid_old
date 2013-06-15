@@ -85,6 +85,7 @@ public class DrumsActivity extends FragmentActivity {
         	break;
         case R.id.drums_context_clear_preset:
         	drumsLayout.resetLayout();
+        	drumLoopEventHandler.deleteObservers();
 		}
 		return false;
 	}	
@@ -139,6 +140,10 @@ public class DrumsActivity extends FragmentActivity {
     	return drumLoopEventHandler;
     }
     
+    public DrumsLayoutManager getDrumsLayoutManager()
+    {
+    	return drumsLayout;
+    }
 
     
 }

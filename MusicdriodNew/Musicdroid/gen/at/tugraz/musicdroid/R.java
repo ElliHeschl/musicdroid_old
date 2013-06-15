@@ -1201,13 +1201,17 @@ containing a value of this type.
     }
     public static final class raw {
         public static final int base_drum=0x7f050000;
-        public static final int high_hat_closed=0x7f050001;
-        public static final int high_hat_open=0x7f050002;
-        public static final int snare_drum=0x7f050003;
-        public static final int test_midi=0x7f050004;
-        public static final int test_wav=0x7f050005;
-        public static final int tom_high=0x7f050006;
-        public static final int tom_low=0x7f050007;
+        public static final int crash_one=0x7f050001;
+        public static final int crash_two=0x7f050002;
+        public static final int high_hat_closed=0x7f050003;
+        public static final int high_hat_open=0x7f050004;
+        public static final int snare_drum=0x7f050005;
+        public static final int snare_drum_hard=0x7f050006;
+        public static final int tambourine=0x7f050007;
+        public static final int test_midi=0x7f050008;
+        public static final int test_wav=0x7f050009;
+        public static final int tom_high=0x7f05000a;
+        public static final int tom_low=0x7f05000b;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1253,6 +1257,8 @@ containing a value of this type.
         public static final int app_name=0x7f0b000d;
         public static final int base_drum=0x7f0b0059;
         public static final int closing_security_question=0x7f0b002a;
+        public static final int crash_one=0x7f0b0060;
+        public static final int crash_two=0x7f0b0061;
         public static final int dialog_abort=0x7f0b002e;
         public static final int dialog_add_sound_title=0x7f0b0021;
         public static final int dialog_change_filename_title=0x7f0b0024;
@@ -1262,13 +1268,13 @@ containing a value of this type.
         public static final int dialog_sound_track_menu=0x7f0b0022;
         public static final int dialog_warning_file_overwritten_at_record=0x7f0b0023;
         public static final int dialog_warning_new_song=0x7f0b0028;
-        public static final int drums_add_to_sound_mixer_text=0x7f0b005f;
+        public static final int drums_add_to_sound_mixer_text=0x7f0b0063;
         public static final int drums_context_title=0x7f0b0058;
-        public static final int drums_load_preset_text=0x7f0b0060;
-        public static final int drums_menu_entry_bpm=0x7f0b0061;
-        public static final int drums_menu_entry_clear_preset=0x7f0b0062;
-        public static final int drums_menu_entry_load_preset=0x7f0b0063;
-        public static final int drums_menu_entry_save_preset=0x7f0b0064;
+        public static final int drums_load_preset_text=0x7f0b0064;
+        public static final int drums_menu_entry_bpm=0x7f0b0065;
+        public static final int drums_menu_entry_clear_preset=0x7f0b0066;
+        public static final int drums_menu_entry_load_preset=0x7f0b0067;
+        public static final int drums_menu_entry_save_preset=0x7f0b0068;
         public static final int hello_world=0x7f0b000f;
         public static final int help_menu_new_drums=0x7f0b004c;
         public static final int help_menu_new_piano=0x7f0b004b;
@@ -1276,10 +1282,10 @@ containing a value of this type.
         public static final int help_sound_track_menu_entry_copy=0x7f0b004f;
         public static final int help_sound_track_menu_entry_delete=0x7f0b004d;
         public static final int help_sound_track_menu_entry_edit=0x7f0b004e;
-        public static final int high_hat_closed=0x7f0b005b;
-        public static final int high_hat_open=0x7f0b005c;
-        public static final int high_tom=0x7f0b005d;
-        public static final int low_tom=0x7f0b005e;
+        public static final int high_hat_closed=0x7f0b005c;
+        public static final int high_hat_open=0x7f0b005d;
+        public static final int high_tom=0x7f0b005e;
+        public static final int low_tom=0x7f0b005f;
         public static final int menu_about=0x7f0b001e;
         public static final int menu_hide_menu=0x7f0b001d;
         public static final int menu_item_add=0x7f0b0013;
@@ -1325,6 +1331,7 @@ containing a value of this type.
         public static final int settings_metronom_quick_title=0x7f0b0034;
         public static final int settings_sound_track_length_description=0x7f0b0035;
         public static final int snare_drum=0x7f0b005a;
+        public static final int snare_drum_hard=0x7f0b005b;
         public static final int sound_mixer_menu_entry_bpm=0x7f0b0019;
         public static final int sound_mixer_menu_entry_length=0x7f0b0018;
         public static final int sound_track_menu_entry_copy=0x7f0b0017;
@@ -1332,6 +1339,7 @@ containing a value of this type.
         public static final int sound_track_menu_entry_edit=0x7f0b0016;
         public static final int soundmixer_context_title=0x7f0b0038;
         public static final int stop_button_text=0x7f0b0031;
+        public static final int tambourine=0x7f0b0062;
         public static final int timeline_menu_entry_end_point=0x7f0b0027;
         public static final int timeline_menu_entry_start_point=0x7f0b0026;
         public static final int toast_empty_soundmixer=0x7f0b0050;

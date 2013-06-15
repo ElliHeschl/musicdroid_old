@@ -94,10 +94,14 @@
   
   <string name="base_drum">Base Drum</string>
   <string name="snare_drum">Snare Drum</string>
+  <string name="snare_drum_hard">Snare Drum Hard</string>
   <string name="high_hat_closed">High Hat Closed</string>
   <string name="high_hat_open">High Hat Open</string>
   <string name="high_tom">High Tom</string>
   <string name="low_tom">Low Tom</string>
+  <string name="crash_one">Crash One</string>
+  <string name="crash_two">Crash Two</string>
+  <string name="tambourine">Tambourine</string>
   <string name="drums_add_to_sound_mixer_text">Add Drum-Loop to SoundMixer</string>
   <string name="drums_load_preset_text">Load Preset</string>
   

@@ -1,19 +1,15 @@
 package at.tugraz.musicdroid.drums;
 
-import android.content.Loader;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import at.tugraz.musicdroid.DrumsActivity;
 import at.tugraz.musicdroid.R;
-import at.tugraz.musicdroid.RecorderActivity;
 import at.tugraz.musicdroid.dialog.MetronomQuickSettingsDialog;
 import at.tugraz.musicdroid.dialog.OpenFileDialog;
 import at.tugraz.musicdroid.dialog.SavePresetDialog;
-import at.tugraz.musicdroid.dialog.listener.DialogListener;
 import at.tugraz.musicdroid.dialog.listener.LoadFileDialogListener;
-import at.tugraz.musicdroid.preferences.PreferenceManager;
 
 public class DrumsMenuCallback implements ActionMode.Callback {
 		private DrumsActivity parent = null;
@@ -50,18 +46,18 @@ public class DrumsMenuCallback implements ActionMode.Callback {
             	metronomDialog.show(parent.getFragmentManager(), null);
                 mode.finish();
                 break;
-            case R.id.drums_context_save_preset:
-            	Log.i("DrumsMenuCallback", "SavePreset");
-            	savePresetDialog.show(parent.getFragmentManager(), null);
-            	//parent.saveCurrentPreset("example");
-            	mode.finish();
-            	break;
-            case R.id.drums_context_load_preset:
-            	Log.i("DrumsMenuCallback", "LoadPreset");
-            	openFileDialog.showDialog();
-            	//parent.loadPresetByName("example");
-            	mode.finish();
-            	break;
+//            case R.id.drums_context_save_preset:
+//            	Log.i("DrumsMenuCallback", "SavePreset");
+//            	savePresetDialog.show(parent.getFragmentManager(), null);
+//            	//parent.saveCurrentPreset("example");
+//            	mode.finish();
+//            	break;
+//            case R.id.drums_context_load_preset:
+//            	Log.i("DrumsMenuCallback", "LoadPreset");
+//            	openFileDialog.showDialog();
+//            	//parent.loadPresetByName("example");
+//            	mode.finish();
+//            	break;
             }
             return false;
         }

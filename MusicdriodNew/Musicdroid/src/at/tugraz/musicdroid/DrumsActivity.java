@@ -7,6 +7,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import at.tugraz.musicdroid.dialog.MetronomQuickSettingsDialog;
+import at.tugraz.musicdroid.dialog.OpenFileDialog;
+import at.tugraz.musicdroid.dialog.SavePresetDialog;
+import at.tugraz.musicdroid.dialog.listener.LoadFileDialogListener;
 import at.tugraz.musicdroid.drums.DrumLoopEventHandler;
 import at.tugraz.musicdroid.drums.DrumPreset;
 import at.tugraz.musicdroid.drums.DrumPresetHandler;
@@ -15,17 +19,18 @@ import at.tugraz.musicdroid.drums.DrumsLayoutManager;
 import at.tugraz.musicdroid.drums.DrumsMenuCallback;
 import at.tugraz.musicdroid.drums.StatusbarDrums;
 import at.tugraz.musicdroid.recorder.AudioHandler;
-import at.tugraz.musicdroid.recorder.RecorderMenuCallback;
-import at.tugraz.musicdroid.soundmixer.Statusbar;
 
 public class DrumsActivity extends FragmentActivity {
 	private DrumsLayoutManager drumsLayout = null;
 	private DrumLoopEventHandler drumLoopEventHandler = null;
 	private DrumPresetHandler drumPresetHandler = null;
+	private SavePresetDialog savePresetDialog = null;
+	private OpenFileDialog openFileDialog = null;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_drums);
         
         drumLoopEventHandler = new DrumLoopEventHandler();
@@ -34,7 +39,9 @@ public class DrumsActivity extends FragmentActivity {
         initTopStatusBar();
         StatusbarDrums.getInstance().initStatusbar(this);
         
-        drumPresetHandler = new DrumPresetHandler(this);
+        drumPresetHandler = new DrumPresetHandler(this);		
+        savePresetDialog = new SavePresetDialog();
+		openFileDialog = new OpenFileDialog(this, new LoadFileDialogListener(this), DrumPresetHandler.path, ".xml");
 	}
 
 	
@@ -68,6 +75,16 @@ public class DrumsActivity extends FragmentActivity {
 			DrumsMenuCallback callbackDrumsMenu = new DrumsMenuCallback(this);
 			startActionMode(callbackDrumsMenu);
 			return true;
+        case R.id.drums_context_save_preset:
+        	savePresetDialog.show(getFragmentManager(), null);
+        	//parent.saveCurrentPreset("example");
+        	break;
+        case R.id.drums_context_load_preset:
+        	openFileDialog.showDialog();
+        	//parent.loadPresetByName("example");
+        	break;
+        case R.id.drums_context_clear_preset:
+        	drumsLayout.resetLayout();
 		}
 		return false;
 	}	

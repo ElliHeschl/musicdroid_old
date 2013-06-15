@@ -86,4 +86,24 @@ public class OpenFileDialog {
          fileList = (String[]) r.toArray(new String[]{});
      }
 	 
+//	 private void removeAllFilesy()
+//	 {
+//		 for(int f = 0; f < fileList.length; f++)
+//		 {
+//			 File file = new File(path+fileList[f]);
+//			 if(!file.exists())
+//			 {
+//				 Log.i("OpenFileDialog", "Something went wrong at remove File " + path + fileList[f]);
+//			 }
+//			 else if(!file.isDirectory())
+//			 {
+//				 file.delete();
+//			 }
+//			 else
+//			 {
+//				 Log.i("OpenFileDialog", "File is directory");
+//			 }
+//		 }
+//	 }
+	 
 }

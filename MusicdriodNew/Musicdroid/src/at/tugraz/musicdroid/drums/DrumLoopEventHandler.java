@@ -2,14 +2,8 @@ package at.tugraz.musicdroid.drums;
 
 import java.util.Observable;
 
-import android.os.Bundle;
-import android.os.Message;
 import android.util.Log;
-import at.tugraz.musicdroid.SoundManager;
-import at.tugraz.musicdroid.helper.Helper;
 import at.tugraz.musicdroid.preferences.PreferenceManager;
-import at.tugraz.musicdroid.soundmixer.SoundMixer;
-import at.tugraz.musicdroid.soundmixer.timeline.TimelineEventHandler;
 
 public class DrumLoopEventHandler extends Observable {
 	private boolean shouldContinue;

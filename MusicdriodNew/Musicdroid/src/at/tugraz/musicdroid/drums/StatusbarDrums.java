@@ -7,14 +7,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
-import android.widget.Toast;
 import at.tugraz.musicdroid.DrumsActivity;
 import at.tugraz.musicdroid.R;
-import at.tugraz.musicdroid.animation.HighlightAnimation;
-import at.tugraz.musicdroid.soundmixer.SoundMixer;
 
 public class StatusbarDrums extends Observable implements OnTouchListener {
 	public static StatusbarDrums instance = null;

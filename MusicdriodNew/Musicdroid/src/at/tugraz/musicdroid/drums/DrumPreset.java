@@ -1,8 +1,9 @@
 package at.tugraz.musicdroid.drums;
 
 import java.util.ArrayList;
-import org.simpleframework.xml.ElementList;
+
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 @Root

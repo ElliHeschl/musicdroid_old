@@ -9,7 +9,6 @@ import org.simpleframework.xml.core.Persister;
 
 import android.content.Context;
 import android.os.Environment;
-import android.util.Log;
 
 public class DrumPresetHandler {
 	public final static String path = Environment.getExternalStorageDirectory().getAbsolutePath()+"/presets/";

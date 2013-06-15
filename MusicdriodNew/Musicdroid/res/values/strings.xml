@@ -8,6 +8,7 @@
   <string name="menu_item_piano">Piano</string>
   <string name="menu_item_drums">Drums</string>
   <string name="menu_item_add">Add</string>
+  <string name="menu_item_settings">Settings</string>
   
   <string name="sound_track_menu_entry_delete">Delete</string>
   <string name="sound_track_menu_entry_edit">Edit</string>
@@ -87,9 +88,10 @@
   <string name="recorder_context_title">Recorder Settings</string>
   <string name="recorder_menu_entry_playback">Play Playback</string>
   <string name="recorder_menu_entry_metronom">Play Metronom</string>  
-  
+
   
   <string name="drums_context_title">Drum Looper Settings</string>
+  
   <string name="base_drum">Base Drum</string>
   <string name="snare_drum">Snare Drum</string>
   <string name="high_hat_closed">High Hat Closed</string>
@@ -100,6 +102,7 @@
   <string name="drums_load_preset_text">Load Preset</string>
   
   <string name="drums_menu_entry_bpm">Beats per Minute</string>
+  <string name="drums_menu_entry_clear_preset">Clear Preset</string>
   <string name="drums_menu_entry_load_preset">Load Preset</string>
   <string name="drums_menu_entry_save_preset">Save Preset</string>
 </resources>

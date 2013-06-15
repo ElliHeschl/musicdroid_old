@@ -6,47 +6,64 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.Spinner;
 import at.tugraz.musicdroid.R;
 import at.tugraz.musicdroid.SoundManager;
 
-public class DrumSoundRowLayout extends RelativeLayout implements OnClickListener{
+public class DrumSoundRowLayout extends RelativeLayout implements OnClickListener, OnLongClickListener, OnItemSelectedListener{
 	private DrumSoundRow drumSoundRow = null;
 	private Context context = null;
-	private int rowStringId;
-	private TextView drumRowText = null;
+	private String soundRowName = null;
+	private ArrayAdapter<CharSequence> adapter = null;
+	private Spinner drumSoundSpinner = null; 
+	private boolean spinnerInitialized = false;
 		
 	public DrumSoundRowLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		// TODO Auto-generated constructor stub
 	}
 
-	public DrumSoundRowLayout(Context context, DrumSoundRow dsr, int rowStringId) {
+	public DrumSoundRowLayout(Context context, DrumSoundRow dsr, String rowName) {
 		super(context);
 		this.context = context;
 		this.drumSoundRow = dsr;
-		this.rowStringId = rowStringId;
-		
+		this.soundRowName = rowName;
 
         LayoutInflater inflater = LayoutInflater.from(this.context);
         inflater.inflate(R.layout.drum_sound_row_layout, this);
 
-        initDrumSoundRow(rowStringId);
-		// TODO Auto-generated constructor stub
+        initDrumSoundRow();
 	}
 	
 	
-	private void initDrumSoundRow(int rowStringId)
+	private void initDrumSoundRow()
 	{
 		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		setLayoutParams(layoutParams);
-		drumRowText = (TextView) findViewById(R.id.drum_row_text);
-		drumRowText.setText(rowStringId);
+		
+		initDrumSoundSpinner();
 		setDrumButtonOnClickListener();
 	}
 	
-
+	private void initDrumSoundSpinner()
+	{	
+		drumSoundSpinner = (Spinner) findViewById(R.id.drum_sound_spinner);
+		adapter = ArrayAdapter.createFromResource(context,
+		        R.array.drum_sounds_array, R.layout.custom_simple_spinner_item);
+		adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
+		drumSoundSpinner.setAdapter(adapter);
+		
+		drumSoundSpinner.setSelection(adapter.getPosition(soundRowName));
+		
+		drumSoundSpinner.setEnabled(false);
+		drumSoundSpinner.setClickable(false);
+		drumSoundSpinner.setOnItemSelectedListener(this);
+	}
+	
 	private void setDrumButtonOnClickListener()
 	{
 		((DrumButton) findViewById(R.id.drum_button_1_1)).setOnClickListener(this);
@@ -58,11 +75,12 @@ public class DrumSoundRowLayout extends RelativeLayout implements OnClickListene
 		((DrumButton) findViewById(R.id.drum_button_2_3)).setOnClickListener(this);
 		((DrumButton) findViewById(R.id.drum_button_2_4)).setOnClickListener(this);
 		((RelativeLayout) findViewById(R.id.drum_row_descriptor_box)).setOnClickListener(this);
+		((RelativeLayout) findViewById(R.id.drum_row_descriptor_box)).setOnLongClickListener(this);
 	}
 
 	public void updateOnPresetLoad(int[] beatArray)
 	{
-		Log.i("DrumSoundRowLayout", "BeatArray = " + beatArray[0] + " " + beatArray[1] + " " + beatArray[2]);
+		printBeatArrayToLogCat(beatArray);
 		((DrumButton) findViewById(R.id.drum_button_1_1)).changeDrawableOnClick(beatArray[0]);
 		((DrumButton) findViewById(R.id.drum_button_1_2)).changeDrawableOnClick(beatArray[1]);
 		((DrumButton) findViewById(R.id.drum_button_1_3)).changeDrawableOnClick(beatArray[2]);
@@ -86,6 +104,56 @@ public class DrumSoundRowLayout extends RelativeLayout implements OnClickListene
 			SoundManager.playSound(drumSoundRow.getSoundPoolId(), 1, 1);
 		}
 	}
+	
+
+	@Override
+	public boolean onLongClick(View v) {
+		// TODO Auto-generated method stub
+		if(v.getId() == ((RelativeLayout) findViewById(R.id.drum_row_descriptor_box)).getId())
+		{
+			Log.i("DrumSoundRowLayout", "LongClick on Box");
+		    drumSoundSpinner.setEnabled(true);
+		    drumSoundSpinner.setClickable(true);
+		    drumSoundSpinner.performClick();
+		    drumSoundSpinner.setEnabled(false);
+		    drumSoundSpinner.setClickable(false);
+		    return true;
+		}
+		return false;
+	}
 
 
+	private void printBeatArrayToLogCat(int[] beatArray)
+	{
+	  Log.i("DrumSoundRowLayout", "BeatArray = " + beatArray[0] + " " 
+			  									 + beatArray[1] + " " 
+			  									 + beatArray[2] + " "
+			  									 + beatArray[3] + " " 
+			  									 + beatArray[4] + " "
+			  									 + beatArray[5] + " " 
+			  									 + beatArray[6] + " "
+			  									 + beatArray[7] + " ");
+	}
+	
+	public void onItemSelected(AdapterView<?> parent, View view, 
+            int pos, long id) {
+
+		if(spinnerInitialized)
+		{
+		   Log.i("DrumSoundRowLayout", "onItemSelected "+drumSoundSpinner.getSelectedItem());
+		   drumSoundRow.setSoundPoolIdByDrumString((String) drumSoundSpinner.getSelectedItem());
+		}
+
+		spinnerInitialized = true;  
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+		Log.i("DrumSoundRowLayout", "onNothingSelected");
+    }
+    
+	public void setDrumSoundRowName(String name)
+	{
+		drumSoundSpinner.setSelection(adapter.getPosition(name));
+	}
 }
+

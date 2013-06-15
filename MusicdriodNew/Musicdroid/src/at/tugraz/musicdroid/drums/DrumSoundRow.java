@@ -8,19 +8,13 @@ import org.simpleframework.xml.ElementArray;
 import org.simpleframework.xml.Root;
 
 import android.content.Context;
-import android.util.AttributeSet;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.view.View.OnClickListener;
-import at.tugraz.musicdroid.R;
 import at.tugraz.musicdroid.SoundManager;
 
 @Root
 public class DrumSoundRow implements Observer {
 	private Context context = null;
+	private DrumsLayoutManager layoutManager = null;
 	private DrumSoundRowLayout layout = null;
 	@ElementArray
 	private int[] beatArray = {0,0,0,0,0,0,0,0};
@@ -28,18 +22,20 @@ public class DrumSoundRow implements Observer {
 	private int rawId = 0;
 	@Element
 	private int soundPoolId = 0;
+	@Element
+	private String soundRowName = null;
 	
-	public DrumSoundRow()
-	{
-		
-	}
+	//need this one for marshaling
+	public DrumSoundRow() {}
 	
-	public DrumSoundRow(Context context, int rowStringId, int soundRawId) {
+	public DrumSoundRow(Context context, DrumsLayoutManager manager, int rowStringId, int soundRawId) {
 		//super(context);
 		this.context = context;
+		this.layoutManager = manager;
 		this.rawId = soundRawId;
+		this.soundRowName = this.context.getResources().getString(rowStringId);
 		
-		layout = new DrumSoundRowLayout(this.context, this, rowStringId);
+		layout = new DrumSoundRowLayout(this.context, this, this.soundRowName);
 		
         soundPoolId = SoundManager.loadSound(soundRawId);
 	}
@@ -64,6 +60,12 @@ public class DrumSoundRow implements Observer {
 		}
 	}
 	
+	public void setSoundPoolIdByDrumString(String drumString)
+	{
+		soundPoolId = SoundManager.loadSound(layoutManager.getRawIdByString(drumString));
+		soundRowName = drumString;
+	}
+	
 	public int getSoundPoolId()
 	{
 		return soundPoolId;
@@ -72,6 +74,11 @@ public class DrumSoundRow implements Observer {
 	public int[] getBeatArray()
 	{
 		return beatArray;
+	}
+	
+	public int getRawId()
+	{
+		return rawId;
 	}
 	
 	public void setBeatArray(int[] beatArray)
@@ -85,8 +92,34 @@ public class DrumSoundRow implements Observer {
 		soundPoolId =  spId;
 	}
 	
+	public void setRawId(int rId)
+	{
+		rawId = rId;
+	}
+	
 	public DrumSoundRowLayout getLayout()
 	{
 		return layout;
 	}
+	
+	public String getSoundRowName()
+	{
+		return soundRowName;
+	}
+	
+	public void setSoundRowName(String srn)
+	{
+		soundRowName = srn;
+	}
+	
+	public void setSoundRowNameAndUpdateLayout(String srn)
+	{
+		Log.i("DrumSoundRow", "setSoundRowNameAndUpdateLayout " + soundRowName);
+		if(!soundRowName.equals(srn))
+		{
+		  soundRowName = srn;
+		  layout.setDrumSoundRowName(soundRowName);
+		}
+	}
+	
 }

@@ -9,14 +9,11 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import at.tugraz.musicdroid.DrumsActivity;
 import at.tugraz.musicdroid.R;
-import at.tugraz.musicdroid.helper.Helper;
-import at.tugraz.musicdroid.recorder.AudioHandler;
 
 
 public class SavePresetDialog extends DialogFragment {

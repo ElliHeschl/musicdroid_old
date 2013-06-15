@@ -8,7 +8,7 @@
         android:id="@+id/btn_settings"
         android:icon="@drawable/settings_button"
         android:showAsAction="always" 
-        android:title="@string/menu_item_add"  />
+        android:title="@string/menu_item_settings"  />
         
       <item
         android:id="@+id/btn_add"

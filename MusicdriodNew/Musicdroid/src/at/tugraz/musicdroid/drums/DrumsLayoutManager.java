@@ -1,6 +1,9 @@
 package at.tugraz.musicdroid.drums;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
 
 import android.content.Context;
 import android.util.Log;
@@ -14,19 +17,33 @@ public class DrumsLayoutManager {
 	private RelativeLayout soundRowBox = null; 
 	private int localId = 5010;
 	private ArrayList<DrumSoundRow> drumSoundRowsArray;
+	private HashMap<String, Integer> drumToDrumSoundMap;
 	
 	public DrumsLayoutManager(Context c)
 	{
 		this.context = c;
 		this.soundRowBox = (RelativeLayout) ((DrumsActivity)context).findViewById(R.id.drums_drum_row_box);
 		this.drumSoundRowsArray = new ArrayList<DrumSoundRow>();
+		this.drumToDrumSoundMap = new HashMap<String, Integer>();
+		
+		populateDrumToDrumSoundMap();
         initializeDrumSoundRows();
+	}
+	
+	private void populateDrumToDrumSoundMap()
+	{
+		drumToDrumSoundMap.put(context.getResources().getString(R.string.base_drum), R.raw.base_drum);
+		drumToDrumSoundMap.put(context.getResources().getString(R.string.snare_drum), R.raw.snare_drum);
+		drumToDrumSoundMap.put(context.getResources().getString(R.string.high_hat_closed), R.raw.high_hat_closed);
+		drumToDrumSoundMap.put(context.getResources().getString(R.string.high_hat_open), R.raw.high_hat_open);
+		drumToDrumSoundMap.put(context.getResources().getString(R.string.high_tom), R.raw.tom_high);
+		drumToDrumSoundMap.put(context.getResources().getString(R.string.low_tom), R.raw.tom_low);
 	}
 	
 	
 	private void initializeDrumSoundRows() 
 	{
-		DrumSoundRow baseDrum = new DrumSoundRow(context, R.string.base_drum, R.raw.base_drum);
+		DrumSoundRow baseDrum = new DrumSoundRow(context, this, R.string.base_drum, R.raw.base_drum);
 		DrumSoundRowLayout baseDrumLayout = baseDrum.getLayout();
 		baseDrumLayout.setId(getNewId());
 		LayoutParams layoutParamsBase = (LayoutParams) baseDrumLayout.getLayoutParams();
@@ -35,7 +52,7 @@ public class DrumsLayoutManager {
 		drumSoundRowsArray.add(baseDrum);
 		((DrumsActivity)context).addObserverToEventHandler(baseDrum);
 		
-		DrumSoundRow snareDrum = new DrumSoundRow(context, R.string.snare_drum, R.raw.snare_drum);
+		DrumSoundRow snareDrum = new DrumSoundRow(context, this, R.string.snare_drum, R.raw.snare_drum);
 		DrumSoundRowLayout snareDrumLayout = snareDrum.getLayout();
 		snareDrumLayout.setId(getNewId());
 		LayoutParams layoutParamsSnare = (LayoutParams) snareDrumLayout.getLayoutParams();
@@ -44,7 +61,7 @@ public class DrumsLayoutManager {
 		drumSoundRowsArray.add(snareDrum);
 		((DrumsActivity)context).addObserverToEventHandler(snareDrum);
 		
-		DrumSoundRow highHatClosed = new DrumSoundRow(context, R.string.high_hat_closed, R.raw.high_hat_closed);
+		DrumSoundRow highHatClosed = new DrumSoundRow(context, this, R.string.high_hat_closed, R.raw.high_hat_closed);
 		DrumSoundRowLayout highHatClosedLayout = highHatClosed.getLayout();
 		highHatClosedLayout.setId(getNewId());
 		LayoutParams layoutParamsHighHatClosed = (LayoutParams) highHatClosedLayout.getLayoutParams();
@@ -53,7 +70,7 @@ public class DrumsLayoutManager {
 		drumSoundRowsArray.add(highHatClosed);
 		((DrumsActivity)context).addObserverToEventHandler(highHatClosed);
 		
-		DrumSoundRow highHatOpen = new DrumSoundRow(context, R.string.high_hat_open, R.raw.high_hat_open);
+		DrumSoundRow highHatOpen = new DrumSoundRow(context, this, R.string.high_hat_open, R.raw.high_hat_open);
 		DrumSoundRowLayout highHatOpenLayout = highHatOpen.getLayout();
 		highHatOpenLayout.setId(getNewId());
 		LayoutParams layoutParamsHighHatOpen = (LayoutParams) highHatOpenLayout.getLayoutParams();
@@ -62,7 +79,7 @@ public class DrumsLayoutManager {
 		drumSoundRowsArray.add(highHatOpen);
 		((DrumsActivity)context).addObserverToEventHandler(highHatOpen);
 		
-		DrumSoundRow highTom = new DrumSoundRow(context, R.string.high_tom, R.raw.tom_high);
+		DrumSoundRow highTom = new DrumSoundRow(context, this, R.string.high_tom, R.raw.tom_high);
 		DrumSoundRowLayout highTomLayout = highTom.getLayout();
 		highTomLayout.setId(getNewId());
 		LayoutParams layoutParamsHighTom = (LayoutParams) highTomLayout.getLayoutParams();
@@ -71,7 +88,7 @@ public class DrumsLayoutManager {
 		drumSoundRowsArray.add(highTom);
 		((DrumsActivity)context).addObserverToEventHandler(highTom);
 		
-		DrumSoundRow lowTom = new DrumSoundRow(context, R.string.low_tom, R.raw.tom_low);
+		DrumSoundRow lowTom = new DrumSoundRow(context, this, R.string.low_tom, R.raw.tom_low);
 		DrumSoundRowLayout lowTomLayout = lowTom.getLayout();
 		lowTomLayout.setId(getNewId());
 		LayoutParams layoutParamsLowTom = (LayoutParams) lowTomLayout.getLayoutParams();
@@ -95,7 +112,15 @@ public class DrumsLayoutManager {
 		    DrumSoundRow r = preset.getDrumSoundRowsArray().get(i);
 		    drumSoundRowsArray.get(i).setSoundPoolId(r.getSoundPoolId());
 		    drumSoundRowsArray.get(i).setBeatArray(r.getBeatArray());
+		    drumSoundRowsArray.get(i).setSoundRowNameAndUpdateLayout(r.getSoundRowName());
 		}
+	} 
+	
+	public void resetLayout()
+	{
+		soundRowBox.removeAllViews();
+		drumSoundRowsArray.clear();
+		initializeDrumSoundRows();
 	}
 	
 	private int getNewId()
@@ -107,5 +132,20 @@ public class DrumsLayoutManager {
 	public ArrayList<DrumSoundRow> getDrumSoundRowsArray()
 	{
 		return drumSoundRowsArray;
+	}
+	
+	public int getRawIdByString(String str)
+	{
+		return drumToDrumSoundMap.get(str);
+	}
+	
+	public String getDrumByRawId(int id)
+	{
+	   Iterator<Entry<String, Integer>> it = drumToDrumSoundMap.entrySet().iterator();
+	    while (it.hasNext()) {
+	        HashMap.Entry<String, Integer> pairs = (HashMap.Entry<String, Integer>)it.next();
+	        if(pairs.getValue() == id) return pairs.getKey();
+	    }
+	    return null;
 	}
 }

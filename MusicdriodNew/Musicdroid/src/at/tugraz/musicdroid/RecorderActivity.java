@@ -1,5 +1,7 @@
 package at.tugraz.musicdroid;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -11,6 +13,7 @@ import android.widget.LinearLayout;
 import at.tugraz.musicdroid.recorder.AudioHandler;
 import at.tugraz.musicdroid.recorder.RecorderLayout;
 import at.tugraz.musicdroid.recorder.RecorderMenuCallback;
+import at.tugraz.musicdroid.soundmixer.SoundMixer;
 import at.tugraz.musicdroid.soundmixer.Statusbar;
 
 public class RecorderActivity extends FragmentActivity {
@@ -34,6 +37,17 @@ public class RecorderActivity extends FragmentActivity {
 		inflater.inflate(R.menu.recorder_menu, menu);
 		return true;
 	}
+    
+    @Override
+    public void onBackPressed()
+    {
+    	if(layout.isSoundRecorded())
+    	  showSecurityQuestionBeforeExit();
+    	else
+    	  finish();
+    	
+    }
+
     
     @Override
     protected void onResume()
@@ -91,6 +105,25 @@ public class RecorderActivity extends FragmentActivity {
     	 finish();
     }
 
-
-    
+	private void showSecurityQuestionBeforeExit() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(R.string.on_recorder_back_pressed_security_question);
+		builder.setCancelable(true);
+		builder.setNegativeButton(R.string.yes,
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int id) {
+						finish();
+					}
+				});
+		builder.setPositiveButton(R.string.no,
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				});
+		AlertDialog alert = builder.create();
+		alert.show();
+	}
 }

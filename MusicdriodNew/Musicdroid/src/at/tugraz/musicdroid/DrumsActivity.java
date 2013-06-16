@@ -86,7 +86,7 @@ public class DrumsActivity extends FragmentActivity {
     
 	private void showSecurityQuestionBeforeGoingBack() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(R.string.drums_back_pressed_security_question);
+		builder.setMessage(R.string.on_drums_back_pressed_security_question);
 		builder.setCancelable(true);
 		builder.setNegativeButton(R.string.yes,
 				new DialogInterface.OnClickListener() {

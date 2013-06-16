@@ -8,9 +8,13 @@ import com.jayway.android.robotium.solo.Solo;
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
 import at.tugraz.musicdroid.MainActivity;
 import at.tugraz.musicdroid.DrumsActivity;
 import at.tugraz.musicdroid.R;
+import at.tugraz.musicdroid.types.DrumType;
 import at.tugraz.musicdroid.types.SoundType;
 
 public class DrumSoundRowTest  extends ActivityInstrumentationTestCase2<MainActivity>{
@@ -82,6 +86,46 @@ public class DrumSoundRowTest  extends ActivityInstrumentationTestCase2<MainActi
 		assertTrue(
 				testButton.getDrawable().getConstantState()
 				.equals(getActivity().getResources().getDrawable(R.drawable.drum_button_unclicked_dark).getConstantState()));
+	}
+	
+	
+	public void testSpinnerTextChangesOnLongClick()
+	{
+		assertTrue(row != null && layout != null);
+		RelativeLayout spinnerBox = (RelativeLayout) layout.findViewById(R.id.drum_row_descriptor_box);
+		Spinner spinner = (Spinner) layout.findViewById(R.id.drum_sound_spinner);
+		
+		String textBeforeSpinnerAction = (String) spinner.getSelectedItem();
+		
+		assertFalse(spinner.isEnabled());
+		
+		solo.clickLongOnView(spinnerBox);
+		solo.sleep(1000);
+		solo.scrollToTop();
+		solo.clickOnText(getActivity().getResources().getString(R.string.tambourine));
+		solo.sleep(1000);
+		
+		assertFalse(textBeforeSpinnerAction.equals((String) spinner.getSelectedItem()));
+		assertTrue(((String)spinner.getSelectedItem()).equals(getActivity().getResources().getString(R.string.tambourine)));
+	}
+	
+	
+	public void testSoundpoolIdChangesOnSpinnerClick()
+	{
+		assertTrue(row != null && layout != null);
+		RelativeLayout spinnerBox = (RelativeLayout) layout.findViewById(R.id.drum_row_descriptor_box);
+		Spinner spinner = (Spinner) layout.findViewById(R.id.drum_sound_spinner);
+		
+		assertFalse(spinner.isEnabled());
+		int oldSoundpoolId = row.getSoundPoolId();
+		
+		solo.clickLongOnView(spinnerBox);
+		solo.sleep(1000);
+		solo.scrollToTop();
+		solo.clickOnText(getActivity().getResources().getString(DrumType.TAMBOURINE.getNameResource()));
+		solo.sleep(1000);
+		
+		assertTrue(row.getSoundPoolId() != oldSoundpoolId);
 	}
 	
 	

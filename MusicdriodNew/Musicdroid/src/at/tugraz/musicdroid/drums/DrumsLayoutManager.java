@@ -17,6 +17,7 @@ public class DrumsLayoutManager {
 	private Context context = null;
 	private RelativeLayout soundRowBox = null; 
 	private int localId = 5010;
+	private boolean unsavedChanges = false;
 	private ArrayList<DrumSoundRow> drumSoundRowsArray;
 	private HashMap<String, DrumType> stringToDrumTypeMap;
 	
@@ -143,5 +144,21 @@ public class DrumsLayoutManager {
 	{
 		return stringToDrumTypeMap.get(str);
 	}
+	
+	public HashMap<String, DrumType> getStringToDrumTypeMap()
+	{
+		return stringToDrumTypeMap;
+	}
+	
+	public boolean hasUnsavedChanges()
+	{
+		return unsavedChanges;
+	}
+	
+	public void setUnsavedChanges(boolean state)
+	{
+		unsavedChanges = state;
+	}
+
 
 }

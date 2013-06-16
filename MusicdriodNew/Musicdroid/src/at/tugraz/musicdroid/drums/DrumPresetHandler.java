@@ -22,7 +22,7 @@ public class DrumPresetHandler {
 		checkPathExistsAndCreateDirectory();
 	}
 	
-	public void writeDrumLoopToPreset(String name, ArrayList<DrumSoundRow> drumSoundRowsArray)
+	public boolean writeDrumLoopToPreset(String name, ArrayList<DrumSoundRow> drumSoundRowsArray)
 	{
 		Serializer serializer = new Persister();
 		DrumPreset test = new DrumPreset(name, drumSoundRowsArray);
@@ -33,9 +33,10 @@ public class DrumPresetHandler {
 		try {
 			serializer.write(test, result);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
+		return true;
 	}
 	
 	public DrumPreset readPresentByName(String name)

@@ -43,7 +43,8 @@ public class DrumSoundRow implements Observer {
 
 	public void togglePosition(int position)
 	{
-		beatArray[position] = beatArray[position] == 0 ? 1 : 0;
+	  beatArray[position] = beatArray[position] == 0 ? 1 : 0;
+	  layoutManager.setUnsavedChanges(true);
 	}
 	
 	public int getBeatArrayValueAtPosition(int position)
@@ -66,6 +67,7 @@ public class DrumSoundRow implements Observer {
 		DrumType type = layoutManager.getDrumTypeByString(drumString);
 		soundPoolId = SoundManager.loadSound(type.getSoundResource());
 		soundRowName = context.getResources().getString(type.getNameResource());
+		layoutManager.setUnsavedChanges(true);
 	}
 	
 	public int getSoundPoolId()

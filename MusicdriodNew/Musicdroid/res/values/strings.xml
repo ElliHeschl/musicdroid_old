@@ -112,4 +112,6 @@
   <string name="drums_menu_entry_clear_preset">Clear Preset</string>
   <string name="drums_menu_entry_load_preset">Load Preset</string>
   <string name="drums_menu_entry_save_preset">Save Preset</string>
+  
+  <string name="invalid_filename">This filename appears to be invalid</string>
 </resources>

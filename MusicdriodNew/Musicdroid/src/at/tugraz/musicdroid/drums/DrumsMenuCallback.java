@@ -1,6 +1,5 @@
 package at.tugraz.musicdroid.drums;
 
-import android.util.Log;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;

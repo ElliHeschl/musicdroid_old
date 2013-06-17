@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import at.tugraz.musicdroid.recorder.AudioHandler;
 import at.tugraz.musicdroid.recorder.RecorderLayout;
 import at.tugraz.musicdroid.recorder.RecorderMenuCallback;
-import at.tugraz.musicdroid.soundmixer.SoundMixer;
 import at.tugraz.musicdroid.soundmixer.Statusbar;
 
 public class RecorderActivity extends FragmentActivity {

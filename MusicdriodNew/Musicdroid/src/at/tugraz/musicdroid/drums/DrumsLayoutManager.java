@@ -2,8 +2,6 @@ package at.tugraz.musicdroid.drums;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
 
 import android.content.Context;
 import android.util.Log;

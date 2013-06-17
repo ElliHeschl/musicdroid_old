@@ -1,6 +1,5 @@
 package at.tugraz.musicdroid;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import at.tugraz.musicdroid.animation.HighlightAnimation;
-import at.tugraz.musicdroid.dialog.MetronomQuickSettingsDialog;
 import at.tugraz.musicdroid.dialog.OpenFileDialog;
 import at.tugraz.musicdroid.dialog.SavePresetDialog;
 import at.tugraz.musicdroid.dialog.listener.LoadFileDialogListener;
@@ -23,7 +21,6 @@ import at.tugraz.musicdroid.drums.DrumsLayoutManager;
 import at.tugraz.musicdroid.drums.DrumsMenuCallback;
 import at.tugraz.musicdroid.drums.StatusbarDrums;
 import at.tugraz.musicdroid.recorder.AudioHandler;
-import at.tugraz.musicdroid.soundmixer.SoundMixer;
 
 public class DrumsActivity extends FragmentActivity {
 	private DrumsLayoutManager drumsLayout = null;
@@ -144,7 +141,7 @@ public class DrumsActivity extends FragmentActivity {
 	public void loadPresetByName(String name)
 	{
 		DrumPreset preset = null;
-		if((preset = drumPresetHandler.readPresentByName(name)) != null)
+		if((preset = drumPresetHandler.readPresetByName(name)) != null)
 		  drumsLayout.loadPresetToDrumLayout(preset);
 	}
 	

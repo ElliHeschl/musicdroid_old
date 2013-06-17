@@ -1285,6 +1285,7 @@ containing a value of this type.
         public static final int high_hat_closed=0x7f0b005e;
         public static final int high_hat_open=0x7f0b005f;
         public static final int high_tom=0x7f0b0060;
+        public static final int invalid_filename=0x7f0b006b;
         public static final int low_tom=0x7f0b0061;
         public static final int menu_about=0x7f0b001e;
         public static final int menu_hide_menu=0x7f0b001d;

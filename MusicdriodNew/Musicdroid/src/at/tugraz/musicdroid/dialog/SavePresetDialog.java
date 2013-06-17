@@ -5,10 +5,10 @@ import java.util.Date;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -16,18 +16,15 @@ import at.tugraz.musicdroid.DrumsActivity;
 import at.tugraz.musicdroid.R;
 
 
-public class SavePresetDialog extends DialogFragment {
-	private EditText editText = null;
+public class SavePresetDialog extends CheckFilenameBaseDialog {
 	private static final String DEFAULT_FILENAME_TIME_FORMAT = "yyyy_mm_dd_hhmmss";
 	private static final String FTYPE = ".xml";
 	private Context context = null;
-	private String filename = null;
 	
 	public SavePresetDialog() {
 	}
 
-	
-    @Override
+	@Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         
@@ -39,8 +36,6 @@ public class SavePresetDialog extends DialogFragment {
         builder.setTitle(R.string.dialog_save_preset_title)
                .setNegativeButton(R.string.dialog_save, new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {
-                	   filename = editText.getText()+"";
-                	   ((DrumsActivity)getActivity()).saveCurrentPreset(filename);
                    }
                })
                .setPositiveButton(R.string.dialog_abort, new DialogInterface.OnClickListener() {
@@ -57,16 +52,18 @@ public class SavePresetDialog extends DialogFragment {
         
         return dialog;
     }
-    
+	
+	
 	private String getDefaultFileName() {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
 				DEFAULT_FILENAME_TIME_FORMAT);
 		return "preset_" + simpleDateFormat.format(new Date());
 	}
 	
-	public String getFilename()
-	{
-		return filename;
+	@Override
+	void performOnClick(String str) {
+		Log.i("SavePresetDialog", "PerformOnClick " + str);
+		((DrumsActivity)getActivity()).saveCurrentPreset(str);
 	}
     
 }

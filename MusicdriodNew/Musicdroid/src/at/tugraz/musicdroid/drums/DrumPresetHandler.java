@@ -24,12 +24,16 @@ public class DrumPresetHandler {
 	
 	public boolean writeDrumLoopToPreset(String name, ArrayList<DrumSoundRow> drumSoundRowsArray)
 	{
+		if(drumSoundRowsArray.size() != 6)
+			return false;
+		
+		String filename = path + name;
+		if(!filename.endsWith(".xml")) filename = filename + ".xml";
 		Serializer serializer = new Persister();
 		DrumPreset test = new DrumPreset(name, drumSoundRowsArray);
 		checkPathExistsAndCreateDirectory();
-		File result = new File(path+"/" + name + ".xml");
-		
-		
+		File result = new File(filename);
+
 		try {
 			serializer.write(test, result);
 		} catch (Exception e) {
@@ -39,16 +43,17 @@ public class DrumPresetHandler {
 		return true;
 	}
 	
-	public DrumPreset readPresentByName(String name)
+	public DrumPreset readPresetByName(String name)
 	{
-		Serializer serializer2 = new Persister();
+		Serializer serializer = new Persister();
 		String filename = path+"/"+name;
 		if(!filename.endsWith(".xml")) filename = filename + ".xml";
 		File source = new File(filename);
 
 		try {
-			DrumPreset preset = serializer2.read(DrumPreset.class, source);
-			return preset;
+			DrumPreset preset = serializer.read(DrumPreset.class, source);
+			if(checkValidPreset(preset))
+			  return preset;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,6 +66,18 @@ public class DrumPresetHandler {
 		File f = new File(path);
 		if(!f.exists())
 			f.mkdir();
+	}
+	
+	
+	private boolean checkValidPreset(DrumPreset preset)
+	{
+		if(preset.getDrumSoundRowsArray().size() != 6)
+		{
+			return false;
+		}
+		return true;
+					
+			
 	}
 	
 	public void writeTestPreset()

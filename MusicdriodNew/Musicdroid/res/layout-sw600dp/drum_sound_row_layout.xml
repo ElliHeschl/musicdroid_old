@@ -8,33 +8,34 @@
 <!--     android:minHeight="25dp"> -->
     
     <LinearLayout 
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
     	android:layout_height="wrap_content">
+<!--     	android:minHeight="25dp" -->
     
 	    <RelativeLayout
-	     android:layout_width="wrap_content" 
-	     android:layout_height="fill_parent" 	
-	     android:background="@color/recorder_dark_background_color"
-	     android:minWidth="150dp"
+	     android:layout_width="0dp" 
+	     android:layout_height="fill_parent"
+	     android:layout_weight="2"
+	     android:background="@color/holo_blue_bright"
 	     android:id="@+id/drum_row_descriptor_box"
-	     android:scrollbarAlwaysDrawHorizontalTrack="true"
 	     >   	
 	     
 	        <Spinner
 		    android:id="@+id/drum_sound_spinner"
-		    android:layout_width="wrap_content"
+		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:layout_centerVertical="true"
 		    android:layout_marginLeft="5dp"
 		    android:background="@color/transparent"/>
 	  	</RelativeLayout>
-	        
-	       <RelativeLayout
-	         android:layout_width="wrap_content"
-	         android:layout_height="fill_parent"
-	         android:background="@color/transparent"
-	       >		
-		    
+	     
+	    
+	    <RelativeLayout
+	     android:layout_width="0dp" 
+	     android:layout_height="fill_parent"
+	     android:layout_weight="6" 
+	     android:background="@color/transparent"
+	     >
 			<at.tugraz.musicdroid.drums.DrumButton 
 			 android:layout_width="wrap_content"
 			 android:layout_height="wrap_content"
@@ -226,19 +227,6 @@
 		     custom:position="16"
 		     android:src="@drawable/drum_button_unclicked_bright"
 		     android:id="@+id/drum_button_4_4"
-	         /> 
-	         
-			 <at.tugraz.musicdroid.drums.DrumButton
-			 android:layout_width="wrap_content"
-			 android:layout_height="wrap_content"
-		     android:background="@color/transparent"
-		     android:layout_centerVertical="true"
-		     android:layout_toRightOf="@+id/drum_button_4_4"
-		     android:layout_marginLeft="3dp"
-		     android:clickable="false"
-		     android:visibility="invisible"
-		     custom:position="17"
-		     android:id="@+id/drum_button_buffer"
 	         /> 	         
 	   </RelativeLayout>
    </LinearLayout> 

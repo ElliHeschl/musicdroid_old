@@ -6,17 +6,27 @@
    android:id="@+id/drums_activity_layout"
    android:background="@color/background_holo_light">
    
+    	        
+		<HorizontalScrollView 
+		    android:id="@+id/drum_row_scroll_view"
+   			android:scrollbars="horizontal" 
+   			android:orientation="horizontal"
+    		android:layout_width="fill_parent" 
+    		android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+    		android:scrollbarAlwaysDrawHorizontalTrack="true">
+    		
     		<RelativeLayout 
-    		 	android:layout_width="fill_parent"
-            	android:layout_height="wrap_content"
-            	android:layout_alignParentTop="true"
+    		 	android:layout_width="wrap_content"
+            	android:layout_height="fill_parent"
             	android:id="@+id/drums_drum_row_box">
     		</RelativeLayout>
+        </HorizontalScrollView>
    		    
 		    <RelativeLayout
 			    android:clickable="true"
 	            android:background="@color/custom_background_color"
-	            android:minHeight="40dp"
+	            android:minHeight="35dp"
 			    android:layout_width="fill_parent"
 			    android:layout_height="wrap_content"
 	            android:layout_alignParentBottom="true"

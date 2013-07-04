@@ -78,6 +78,14 @@ public class DrumSoundRowLayout extends RelativeLayout implements OnClickListene
 		((DrumButton) findViewById(R.id.drum_button_2_2)).setOnClickListener(this);
 		((DrumButton) findViewById(R.id.drum_button_2_3)).setOnClickListener(this);
 		((DrumButton) findViewById(R.id.drum_button_2_4)).setOnClickListener(this);
+		((DrumButton) findViewById(R.id.drum_button_3_1)).setOnClickListener(this);
+		((DrumButton) findViewById(R.id.drum_button_3_2)).setOnClickListener(this);
+		((DrumButton) findViewById(R.id.drum_button_3_3)).setOnClickListener(this);
+		((DrumButton) findViewById(R.id.drum_button_3_4)).setOnClickListener(this);
+		((DrumButton) findViewById(R.id.drum_button_4_1)).setOnClickListener(this);
+		((DrumButton) findViewById(R.id.drum_button_4_2)).setOnClickListener(this);
+		((DrumButton) findViewById(R.id.drum_button_4_3)).setOnClickListener(this);
+		((DrumButton) findViewById(R.id.drum_button_4_4)).setOnClickListener(this);
 		((RelativeLayout) findViewById(R.id.drum_row_descriptor_box)).setOnClickListener(this);
 		((RelativeLayout) findViewById(R.id.drum_row_descriptor_box)).setOnLongClickListener(this);
 	}
@@ -93,6 +101,14 @@ public class DrumSoundRowLayout extends RelativeLayout implements OnClickListene
 		((DrumButton) findViewById(R.id.drum_button_2_2)).changeDrawableOnClick(beatArray[5]);
 		((DrumButton) findViewById(R.id.drum_button_2_3)).changeDrawableOnClick(beatArray[6]);
 		((DrumButton) findViewById(R.id.drum_button_2_4)).changeDrawableOnClick(beatArray[7]);
+		((DrumButton) findViewById(R.id.drum_button_3_1)).changeDrawableOnClick(beatArray[8]);
+		((DrumButton) findViewById(R.id.drum_button_3_2)).changeDrawableOnClick(beatArray[9]);
+		((DrumButton) findViewById(R.id.drum_button_3_3)).changeDrawableOnClick(beatArray[10]);
+		((DrumButton) findViewById(R.id.drum_button_3_4)).changeDrawableOnClick(beatArray[11]);
+		((DrumButton) findViewById(R.id.drum_button_4_1)).changeDrawableOnClick(beatArray[12]);
+		((DrumButton) findViewById(R.id.drum_button_4_2)).changeDrawableOnClick(beatArray[13]);
+		((DrumButton) findViewById(R.id.drum_button_4_3)).changeDrawableOnClick(beatArray[14]);
+		((DrumButton) findViewById(R.id.drum_button_4_4)).changeDrawableOnClick(beatArray[15]);
 	}
 	
 	@Override
@@ -136,7 +152,15 @@ public class DrumSoundRowLayout extends RelativeLayout implements OnClickListene
 			  									 + beatArray[4] + " "
 			  									 + beatArray[5] + " " 
 			  									 + beatArray[6] + " "
-			  									 + beatArray[7] + " ");
+			  									 + beatArray[7] + " " 
+			  									 + beatArray[8] + " "
+			  									 + beatArray[9] + " " 
+			  									 + beatArray[10] + " "
+			  									 + beatArray[11] + " "
+			  									 + beatArray[12] + " "
+			  									 + beatArray[13] + " "
+			  									 + beatArray[14] + " "
+			  									 + beatArray[15] + " ");
 	}
 	
 	public void onItemSelected(AdapterView<?> parent, View view, 

@@ -18,7 +18,7 @@ public class DrumSoundRow implements Observer {
 	private DrumsLayoutManager layoutManager = null;
 	private DrumSoundRowLayout layout = null;
 	@ElementArray
-	private int[] beatArray = {0,0,0,0,0,0,0,0};
+	private int[] beatArray = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	@Element
 	private int rawId = 0;
 	@Element

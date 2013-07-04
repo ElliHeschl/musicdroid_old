@@ -27,7 +27,6 @@ public class OpenFileDialog {
          this.fileType = fileType;
          
          checkPathExistsAndIsDirectory();
-         loadFileList();
      }
 	 
 	 private void checkPathExistsAndIsDirectory()
@@ -43,6 +42,8 @@ public class OpenFileDialog {
 	 
 	 public Dialog createFileDialog() {
          Dialog dialog = null;
+
+         loadFileList();
          AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
          builder.setTitle(path);

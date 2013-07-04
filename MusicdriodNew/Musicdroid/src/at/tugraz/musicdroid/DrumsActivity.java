@@ -139,8 +139,8 @@ public class DrumsActivity extends FragmentActivity {
 	}
 	
 	public void loadPresetByName(String name)
-	{
-		DrumPreset preset = null;
+	{ 
+		DrumPreset preset = null;  
 		if((preset = drumPresetHandler.readPresetByName(name)) != null)
 		  drumsLayout.loadPresetToDrumLayout(preset);
 	}

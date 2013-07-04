@@ -4,19 +4,18 @@
     xmlns:custom="http://schemas.android.com/apk/res/at.tugraz.musicdroid"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="7dp"
-    android:minHeight="25dp">
+    android:layout_marginTop="4dp">
+<!--     android:minHeight="25dp"> -->
     
     <LinearLayout 
         android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:minHeight="25dp"
-        >
+    	android:layout_height="wrap_content">
+<!--     	android:minHeight="25dp" -->
     
 	    <RelativeLayout
 	     android:layout_width="0dp" 
-	     android:layout_height="fill_parent"
-	     android:layout_weight="2"
+	     android:layout_height="fill_parent" 
+	     android:layout_weight="2"  	
 	     android:background="@color/recorder_dark_background_color"
 	     android:id="@+id/drum_row_descriptor_box"
 	     >   	
@@ -28,31 +27,22 @@
 		    android:layout_centerVertical="true"
 		    android:layout_marginLeft="5dp"
 		    android:background="@color/transparent"/>
-<!-- 		     <TextView  -->
-<!-- 		     android:layout_width="wrap_content" -->
-<!-- 		     android:layout_height="wrap_content"  -->
-<!-- 		     android:layout_centerVertical="true" -->
-<!-- 		     android:layout_marginLeft="5dp" -->
-<!-- 		     android:textColor="@color/background_holo_light" -->
-<!-- 		     android:text="TestSound1" -->
-<!-- 		     android:id="@+id/drum_row_text" -->
-<!-- 		     />   -->
 	  	</RelativeLayout>
 	     
 	    
 	    <RelativeLayout
 	     android:layout_width="0dp" 
 	     android:layout_height="fill_parent"
-	     android:layout_weight="5"
+	     android:layout_weight="6" 
 	     android:background="@color/transparent"
 	     >
-			<at.tugraz.musicdroid.drums.DrumButton
+			<at.tugraz.musicdroid.drums.DrumButton 
 			 android:layout_width="wrap_content"
 			 android:layout_height="wrap_content"
 		     android:background="@color/transparent"
 		     android:layout_centerVertical="true"
 		     android:layout_alignParentLeft="true"
-		     android:layout_marginLeft="5dp"
+		     android:layout_marginLeft="3dp"
 		     custom:position="1"
 		     android:src="@drawable/drum_button_unclicked_dark"
 		     android:id="@+id/drum_button_1_1"
@@ -64,7 +54,7 @@
 		     android:background="@color/transparent"
 		     android:layout_centerVertical="true"
 		     android:layout_toRightOf="@+id/drum_button_1_1"
-		     android:layout_marginLeft="5dp"
+		     android:layout_marginLeft="3dp"
 		     custom:position="2"
 		     android:src="@drawable/drum_button_unclicked_dark"
 		     android:id="@+id/drum_button_1_2"
@@ -76,7 +66,7 @@
 		     android:background="@color/transparent"
 		     android:layout_centerVertical="true"
 		     android:layout_toRightOf="@+id/drum_button_1_2"
-		     android:layout_marginLeft="5dp"
+		     android:layout_marginLeft="3dp"
 		     custom:position="3"
 		     android:src="@drawable/drum_button_unclicked_dark"
 		     android:id="@+id/drum_button_1_3"
@@ -88,7 +78,7 @@
 		     android:background="@color/transparent"
 		     android:layout_centerVertical="true"
 		     android:layout_toRightOf="@+id/drum_button_1_3"
-		     android:layout_marginLeft="5dp"
+		     android:layout_marginLeft="3dp"
 		     custom:position="4"
 		     android:src="@drawable/drum_button_unclicked_dark"
 		     android:id="@+id/drum_button_1_4"
@@ -100,7 +90,7 @@
 		     android:background="@color/transparent"
 		     android:layout_centerVertical="true"
 		     android:layout_toRightOf="@+id/drum_button_1_4"
-		     android:layout_marginLeft="5dp"
+		     android:layout_marginLeft="3dp"
 		     custom:position="5"
 		     android:src="@drawable/drum_button_unclicked_bright"
 		     android:id="@+id/drum_button_2_1"
@@ -112,7 +102,7 @@
 		     android:background="@color/transparent"
 		     android:layout_centerVertical="true"
 		     android:layout_toRightOf="@+id/drum_button_2_1"
-		     android:layout_marginLeft="5dp"
+		     android:layout_marginLeft="3dp"
 		     custom:position="6"
 		     android:src="@drawable/drum_button_unclicked_bright"
 		     android:id="@+id/drum_button_2_2"
@@ -124,7 +114,7 @@
 		     android:background="@color/transparent"
 		     android:layout_centerVertical="true"
 		     android:layout_toRightOf="@+id/drum_button_2_2"
-		     android:layout_marginLeft="5dp"
+		     android:layout_marginLeft="3dp"
 		     custom:position="7"
 		     android:src="@drawable/drum_button_unclicked_bright"
 		     android:id="@+id/drum_button_2_3"
@@ -136,12 +126,108 @@
 		     android:background="@color/transparent"
 		     android:layout_centerVertical="true"
 		     android:layout_toRightOf="@+id/drum_button_2_3"
-		     android:layout_marginLeft="5dp"
+		     android:layout_marginLeft="3dp"
 		     custom:position="8"
 		     android:src="@drawable/drum_button_unclicked_bright"
 		     android:id="@+id/drum_button_2_4"
 	         /> 
+	        
+			
+			 <at.tugraz.musicdroid.drums.DrumButton
+			 android:layout_width="wrap_content"
+			 android:layout_height="wrap_content"
+		     android:background="@color/transparent"
+		     android:layout_centerVertical="true"
+		     android:layout_toRightOf="@+id/drum_button_2_4"
+		     android:layout_marginLeft="3dp"
+		     custom:position="9"
+		     android:src="@drawable/drum_button_unclicked_dark"
+		     android:id="@+id/drum_button_3_1"
+	         />  
+			
+			 <at.tugraz.musicdroid.drums.DrumButton
+			 android:layout_width="wrap_content"
+			 android:layout_height="wrap_content"
+		     android:background="@color/transparent"
+		     android:layout_centerVertical="true"
+		     android:layout_toRightOf="@+id/drum_button_3_1"
+		     android:layout_marginLeft="3dp"
+		     custom:position="10"
+		     android:src="@drawable/drum_button_unclicked_dark"
+		     android:id="@+id/drum_button_3_2"
+	         />  
 	         
+			<at.tugraz.musicdroid.drums.DrumButton
+			 android:layout_width="wrap_content"
+			 android:layout_height="wrap_content"
+		     android:background="@color/transparent"
+		     android:layout_centerVertical="true"
+		     android:layout_toRightOf="@+id/drum_button_3_2"
+		     android:layout_marginLeft="3dp"
+		     custom:position="11"
+		     android:src="@drawable/drum_button_unclicked_dark"
+		     android:id="@+id/drum_button_3_3"
+	         />  
+	         
+			<at.tugraz.musicdroid.drums.DrumButton
+			 android:layout_width="wrap_content"
+			 android:layout_height="wrap_content"
+		     android:background="@color/transparent"
+		     android:layout_centerVertical="true"
+		     android:layout_toRightOf="@+id/drum_button_3_3"
+		     android:layout_marginLeft="3dp"
+		     custom:position="12"
+		     android:src="@drawable/drum_button_unclicked_dark"
+		     android:id="@+id/drum_button_3_4"
+	         /> 
+	        
+			 <at.tugraz.musicdroid.drums.DrumButton
+			 android:layout_width="wrap_content"
+			 android:layout_height="wrap_content"
+		     android:background="@color/transparent"
+		     android:layout_centerVertical="true"
+		     android:layout_toRightOf="@+id/drum_button_3_4"
+		     android:layout_marginLeft="3dp"
+		     custom:position="13"
+		     android:src="@drawable/drum_button_unclicked_bright"
+		     android:id="@+id/drum_button_4_1"
+	         />  
+			
+			 <at.tugraz.musicdroid.drums.DrumButton
+			 android:layout_width="wrap_content"
+			 android:layout_height="wrap_content"
+		     android:background="@color/transparent"
+		     android:layout_centerVertical="true"
+		     android:layout_toRightOf="@+id/drum_button_4_1"
+		     android:layout_marginLeft="3dp"
+		     custom:position="14"
+		     android:src="@drawable/drum_button_unclicked_bright"
+		     android:id="@+id/drum_button_4_2"
+	         />  
+	         
+			<at.tugraz.musicdroid.drums.DrumButton
+			 android:layout_width="wrap_content"
+			 android:layout_height="wrap_content"
+		     android:background="@color/transparent"
+		     android:layout_centerVertical="true"
+		     android:layout_toRightOf="@+id/drum_button_4_2"
+		     android:layout_marginLeft="3dp"
+		     custom:position="15"
+		     android:src="@drawable/drum_button_unclicked_bright"
+		     android:id="@+id/drum_button_4_3"
+	         />  
+	         
+			<at.tugraz.musicdroid.drums.DrumButton
+			 android:layout_width="wrap_content"
+			 android:layout_height="wrap_content"
+		     android:background="@color/transparent"
+		     android:layout_centerVertical="true"
+		     android:layout_toRightOf="@+id/drum_button_4_3"
+		     android:layout_marginLeft="3dp"
+		     custom:position="16"
+		     android:src="@drawable/drum_button_unclicked_bright"
+		     android:id="@+id/drum_button_4_4"
+	         /> 	         
 	   </RelativeLayout>
    </LinearLayout> 
 </at.tugraz.musicdroid.drums.DrumSoundRowLayout>

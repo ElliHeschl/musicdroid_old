@@ -41,7 +41,7 @@ public class DrumButton extends ImageButton {
 		}
 		else
 		{
-			if(position <=4)
+			if(position <=4 || (position > 8 && position < 13))
 			  setImageDrawable(getResources().getDrawable(R.drawable.drum_button_unclicked_dark));
 			else
 			  setImageDrawable(getResources().getDrawable(R.drawable.drum_button_unclicked_bright));

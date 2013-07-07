@@ -20,7 +20,7 @@ import at.tugraz.musicdroid.types.SoundType;
 
 public class DrumsActivityTest  extends ActivityInstrumentationTestCase2<MainActivity>{
 	protected Solo solo = null;
-	protected DrumsLayoutManager layoutManager = null;
+	protected DrumsLayout layoutManager = null;
 	protected DrumSoundRow row = null;
 	protected DrumSoundRowLayout layout = null;
 	

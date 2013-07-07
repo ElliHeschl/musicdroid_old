@@ -116,6 +116,10 @@ public class MainActivity extends MenuFileActivity {
 		           SoundTrackMic stm = new SoundTrackMic(result);
 		           addSoundTrack(new SoundTrackView(this, stm));
 		    	 }
+		    	 else if(data.hasExtra("drum_loop"))
+		    	 {
+		    		 
+		    	 }
 		     }
 		     if (resultCode == Activity.RESULT_CANCELED) {    
 		         //probably not needed

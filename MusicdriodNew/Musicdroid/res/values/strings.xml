@@ -43,6 +43,7 @@
   <string name="dialog_continue">Continue</string>
   <string name="dialog_abort">Abort</string>
   <string name="dialog_save">Save</string>
+  <string name="dialog_export">Export</string>
   
   <string name ="play_button_text">Play Song</string>
   <string name ="stop_button_text">Stop Song</string>
@@ -112,6 +113,10 @@
   <string name="drums_menu_entry_clear_preset">Clear Preset</string>
   <string name="drums_menu_entry_load_preset">Load Preset</string>
   <string name="drums_menu_entry_save_preset">Save Preset</string>
+  <string name="drum_sound_export_duration_text">Duration (Sec)</string>
+  <string name="drum_sound_export_dialog_title">Export Drum Sound</string>
+  <string name="drum_sound_export_num_loops_description_text">Number of Loops</string>
+  
   
   <string name="invalid_filename">This filename appears to be invalid</string>
 </resources>

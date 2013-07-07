@@ -5,30 +5,81 @@ import java.util.HashMap;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import at.tugraz.musicdroid.DrumsActivity;
 import at.tugraz.musicdroid.R;
+import at.tugraz.musicdroid.RecorderActivity;
+import at.tugraz.musicdroid.dialog.ExportDrumSoundDialog;
+import at.tugraz.musicdroid.dialog.listener.ExportDrumSoundDialogListener;
 import at.tugraz.musicdroid.types.DrumType;
 
-public class DrumsLayoutManager {
+public class DrumsLayout implements OnClickListener {
 	private Context context = null;
 	private RelativeLayout soundRowBox = null; 
+	private RelativeLayout addDrumsToSoundMixerBox = null;
 	private int localId = 5010;
 	private boolean unsavedChanges = false;
 	private ArrayList<DrumSoundRow> drumSoundRowsArray;
 	private HashMap<String, DrumType> stringToDrumTypeMap;
+	private ExportDrumSoundDialog addToSoundMixerDialog = null;
 	
-	public DrumsLayoutManager(Context c)
+	public DrumsLayout(Context c)
 	{
 		this.context = c;
 		this.soundRowBox = (RelativeLayout) ((DrumsActivity)context).findViewById(R.id.drums_drum_row_box);
 		this.drumSoundRowsArray = new ArrayList<DrumSoundRow>();
 		this.stringToDrumTypeMap = new HashMap<String, DrumType>();
+		this.addDrumsToSoundMixerBox = (RelativeLayout) ((DrumsActivity)context).findViewById(R.id.drums_add_to_sound_mixer_box);
+		this.addToSoundMixerDialog = new ExportDrumSoundDialog(new ExportDrumSoundDialogListener((DrumsActivity)c));
 		
 		populateDrumToDrumSoundMap();
         initializeDrumSoundRows();
+        addDrumsToSoundMixerBox.setOnClickListener(this);
 	}
+		
+
+	@Override
+	public void onClick(View v) {
+		if(v.getId() == R.id.drums_add_to_sound_mixer_box)
+		{
+			handleOnAddToSoundmixerClick();
+		}
+		
+	}
+	
+	public void loadPresetToDrumLayout(DrumPreset preset)
+	{
+		Log.i("DrumsLayoutManager", "loadPresetToDrumLayout");
+		if(preset.getDrumSoundRowsArray().size() != drumSoundRowsArray.size())
+		{
+			Log.e("DrumsLayoutManager", "Error at loading preset: to few/much drum rows");
+		}
+		for(int i = 0; i < drumSoundRowsArray.size(); i++)
+		{
+		    DrumSoundRow r = preset.getDrumSoundRowsArray().get(i);
+		    drumSoundRowsArray.get(i).setSoundPoolId(r.getSoundPoolId());
+		    drumSoundRowsArray.get(i).setBeatArray(r.getBeatArray());
+		    drumSoundRowsArray.get(i).setSoundRowNameAndUpdateLayout(r.getSoundRowName());
+		}
+	} 
+	
+	public void resetLayout()
+	{
+		soundRowBox.removeAllViews();
+		drumSoundRowsArray.clear();
+		initializeDrumSoundRows();
+	}
+	
+	
+	private void handleOnAddToSoundmixerClick()
+	{
+		addToSoundMixerDialog.show(((DrumsActivity)context).getFragmentManager(), null);
+		//((RecorderActivity)context).returnToMainActivtiy();
+	}
+	
 	
 	private void populateDrumToDrumSoundMap()
 	{
@@ -102,29 +153,6 @@ public class DrumsLayoutManager {
 		soundRowBox.addView(lowTomLayout, layoutParamsLowTom);
 		drumSoundRowsArray.add(lowTom);
 		((DrumsActivity)context).addObserverToEventHandler(lowTom);
-	}
-	
-	public void loadPresetToDrumLayout(DrumPreset preset)
-	{
-		Log.i("DrumsLayoutManager", "loadPresetToDrumLayout");
-		if(preset.getDrumSoundRowsArray().size() != drumSoundRowsArray.size())
-		{
-			Log.e("DrumsLayoutManager", "Error at loading preset: to few/much drum rows");
-		}
-		for(int i = 0; i < drumSoundRowsArray.size(); i++)
-		{
-		    DrumSoundRow r = preset.getDrumSoundRowsArray().get(i);
-		    drumSoundRowsArray.get(i).setSoundPoolId(r.getSoundPoolId());
-		    drumSoundRowsArray.get(i).setBeatArray(r.getBeatArray());
-		    drumSoundRowsArray.get(i).setSoundRowNameAndUpdateLayout(r.getSoundRowName());
-		}
-	} 
-	
-	public void resetLayout()
-	{
-		soundRowBox.removeAllViews();
-		drumSoundRowsArray.clear();
-		initializeDrumSoundRows();
 	}
 	
 	private int getNewId()

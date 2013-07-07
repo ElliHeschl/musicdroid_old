@@ -15,7 +15,7 @@ import at.tugraz.musicdroid.types.DrumType;
 @Root
 public class DrumSoundRow implements Observer {
 	private Context context = null;
-	private DrumsLayoutManager layoutManager = null;
+	private DrumsLayout layoutManager = null;
 	private DrumSoundRowLayout layout = null;
 	@ElementArray
 	private int[] beatArray = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
@@ -29,7 +29,7 @@ public class DrumSoundRow implements Observer {
 	//need this one for marshaling
 	public DrumSoundRow() {}
 	
-	public DrumSoundRow(Context context, DrumsLayoutManager manager, DrumType drumType) { //int rowStringId, int soundRawId) {
+	public DrumSoundRow(Context context, DrumsLayout manager, DrumType drumType) { //int rowStringId, int soundRawId) {
 		//super(context);
 		this.context = context;
 		this.layoutManager = manager;

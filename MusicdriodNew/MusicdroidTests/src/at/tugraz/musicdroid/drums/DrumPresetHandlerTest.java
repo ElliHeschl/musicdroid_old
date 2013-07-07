@@ -17,7 +17,7 @@ import junit.framework.TestSuite;
 public class DrumPresetHandlerTest extends ActivityInstrumentationTestCase2<MainActivity>{
 	protected Solo solo = null;
 	DrumPresetHandler presetHandler = null;
-	DrumsLayoutManager layoutManager = null;
+	DrumsLayout layoutManager = null;
 	String filename = "test";
 	
 	public DrumPresetHandlerTest() {

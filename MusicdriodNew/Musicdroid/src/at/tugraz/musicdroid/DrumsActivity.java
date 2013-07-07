@@ -17,13 +17,13 @@ import at.tugraz.musicdroid.drums.DrumLoopEventHandler;
 import at.tugraz.musicdroid.drums.DrumPreset;
 import at.tugraz.musicdroid.drums.DrumPresetHandler;
 import at.tugraz.musicdroid.drums.DrumSoundRow;
-import at.tugraz.musicdroid.drums.DrumsLayoutManager;
+import at.tugraz.musicdroid.drums.DrumsLayout;
 import at.tugraz.musicdroid.drums.DrumsMenuCallback;
 import at.tugraz.musicdroid.drums.StatusbarDrums;
 import at.tugraz.musicdroid.recorder.AudioHandler;
 
 public class DrumsActivity extends FragmentActivity {
-	private DrumsLayoutManager drumsLayout = null;
+	private DrumsLayout drumsLayout = null;
 	private DrumLoopEventHandler drumLoopEventHandler = null;
 	private DrumPresetHandler drumPresetHandler = null;
 	private SavePresetDialog savePresetDialog = null;
@@ -36,7 +36,7 @@ public class DrumsActivity extends FragmentActivity {
         setContentView(R.layout.activity_drums);
         
         drumLoopEventHandler = new DrumLoopEventHandler();
-        drumsLayout = new DrumsLayoutManager(this);
+        drumsLayout = new DrumsLayout(this);
         
         initTopStatusBar();
         StatusbarDrums.getInstance().initStatusbar(this);
@@ -154,8 +154,9 @@ public class DrumsActivity extends FragmentActivity {
 		getActionBar().setIcon(R.drawable.ic_launcher); 		
     }
     
-    public void returnToMainActivtiy()
+    public void returnToMainActivtiy(int num_loops)
     {
+    	
     	 Intent returnIntent = new Intent();
     	 returnIntent.putExtra("drums_filename",AudioHandler.getInstance().getFilenameFullPath());
     	 setResult(RESULT_OK,returnIntent);
@@ -182,7 +183,7 @@ public class DrumsActivity extends FragmentActivity {
     	return drumLoopEventHandler;
     }
     
-    public DrumsLayoutManager getDrumsLayoutManager()
+    public DrumsLayout getDrumsLayoutManager()
     {
     	return drumsLayout;
     }

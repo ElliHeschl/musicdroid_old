@@ -10,6 +10,11 @@ public class DialogListener {
 		activity = a;
 	}
 
+	public void onIntChanged(int integer)
+	{
+		
+	}
+	
 	public void onStringChanged(String str)
 	{
 		

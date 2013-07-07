@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import at.tugraz.musicdroid.DrumsActivity;
 import at.tugraz.musicdroid.R;
 import at.tugraz.musicdroid.helper.InputValidator;
 

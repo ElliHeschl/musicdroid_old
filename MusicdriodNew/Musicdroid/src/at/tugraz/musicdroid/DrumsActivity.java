@@ -16,6 +16,7 @@ import at.tugraz.musicdroid.dialog.listener.LoadFileDialogListener;
 import at.tugraz.musicdroid.drums.DrumLoopEventHandler;
 import at.tugraz.musicdroid.drums.DrumPreset;
 import at.tugraz.musicdroid.drums.DrumPresetHandler;
+import at.tugraz.musicdroid.drums.DrumSoundPositionRow;
 import at.tugraz.musicdroid.drums.DrumSoundRow;
 import at.tugraz.musicdroid.drums.DrumsLayout;
 import at.tugraz.musicdroid.drums.DrumsMenuCallback;
@@ -166,7 +167,13 @@ public class DrumsActivity extends FragmentActivity {
     public void addObserverToEventHandler(DrumSoundRow dsr)
     {
     	drumLoopEventHandler.addObserver(dsr);
+    }    
+    
+    public void addObserverToEventHandler(DrumSoundPositionRow dsr)
+    {
+    	drumLoopEventHandler.addObserver(dsr);
     }
+    
     
     public void startPlayLoop()
     {

@@ -38,7 +38,7 @@ public class DrumsActivityTest  extends ActivityInstrumentationTestCase2<MainAct
 	{
 		testOnBackPressedClickOnSoundRow();
 		solo.clickOnText(getActivity().getResources().getString(R.string.yes));
-
+		solo.sleep(3000);
 		assertTrue(solo.getCurrentActivity().getClass() == MainActivity.class);
 	}
 	
@@ -46,17 +46,14 @@ public class DrumsActivityTest  extends ActivityInstrumentationTestCase2<MainAct
 	{
 		testOnBackPressedClickOnSoundRow();
 		solo.clickOnText(getActivity().getResources().getString(R.string.no));
-
+		solo.sleep(3000);
 		assertTrue(solo.getCurrentActivity().getClass() == DrumsActivity.class);
 	}
 	
 	public void testOnBackPressedClickOnSoundRow()
 	{
-		solo.goBack();
-		solo.sleep(1000);
-		assertTrue(solo.getCurrentActivity().getClass() == MainActivity.class);
-		
-		enterDrumActivity();
+		if(solo.getCurrentActivity().getClass() == MainActivity.class)
+		  enterDrumActivity();
 		
 		DrumButton testButton = (DrumButton)layout.findViewById(R.id.drum_button_1_2);
 		assertTrue(
@@ -72,11 +69,8 @@ public class DrumsActivityTest  extends ActivityInstrumentationTestCase2<MainAct
 	
 	public void testOnBackPressedChangeSpinnerItem()
 	{
-		solo.goBack();
-		solo.sleep(1000);
-		assertTrue(solo.getCurrentActivity().getClass() == MainActivity.class);
-		
-		enterDrumActivity();
+		if(solo.getCurrentActivity().getClass() == MainActivity.class)
+			  enterDrumActivity();
 		
 		RelativeLayout spinnerBox = (RelativeLayout) layout.findViewById(R.id.drum_row_descriptor_box);
 		Spinner spinner = (Spinner) layout.findViewById(R.id.drum_sound_spinner);

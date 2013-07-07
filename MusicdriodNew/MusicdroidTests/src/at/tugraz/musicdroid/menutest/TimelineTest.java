@@ -15,7 +15,6 @@ import at.tugraz.musicdroid.types.SoundType;
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebView.FindListener;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;

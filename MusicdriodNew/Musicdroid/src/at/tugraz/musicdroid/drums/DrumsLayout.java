@@ -11,7 +11,6 @@ import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import at.tugraz.musicdroid.DrumsActivity;
 import at.tugraz.musicdroid.R;
-import at.tugraz.musicdroid.RecorderActivity;
 import at.tugraz.musicdroid.dialog.ExportDrumSoundDialog;
 import at.tugraz.musicdroid.dialog.listener.ExportDrumSoundDialogListener;
 import at.tugraz.musicdroid.types.DrumType;
@@ -98,11 +97,17 @@ public class DrumsLayout implements OnClickListener {
 	
 	private void initializeDrumSoundRows() 
 	{
+		DrumSoundPositionRow position = new DrumSoundPositionRow(context);
+		DrumSoundPositionRowLayout positionLayout = position.getLayout();
+		positionLayout.setId(getNewId());
+		((DrumsActivity)context).addObserverToEventHandler(position);
+		soundRowBox.addView(positionLayout);
+		
 		DrumSoundRow baseDrum = new DrumSoundRow(context, this, DrumType.BASE_DRUM);
 		DrumSoundRowLayout baseDrumLayout = baseDrum.getLayout();
 		baseDrumLayout.setId(getNewId());
 		LayoutParams layoutParamsBase = (LayoutParams) baseDrumLayout.getLayoutParams();
-		layoutParamsBase.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+		layoutParamsBase.addRule(RelativeLayout.BELOW, positionLayout.getId());
 		soundRowBox.addView(baseDrumLayout, layoutParamsBase);
 		drumSoundRowsArray.add(baseDrum);
 		((DrumsActivity)context).addObserverToEventHandler(baseDrum);

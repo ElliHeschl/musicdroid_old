@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -151,10 +152,16 @@ public class MainActivity extends MenuFileActivity {
 	}
 	
 	
+	@Override
+    public void onConfigurationChanged(Configuration newConfig) 
+    {
+        super.onConfigurationChanged(newConfig);
+    }
+	
 	public void startActionMode(int id, SoundTrack soundTrack)
 	{
 		SoundMixer.getInstance().setCallingParameters(id, soundTrack); 
-        SoundTrackViewMenuCallback callbackSoundTrackViewMenu = new SoundTrackViewMenuCallback(this);
+    SoundTrackViewMenuCallback callbackSoundTrackViewMenu = new SoundTrackViewMenuCallback(this);
 		startActionMode(callbackSoundTrackViewMenu);
 	}
 	

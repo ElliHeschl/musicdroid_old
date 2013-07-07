@@ -16,7 +16,8 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:uiOptions="splitActionBarWhenNarrow"
-        android:theme="@style/Theme.MusicdroidSplitActionBar" >
+        android:theme="@style/Theme.MusicdroidSplitActionBar" 
+        android:configChanges="orientation|keyboardHidden|screenSize" >
         <activity
             android:name="at.tugraz.musicdroid.MainActivity"
             android:screenOrientation="landscape"

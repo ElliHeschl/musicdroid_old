@@ -1,8 +1,6 @@
 package at.tugraz.musicdroid.dialog.listener;
 
 import android.app.Activity;
-import android.util.Log;
-import at.tugraz.musicdroid.DrumsActivity;
 
 public class ExportDrumSoundDialogListener extends DialogListener {
 	

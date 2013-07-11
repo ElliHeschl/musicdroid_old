@@ -17,7 +17,7 @@ public class NoteMapper {
 	interval_ = interval;
 	float position = 0;  
 	int oct = 0;
-	for(int octave = 0; octave < 5; octave++)
+	for(int octave = 0; octave < 1; octave++)
 	{	
 		positionToWhiteKey.put(round(position),oct+36);   //C
 		position += interval;

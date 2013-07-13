@@ -121,7 +121,7 @@ public class DrumSoundRowLayout extends RelativeLayout implements OnClickListene
 		}	
 		else if(v.getId() == ((RelativeLayout) findViewById(R.id.drum_row_descriptor_box)).getId())
 		{
-			SoundManager.playSound(drumSoundRow.getSoundPoolId(), 1, 1);
+			SoundManager.getInstance().playSound(drumSoundRow.getSoundPoolId(), 1, 1);
 		}
 	}
 	

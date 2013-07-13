@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import at.tugraz.musicdroid.animation.HighlightAnimation;
 import at.tugraz.musicdroid.dialog.OpenFileDialog;
 import at.tugraz.musicdroid.dialog.SavePresetDialog;
@@ -29,22 +30,37 @@ public class DrumsActivity extends FragmentActivity {
 	private DrumPresetHandler drumPresetHandler = null;
 	private SavePresetDialog savePresetDialog = null;
 	private OpenFileDialog openFileDialog = null;
+	private boolean editMode = false;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+	    getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
         setContentView(R.layout.activity_drums);
         
         drumLoopEventHandler = new DrumLoopEventHandler();
         drumsLayout = new DrumsLayout(this);
+        drumPresetHandler = new DrumPresetHandler();	
         
         initTopStatusBar();
         StatusbarDrums.getInstance().initStatusbar(this);
         
-        drumPresetHandler = new DrumPresetHandler(this);		
+        Intent intent = getIntent();
+        if(intent.hasExtra("edit_mode") && intent.getBooleanExtra("edit_mode", false))
+        {
+        	String path = intent.hasExtra("path") ? intent.getStringExtra("path") : null;
+        	if(path != null)
+        	{
+        		Log.i("DrumsActivity", "edit mode = true");
+        		editMode = true;
+        		this.loadPresetByName(path);
+        	}
+        }
+        	
         savePresetDialog = new SavePresetDialog();
 		openFileDialog = new OpenFileDialog(this, new LoadFileDialogListener(this), DrumPresetHandler.path, ".xml");
+
+
 	}
 
 	
@@ -155,11 +171,13 @@ public class DrumsActivity extends FragmentActivity {
 		getActionBar().setIcon(R.drawable.ic_launcher); 		
     }
     
-    public void returnToMainActivtiy(int num_loops)
+    public void returnToMainActivity(int num_loops)
     {
-    	
+    	 saveCurrentPreset("temp");
     	 Intent returnIntent = new Intent();
-    	 returnIntent.putExtra("drums_filename",AudioHandler.getInstance().getFilenameFullPath());
+    	 returnIntent.putExtra("drums_filename","temp.xml");
+    	 returnIntent.putExtra("num_loops", num_loops);
+    	 returnIntent.putExtra("edit_mode", editMode);
     	 setResult(RESULT_OK,returnIntent);
     	 finish();
     }

@@ -11,8 +11,8 @@ public class SoundTrackPiano extends SoundTrack {
 		type = SoundType.PIANO;
 		name = "SoundfilePiano";
 		soundfileRawId = R.raw.test_midi;
-		duration =  SoundManager.getSoundfileDuration(soundfileRawId);
-		soundpoolId = SoundManager.loadSound(soundfileRawId);
+		duration =  SoundManager.getInstance().getSoundfileDuration(soundfileRawId);
+		soundpoolId = SoundManager.getInstance().loadSound(soundfileRawId);
 	}
 	
 	public SoundTrackPiano(SoundTrackPiano stm)

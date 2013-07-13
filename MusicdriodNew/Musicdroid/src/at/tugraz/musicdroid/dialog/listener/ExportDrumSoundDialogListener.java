@@ -1,6 +1,7 @@
 package at.tugraz.musicdroid.dialog.listener;
 
 import android.app.Activity;
+import at.tugraz.musicdroid.DrumsActivity;
 
 public class ExportDrumSoundDialogListener extends DialogListener {
 	
@@ -15,8 +16,7 @@ public class ExportDrumSoundDialogListener extends DialogListener {
 	}
 	
 	public void onIntChanged(int integer)
-	{
-		
-		//((DrumsActivity)activity).returnToMainActivity(integer);
+	{	
+		((DrumsActivity)activity).returnToMainActivity(integer);
 	}
 }

@@ -8,6 +8,8 @@ import org.simpleframework.xml.ElementArray;
 import org.simpleframework.xml.Root;
 
 import android.content.Context;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.util.Log;
 import at.tugraz.musicdroid.SoundManager;
 import at.tugraz.musicdroid.types.DrumType;
@@ -17,6 +19,7 @@ public class DrumSoundRow implements Observer {
 	private Context context = null;
 	private DrumsLayout layoutManager = null;
 	private DrumSoundRowLayout layout = null;
+	private SoundPool soundpool = null;
 	@ElementArray
 	private int[] beatArray = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	@Element
@@ -38,7 +41,10 @@ public class DrumSoundRow implements Observer {
 		
 		layout = new DrumSoundRowLayout(this.context, this, this.soundRowName);
 		
-        soundPoolId = SoundManager.loadSound(rawId);
+        soundPoolId = SoundManager.getInstance().loadSound(rawId);
+		//MIT-FIX
+		//soundpool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+		//soundPoolId = soundpool.load(context, rawId, 1);
 	}
 
 	public void togglePosition(int position)
@@ -55,19 +61,20 @@ public class DrumSoundRow implements Observer {
 	@Override
 	public void update(Observable observable, Object data) {
 		int currentBeat = (Integer)data;
-		//Log.i("DrumSoundRow", "Incoming Object: " + currentBeat);
+		Log.i("DrumSoundRowa", "Incoming Object: " + currentBeat);
 		if(beatArray[currentBeat] == 1)
 		{
-			SoundManager.playSound(soundPoolId, 1, 1);
+			SoundManager.getInstance().playSingleSound(soundPoolId, 1, 1);
+			//soundpool.play(soundPoolId, 1, 1, 1, 0, 1f);
 		}
 	}
 	
 	public void setSoundPoolIdByDrumString(String drumString)
 	{
 		DrumType type = layoutManager.getDrumTypeByString(drumString);
-		soundPoolId = SoundManager.loadSound(type.getSoundResource());
+		soundPoolId = SoundManager.getInstance().loadSound(type.getSoundResource());
 		soundRowName = context.getResources().getString(type.getNameResource());
-		layoutManager.setUnsavedChanges(true);
+		layoutManager.setUnsavedChanges(true); 
 	}
 	
 	public int getSoundPoolId()

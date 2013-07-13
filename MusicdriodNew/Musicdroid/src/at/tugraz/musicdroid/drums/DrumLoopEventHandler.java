@@ -7,6 +7,7 @@ import at.tugraz.musicdroid.preferences.PreferenceManager;
 
 public class DrumLoopEventHandler extends Observable {
 	private boolean shouldContinue;
+	private int num_loops = 2000;
 	
 	public DrumLoopEventHandler()
 	{
@@ -21,14 +22,18 @@ public class DrumLoopEventHandler extends Observable {
 		        public void run() {
 		        	shouldContinue = true;
 		        	int beat = 0;
+		        	int loops = 0; 
 		        	int sleepDuration = computeSleep();
 		        	Log.i("DrumLoopEventHandler", "Sleep = " + sleepDuration);
-		            while (shouldContinue) {
+		            while (shouldContinue && (num_loops > 0 && loops < num_loops)) {
 		                try {
 		        			setChanged();
 		        			notifyObservers(beat);
 		        			beat = beat + 1;
-		        			if(beat == 16) beat = 0;
+		        			if(beat == 16){  
+		        				beat = 0;
+		        				loops = loops + 1;
+		        			}
 		                    Thread.sleep(sleepDuration);
 		                } catch (Exception e) {
 		                }
@@ -50,5 +55,9 @@ public class DrumLoopEventHandler extends Observable {
 		shouldContinue = false;
 	}
 
+	public void setLoops(int loops)
+	{
+		num_loops = loops;
+	}
 	
 }

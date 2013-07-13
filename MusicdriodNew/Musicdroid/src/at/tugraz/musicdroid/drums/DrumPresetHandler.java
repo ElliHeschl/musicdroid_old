@@ -7,17 +7,14 @@ import java.util.HashMap;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
-import android.content.Context;
 import android.os.Environment;
 
 public class DrumPresetHandler {
 	public final static String path = Environment.getExternalStorageDirectory().getAbsolutePath()+"/presets/";
-	Context context = null;
 	HashMap<Integer, DrumPreset> presetMap = null;
 	
-	public DrumPresetHandler(Context c)
+	public DrumPresetHandler()
 	{
-		context = c;
 		presetMap = new HashMap<Integer, DrumPreset>();
 		checkPathExistsAndCreateDirectory();
 	}

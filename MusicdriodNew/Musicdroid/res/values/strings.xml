@@ -33,6 +33,7 @@
   <string name="timeline_menu_entry_end_point">Set End</string>
   
   <string name="dialog_warning_new_song">Your song will be lost!\nContinue anyways?</string>
+  <string name="dialog_warning_no_headset_at_record">We recommend that you plug in your headphones when you record and use playback. </string>
   <string name="save_suggestion">If you want to save your song click Menu and Save Song</string>
   <string name="closing_security_question">Exit?\n\nYour song will be lost if it is not saved!</string>
   <string name="on_drums_back_pressed_security_question">Return to SoundMixer? The current drum loop will be lost</string>
@@ -44,6 +45,7 @@
   <string name="dialog_abort">Abort</string>
   <string name="dialog_save">Save</string>
   <string name="dialog_export">Export</string>
+  <string name="dialog_record">Record Anyways</string>
   
   <string name ="play_button_text">Play Song</string>
   <string name ="stop_button_text">Stop Song</string>

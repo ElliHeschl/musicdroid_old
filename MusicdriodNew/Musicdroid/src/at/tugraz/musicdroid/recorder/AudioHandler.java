@@ -5,8 +5,10 @@ import java.io.File;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.media.AudioManager;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 import at.tugraz.musicdroid.R;
 import at.tugraz.musicdroid.helper.Helper;
 import at.tugraz.musicdroid.preferences.PreferenceManager;
@@ -69,7 +71,7 @@ public class AudioHandler {
 	{
 		recorder.stopRecording();
 		if(PreferenceManager.getInstance().getPreference(PreferenceManager.PLAY_PLAYBACK_KEY) == 1)
-			SoundMixer.getInstance().stopAllSoundInSoundMixerAndRewind();
+			SoundMixer.getInstance().stopAllSoundsInSoundMixerAndRewind();
 		else if(PreferenceManager.getInstance().getPreference(PreferenceManager.METRONOM_VISUALIZATION_KEY) > 0)
 			SoundMixer.getInstance().stopMetronom();
 	}
@@ -110,14 +112,23 @@ public class AudioHandler {
 		alertNewImage.show();
 	}
 	
-	
 	private void checkAndStartPlaybackAndMetronom()
 	{
 		int metronom = PreferenceManager.getInstance().getPreference(PreferenceManager.METRONOM_VISUALIZATION_KEY); 
 		if(PreferenceManager.getInstance().getPreference(PreferenceManager.PLAY_PLAYBACK_KEY) == 1)
 		{
-			if(!SoundMixer.getInstance().playAllSoundsInSoundmixer() && metronom > 0)
+			AudioManager am1 = ((AudioManager)context.getSystemService(Context.AUDIO_SERVICE));
+			if(!am1.isWiredHeadsetOn())
+			{
+				//Toast.makeText(context, "We recomend using your headphones when you record and use playback", Toast.LENGTH_LONG).show();
+				if(!SoundMixer.getInstance().playAllSoundsInSoundmixer() && metronom > 0)
+					SoundMixer.getInstance().startMetronom();
+			}
+			else
+			{
+			  if(!SoundMixer.getInstance().playAllSoundsInSoundmixer() && metronom > 0)
 				SoundMixer.getInstance().startMetronom();
+			}
 		}
 		else if(metronom > 0)
 		{

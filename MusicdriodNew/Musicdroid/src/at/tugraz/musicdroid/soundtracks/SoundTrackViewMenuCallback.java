@@ -44,7 +44,7 @@ public class SoundTrackViewMenuCallback implements ActionMode.Callback {
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
             switch(item.getItemId()){
             case R.id.soundtrack_context_edit:
-                Toast.makeText(parent.getBaseContext(), "Editing of tracks not yet implemented ", Toast.LENGTH_LONG).show();
+                SoundMixer.getInstance().handleEdit();
                 mode.finish();    
                 break;
             case R.id.soundtrack_context_copy:

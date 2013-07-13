@@ -71,6 +71,14 @@ public class SoundTrackView extends RelativeLayout implements OnClickListener, V
 	    	collapse();
 	}
 	
+	public void updateSoundTrackView()
+	{
+		RelativeLayout.LayoutParams layoutParams = (LayoutParams) this.getLayoutParams();
+		layoutParams.width = computeWidthRelativeToDuration();
+		layoutParams.height = helper.getScreenHeight()/6;
+		setLayoutParams(layoutParams);
+	}
+	
 	private int computeWidthRelativeToDuration()
 	{
 		int duration = soundTrack.getDuration();
@@ -165,13 +173,13 @@ public class SoundTrackView extends RelativeLayout implements OnClickListener, V
 			displayPlayButton = false;
 			playImageButton.setImageResource(R.drawable.pause_button_sound_track);
 			Log.e("VOLUME: ", ""+soundTrack.getVolume());
-			SoundManager.playSound(soundTrack.getSoundPoolId(), 1, soundTrack.getVolume());	
+			SoundManager.getInstance().playSound(soundTrack.getSoundPoolId(), 1, soundTrack.getVolume());	
 		}
 		else
 		{
 			displayPlayButton = true;
 			playImageButton.setImageResource(R.drawable.play_button_sound_track);
-			SoundManager.stopSound(soundTrack.getSoundPoolId());
+			SoundManager.getInstance().stopSound(soundTrack.getSoundPoolId());
 		}
 	}
 	

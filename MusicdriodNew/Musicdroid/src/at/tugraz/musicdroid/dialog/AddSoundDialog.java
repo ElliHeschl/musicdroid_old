@@ -65,7 +65,8 @@ OnItemLongClickListener {
 				//SoundTrackDrums stvd = new SoundTrackDrums();
 				//parent.addSoundTrack(new SoundTrackView(parent, stvd));
 				Intent intentDrums = new Intent(parent, DrumsActivity.class);
-			    parent.startActivityForResult(intentDrums, 1);
+				intentDrums.putExtra("edit_mode", false); 
+				parent.startActivityForResult(intentDrums, 1);
 				break;
 			case PIANO:
 				SoundTrackPiano stvp = new SoundTrackPiano();

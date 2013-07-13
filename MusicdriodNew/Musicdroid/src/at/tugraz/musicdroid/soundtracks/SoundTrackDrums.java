@@ -28,9 +28,19 @@ public class SoundTrackDrums extends SoundTrack {
 	}
 	public SoundTrackDrums(SoundTrackDrums stm)
 	{
+		super(stm);
 		Log.e("Calling copy constr", "drums");
-		preset = stm.preset;
-		eventHandler = stm.eventHandler;
+		path = stm.path;
+		DrumPresetHandler presetHandler = new DrumPresetHandler();
+		preset = presetHandler.readPresetByName(path);
+		eventHandler = new DrumLoopEventHandler();
+		eventHandler.setLoops(stm.getEventHandler().getLoops());
+		
+		ArrayList<DrumSoundRow> drumRows = preset.getDrumSoundRowsArray();
+		for(int i = 0; i < drumRows.size(); i++)
+		{
+			eventHandler.addObserver(drumRows.get(i));
+		}
 	}
 	
 	public SoundTrackDrums(String path, int loops) {
@@ -65,11 +75,26 @@ public class SoundTrackDrums extends SoundTrack {
 		}
 	}
 	
+	public void startLoop()
+	{
+		eventHandler.play();
+	}
+	
+	public void stopLoop()
+	{
+		eventHandler.stop();
+	}
+	
 	public String getPath()
 	{
 		return path;
 	}
 	
+	public DrumLoopEventHandler getEventHandler()
+	{
+		return eventHandler;
+	}
+
 	public void updateAfterEdit(String path, int loops) {
 		DrumPresetHandler presetHandler = new DrumPresetHandler();
 		duration = 4*loops*60/PreferenceManager.getInstance().getPreference(PreferenceManager.METRONOM_BPM_KEY);

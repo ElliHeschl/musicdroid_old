@@ -21,7 +21,7 @@ public class ExportDrumSoundDialog extends DialogFragment implements OnSeekBarCh
 	private TextView duration_in_seconds = null;
 	private int number_of_loops = NUMBER_OF_LOOPS_DEFAULT;
 	private ExportDrumSoundDialogListener listener = null;
-	public static final int NUMBER_OF_LOOPS_DEFAULT = 40;
+	public static final int NUMBER_OF_LOOPS_DEFAULT = 20;
 	public static final int NUMBER_OF_BEATS_PER_LOOP = 4;
 	
 	public ExportDrumSoundDialog(ExportDrumSoundDialogListener listener)
@@ -54,7 +54,7 @@ public class ExportDrumSoundDialog extends DialogFragment implements OnSeekBarCh
         AlertDialog dialog = builder.create();
        
         num_loops = (SeekBar) view.findViewById(R.id.seekbar_num_loops);
-        num_loops.setMax(150);
+        num_loops.setMax(100);
         num_loops.setProgress(NUMBER_OF_LOOPS_DEFAULT);
         num_loops.incrementProgressBy(2);
         num_loops.setOnSeekBarChangeListener(this);

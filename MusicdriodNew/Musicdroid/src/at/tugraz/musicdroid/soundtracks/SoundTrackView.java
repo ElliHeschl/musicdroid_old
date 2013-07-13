@@ -18,6 +18,7 @@ import at.tugraz.musicdroid.R;
 import at.tugraz.musicdroid.SoundManager;
 import at.tugraz.musicdroid.helper.Helper;
 import at.tugraz.musicdroid.soundmixer.SoundMixer;
+import at.tugraz.musicdroid.types.SoundType;
 
 public class SoundTrackView extends RelativeLayout implements OnClickListener, View.OnTouchListener{
 	public final static int MINIMAL_WIDTH = 280;	
@@ -170,16 +171,29 @@ public class SoundTrackView extends RelativeLayout implements OnClickListener, V
 	{
 		if(displayPlayButton)
 		{
+			Log.e("VOLUME: ", ""+soundTrack.getVolume());
 			displayPlayButton = false;
 			playImageButton.setImageResource(R.drawable.pause_button_sound_track);
-			Log.e("VOLUME: ", ""+soundTrack.getVolume());
-			SoundManager.getInstance().playSound(soundTrack.getSoundPoolId(), 1, soundTrack.getVolume());	
+			if(soundTrack.getType() == SoundType.DRUMS)
+			{
+				if(soundTrack.getVolume() != 0)
+				{
+				  ((SoundTrackDrums)soundTrack).startLoop();
+				}
+			}
+			else
+			{
+			    SoundManager.getInstance().playSound(soundTrack.getSoundPoolId(), 1, soundTrack.getVolume());
+			}
 		}
 		else
 		{
 			displayPlayButton = true;
 			playImageButton.setImageResource(R.drawable.play_button_sound_track);
-			SoundManager.getInstance().stopSound(soundTrack.getSoundPoolId());
+			if(soundTrack.getType() == SoundType.DRUMS)
+				((SoundTrackDrums)soundTrack).stopLoop();
+			else
+				SoundManager.getInstance().stopSound(soundTrack.getSoundPoolId());
 		}
 	}
 	

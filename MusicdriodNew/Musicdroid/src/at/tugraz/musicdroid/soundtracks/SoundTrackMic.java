@@ -28,7 +28,10 @@ public class SoundTrackMic extends SoundTrack {
 	
 	public SoundTrackMic(SoundTrackMic stm)
 	{
-		Log.e("Calling copy constr", "mic");
+		super(stm);
+		name = stm.name;
+		soundpoolId = stm.soundpoolId;
+		duration = stm.duration;
 	}
 	
 	 

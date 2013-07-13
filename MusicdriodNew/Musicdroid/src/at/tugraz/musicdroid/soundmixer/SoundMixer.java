@@ -21,6 +21,7 @@ import at.tugraz.musicdroid.soundmixer.timeline.TimelineEventHandler;
 import at.tugraz.musicdroid.soundmixer.timeline.TimelineMenuCallback;
 import at.tugraz.musicdroid.soundtracks.SoundTrack;
 import at.tugraz.musicdroid.soundtracks.SoundTrackDrums;
+import at.tugraz.musicdroid.soundtracks.SoundTrackMic;
 import at.tugraz.musicdroid.soundtracks.SoundTrackView;
 import at.tugraz.musicdroid.types.SoundType;
 
@@ -90,7 +91,19 @@ public class SoundMixer implements HorizontalScrollViewListener{
 	
 	public void handleCopy()
 	{
-		SoundTrack copy = new SoundTrack(callingTrack);
+		SoundTrack copy = null;// new SoundTrack(callingTrack);
+		if(callingTrack.getType() == SoundType.DRUMS)
+		{
+			copy = new SoundTrackDrums((SoundTrackDrums)callingTrack);
+		}
+		else if(callingTrack.getType() == SoundType.MIC)
+		{
+			copy = new SoundTrackMic((SoundTrackMic)callingTrack);
+		}
+		else
+		{
+			copy = new SoundTrack(callingTrack);
+		}
 		addSoundTrackViewToSoundMixer(new SoundTrackView(parent, copy));
 	}
 	

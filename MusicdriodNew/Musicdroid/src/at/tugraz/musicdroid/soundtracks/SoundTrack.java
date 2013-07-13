@@ -23,6 +23,7 @@ public class SoundTrack implements Observer {
 	
 	public SoundTrack(SoundTrack s)
 	{
+		Log.i("SoundTrack", "CC");
 	  this.type = s.getType();
 	  this.name = s.getName();
 	  this.duration = s.duration;

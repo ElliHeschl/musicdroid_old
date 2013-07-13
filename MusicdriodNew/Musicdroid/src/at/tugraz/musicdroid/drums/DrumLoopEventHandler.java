@@ -59,5 +59,9 @@ public class DrumLoopEventHandler extends Observable {
 	{
 		num_loops = loops;
 	}
+
+	public int getLoops() {
+		return num_loops;
+	}
 	
 }

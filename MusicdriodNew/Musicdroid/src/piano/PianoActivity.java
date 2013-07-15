@@ -8,6 +8,7 @@ import java.util.*;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 
 import android.os.Bundle;
 import android.os.Environment;
@@ -28,6 +29,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import at.tugraz.musicdroid.R;
+import at.tugraz.musicdroid.RecorderActivity;
+import at.tugraz.musicdroid.recorder.AudioHandler;
 
 public class PianoActivity extends Activity implements OnTouchListener {
 	private HorizontalScrollView scroll;
@@ -36,6 +39,7 @@ public class PianoActivity extends Activity implements OnTouchListener {
 	private DrawTonesView toneView;
 	private Button playMidi;
 	private Button stopMidi;
+	private Button returnMidi;
 
 	private MidiPlayer midiplayer;
 	private NoteMapper mapper;
@@ -180,6 +184,7 @@ public class PianoActivity extends Activity implements OnTouchListener {
 		stopMidi = (Button) findViewById(R.id.StopMidiButton);
 		stopMidi.setEnabled(false);
 		playMidi = (Button) findViewById(R.id.PlayMidiButton);
+		returnMidi = (Button) findViewById(R.id.piano_add_to_sound_mixer_box1);
 		scroll.setId(2);
 
 		LinearLayout layout = (LinearLayout) findViewById(R.id.parentLayout);
@@ -233,6 +238,18 @@ public class PianoActivity extends Activity implements OnTouchListener {
 
 			}
 
+		});
+		
+		returnMidi.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				//TODO Midi speichern...
+				midiplayer.writeToMidiFile();
+		    	 Intent returnIntent = new Intent();
+		    	 returnIntent.putExtra("play",midiplayer.createMidifile());
+		    	 setResult(RESULT_OK,returnIntent);
+		    	 finish();
+			}
 		});
 
 	}

@@ -47,7 +47,7 @@ public class RecorderLayout extends Handler implements OnClickListener, OnLongCl
 		playImageButton = (ImageButton) ((RecorderActivity)context).findViewById(R.id.microphone_play_button);
 		progressBarView = (View) ((RecorderActivity)context).findViewById(R.id.microphone_progress_bar);
 		progressBarBoxRelativeLayout = (RelativeLayout) (View) ((RecorderActivity)context).findViewById(R.id.microphone_progress_bar_box); 
-		addToSoundMixerBoxRelativeLayout = (RelativeLayout) (View) ((RecorderActivity)context).findViewById(R.id.microphone_add_to_sound_mixer_box);
+		addToSoundMixerBoxRelativeLayout = (RelativeLayout) (View) ((RecorderActivity)context).findViewById(R.id.piano_add_to_sound_mixer_box);
 		
 		
 		if(recordDurationTextView == null)
@@ -79,7 +79,7 @@ public class RecorderLayout extends Handler implements OnClickListener, OnLongCl
 		{
 			handleOnPlayClick();
 		}
-		if(v.getId() == R.id.microphone_add_to_sound_mixer_box)
+		if(v.getId() == R.id.piano_add_to_sound_mixer_box)
 		{
 			handleOnAddToSoundmixerClick();
 		}

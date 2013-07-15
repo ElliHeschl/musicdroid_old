@@ -78,4 +78,13 @@
         android:layout_toRightOf="@+id/PlayMidiButton"
         android:text="@string/stop_text" />
 
+    <Button
+        android:id="@+id/piano_add_to_sound_mixer_box1"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/scrollView"
+        android:layout_toRightOf="@+id/StopMidiButton"
+        android:text="@string/recorder_add_to_sound_mixer_text" />
+
 </RelativeLayout>

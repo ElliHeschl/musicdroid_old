@@ -72,7 +72,7 @@ public class RecorderUITest extends ActivityInstrumentationTestCase2<MainActivit
 	public void testImportButtonInvisibleAtStart()
 	{
 		RelativeLayout addBox = (RelativeLayout) solo.getCurrentActivity().
-				                 findViewById(R.id.microphone_add_to_sound_mixer_box);
+				                 findViewById(R.id.piano_add_to_sound_mixer_box);
 		assertEquals("Add Box is Visible", addBox.getVisibility(), View.INVISIBLE);	
 	}
 	
@@ -190,7 +190,7 @@ public class RecorderUITest extends ActivityInstrumentationTestCase2<MainActivit
 		assertEquals("Play Button is Visible", playButton.getVisibility(), View.VISIBLE);
 		
 		RelativeLayout addBox = (RelativeLayout) solo.getCurrentActivity().
-		         findViewById(R.id.microphone_add_to_sound_mixer_box);
+		         findViewById(R.id.piano_add_to_sound_mixer_box);
 		assertEquals("Add Box is Visible", addBox.getVisibility(), View.VISIBLE);	
 		
 	}

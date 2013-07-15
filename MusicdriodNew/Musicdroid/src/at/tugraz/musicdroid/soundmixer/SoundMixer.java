@@ -2,13 +2,14 @@ package at.tugraz.musicdroid.soundmixer;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.Toast;
+import at.tugraz.musicdroid.DrumsActivity;
 import at.tugraz.musicdroid.MainActivity;
 import at.tugraz.musicdroid.R;
 import at.tugraz.musicdroid.SoundManager;
@@ -19,7 +20,10 @@ import at.tugraz.musicdroid.soundmixer.timeline.Timeline;
 import at.tugraz.musicdroid.soundmixer.timeline.TimelineEventHandler;
 import at.tugraz.musicdroid.soundmixer.timeline.TimelineMenuCallback;
 import at.tugraz.musicdroid.soundtracks.SoundTrack;
+import at.tugraz.musicdroid.soundtracks.SoundTrackDrums;
+import at.tugraz.musicdroid.soundtracks.SoundTrackMic;
 import at.tugraz.musicdroid.soundtracks.SoundTrackView;
+import at.tugraz.musicdroid.types.SoundType;
 
 public class SoundMixer implements HorizontalScrollViewListener{
 	public static SoundMixer instance = null;
@@ -51,7 +55,7 @@ public class SoundMixer implements HorizontalScrollViewListener{
 		parent = activity;
 		horScrollView = scrollView;
 		parentLayout = (RelativeLayout) horScrollView.findViewById(R.id.sound_mixer_relative); 
-		eventHandler = new SoundMixerEventHandler(this);
+		eventHandler = new SoundMixerEventHandler();
 		timeline = new Timeline(parent);
 		
 		TimelineEventHandler.getInstance().init(timeline);
@@ -87,10 +91,37 @@ public class SoundMixer implements HorizontalScrollViewListener{
 	
 	public void handleCopy()
 	{
-		SoundTrack copy = new SoundTrack(callingTrack);
+		SoundTrack copy = null;// new SoundTrack(callingTrack);
+		if(callingTrack.getType() == SoundType.DRUMS)
+		{
+			copy = new SoundTrackDrums((SoundTrackDrums)callingTrack);
+		}
+		else if(callingTrack.getType() == SoundType.MIC)
+		{
+			copy = new SoundTrackMic((SoundTrackMic)callingTrack);
+		}
+		else
+		{
+			copy = new SoundTrack(callingTrack);
+		}
 		addSoundTrackViewToSoundMixer(new SoundTrackView(parent, copy));
 	}
 	
+	public void handleEdit()
+	{
+		if(callingTrack.getType() == SoundType.DRUMS)
+		{
+			Intent intentDrums = new Intent(parent, DrumsActivity.class);
+			intentDrums.putExtra("edit_mode", true); 
+			intentDrums.putExtra("path", ((SoundTrackDrums)callingTrack).getPath());
+			parent.startActivityForResult(intentDrums, 1);
+		}
+		else
+		{
+
+            Toast.makeText(parent.getBaseContext(), "Editing of tracks not yet implemented ", Toast.LENGTH_LONG).show();
+		}
+	}
 	
 	public void addSoundTrackViewToSoundMixer(SoundTrackView track)
 	{
@@ -100,6 +131,7 @@ public class SoundMixer implements HorizontalScrollViewListener{
         tracks.add(track);
         parentLayout.addView(track, params);    
         eventHandler.addObserver(track.getSoundTrack());
+        Log.i("SoundMixer", "Obsver Count = " + eventHandler.countObservers());
         timeline.addNewTrackPosition(track.getId(), track.getSoundTrack().getType().getColorResource());
 	}
 	
@@ -121,10 +153,10 @@ public class SoundMixer implements HorizontalScrollViewListener{
 		eventHandler.stopNotifyThread();
 		if(PreferenceManager.getInstance().getPreference(PreferenceManager.METRONOM_VISUALIZATION_KEY) > 0)
 			stopMetronom();
-		SoundManager.stopAllSounds(); 
+		SoundManager.getInstance().stopAllSounds(); 
 	}
 	
-	public void stopAllSoundInSoundMixerAndRewind()
+	public void stopAllSoundsInSoundMixerAndRewind()
 	{
 		stopAllSoundsInSoundmixer();
 		eventHandler.rewind();
@@ -360,5 +392,28 @@ public class SoundMixer implements HorizontalScrollViewListener{
 	{
 		return eventHandler.getStopPoint();
 	}
+	
+	public SoundTrackView getSoundTrackViewById(int id)
+	{
+		for(int i = 0; i < tracks.size(); i++)
+		{
+			if(tracks.get(i).getId() == id)
+				return tracks.get(i);
+		}
+		return null;
+	}
+
+	public void updateCallingTrackAfterEdit(String result, int num_loops) {
+		if(callingTrack.getType() == SoundType.DRUMS)
+		{
+			((SoundTrackDrums)callingTrack).updateAfterEdit(result, num_loops);
+			SoundTrackView track = getSoundTrackViewById(callingId);
+			checkLongestTrack(track.getSoundTrack().getDuration());
+			track.updateSoundTrackView();
+	        eventHandler.addObserver(track.getSoundTrack());
+		}
+		
+	}
+
 
 }

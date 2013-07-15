@@ -1,22 +1,23 @@
 package at.tugraz.musicdroid;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
-import at.tugraz.musicdroid.dialog.AddSoundDialog;
-import at.tugraz.musicdroid.preferences.PreferenceActivity;
+import android.widget.Toast;
+import at.tugraz.musicdroid.preferences.PreferenceManager;
 import at.tugraz.musicdroid.recorder.AudioHandler;
 import at.tugraz.musicdroid.recorder.RecorderLayout;
 import at.tugraz.musicdroid.recorder.RecorderMenuCallback;
-import at.tugraz.musicdroid.soundmixer.SoundMixer;
-import at.tugraz.musicdroid.soundmixer.SoundMixerMenuCallback;
 import at.tugraz.musicdroid.soundmixer.Statusbar;
 
 public class RecorderActivity extends FragmentActivity {
@@ -25,15 +26,30 @@ public class RecorderActivity extends FragmentActivity {
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i("RecorderActivitiy", "ONCREATE");
+	    getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 
     	setContentView(R.layout.activity_recorder);
     	initTopStatusBar();
     	Statusbar.getInstance().initStatusbar(this);
     	Statusbar.getInstance().modifyStatusbarForRecorderActivity();
+    	
+    	checkHeadsetAndDisplayWarning();
 	}
 	
-    @Override
+    private void checkHeadsetAndDisplayWarning() 
+    {
+    	AudioManager audio_manager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+    	if(!audio_manager.isWiredHeadsetOn() && (
+    			(PreferenceManager.getInstance().getPreference(PreferenceManager.PLAY_PLAYBACK_KEY) == 1) ||
+    			(PreferenceManager.getInstance().getPreference(PreferenceManager.METRONOM_VISUALIZATION_KEY) > 0)))
+    	{
+    		Toast.makeText(this, R.string.dialog_warning_no_headset_at_record, Toast.LENGTH_LONG).show();
+    	}
+    	
+		
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		MenuInflater inflater = getMenuInflater();

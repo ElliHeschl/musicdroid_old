@@ -11,4 +11,13 @@
 	    <item name = "light">1</item>
 	    <item name = "both">2</item>
     </string-array>
+    
+    <string-array name="drum_sounds_array">
+        <item>@string/base_drum</item>
+        <item>@string/snare_drum</item>
+        <item>@string/high_hat_closed</item>
+        <item>@string/high_hat_open</item>
+        <item>@string/high_tom</item>
+        <item>@string/low_tom</item>
+    </string-array>
 </resources>

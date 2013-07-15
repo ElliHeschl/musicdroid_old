@@ -3,15 +3,21 @@ package at.tugraz.musicdroid;
 import piano.DataManagement;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import at.tugraz.musicdroid.dialog.AddSoundDialog;
 import at.tugraz.musicdroid.dialog.SoundLenghtDialog;
+import at.tugraz.musicdroid.drums.DrumPreset;
+import at.tugraz.musicdroid.drums.DrumPresetHandler;
 import at.tugraz.musicdroid.helper.Helper;
 import at.tugraz.musicdroid.preferences.PreferenceActivity;
 import at.tugraz.musicdroid.soundmixer.ObservableHorizontalScrollView;
@@ -20,6 +26,7 @@ import at.tugraz.musicdroid.soundmixer.SoundMixerMenuCallback;
 import at.tugraz.musicdroid.soundmixer.Statusbar;
 import at.tugraz.musicdroid.soundmixer.timeline.TimelineMenuCallback;
 import at.tugraz.musicdroid.soundtracks.SoundTrack;
+import at.tugraz.musicdroid.soundtracks.SoundTrackDrums;
 import at.tugraz.musicdroid.soundtracks.SoundTrackMic;
 import at.tugraz.musicdroid.soundtracks.SoundTrackView;
 import at.tugraz.musicdroid.soundtracks.SoundTrackViewMenuCallback;
@@ -35,7 +42,9 @@ public class MainActivity extends MenuFileActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.prepareFolderStructure();
-
+	    getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+        Log.i("MainActivity", "ON CREATE");
+        
         AddSoundDialog.init(this);
     			
     	Helper helper = Helper.getInstance();
@@ -49,10 +58,11 @@ public class MainActivity extends MenuFileActivity {
         SoundMixer.getInstance().initSoundMixer(this, (ObservableHorizontalScrollView)findViewById(R.id.sound_mixer_view));
         
         //TESTING 
-	    SoundManager.getInstance();
-	    SoundManager.initSounds(this);
+	    SoundManager.getInstance().initSounds(this);
 	   // SoundManager.loadSounds(); 
+
     }
+
     
     @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -100,6 +110,8 @@ public class MainActivity extends MenuFileActivity {
 	@Override
 	public void onResume() {
 		super.onResume();
+        Log.i("MainActivity", "ON RESUME");
+        Helper.getInstance().init(this);
 		Statusbar.getInstance().initStatusbar(this);
 	} 
 	
@@ -112,10 +124,27 @@ public class MainActivity extends MenuFileActivity {
 		     if(resultCode == Activity.RESULT_OK){
 		    	 if(data.hasExtra("mic_filename"))
 		    	 {
-		           String result = data.getStringExtra("mic_filename");
-		           Log.i("MainActivity", "Received String from Activity " + result);
-		           SoundTrackMic stm = new SoundTrackMic(result);
-		           addSoundTrack(new SoundTrackView(this, stm));
+			         String result = data.getStringExtra("mic_filename");
+			         //Log.i("MainActivity", "Received String from Activity " + result);
+			         SoundTrackMic stm = new SoundTrackMic(result);
+			         addSoundTrack(new SoundTrackView(this, stm));
+		    	 }
+		    	 else if(data.hasExtra("drums_filename"))
+		    	 { 
+		    		 String result = data.getStringExtra("drums_filename");
+		    		 int num_loops = data.getIntExtra("num_loops", 10);
+			         //Log.i("MainActivity", "Received String from Activity " + result);
+			         
+			         if(data.hasExtra("edit_mode") && data.getBooleanExtra("edit_mode",  false) == true)
+			         {
+			        	 //Log.i("MainActivity", "Received String from Activity " + result);
+			        	 SoundMixer.getInstance().updateCallingTrackAfterEdit(result, num_loops);
+			         }
+			         else
+			         {
+			           SoundTrackDrums std = new SoundTrackDrums(result, num_loops);
+			           addSoundTrack(new SoundTrackView(this, std));
+			         }
 		    	 }
 		     }
 		     if (resultCode == Activity.RESULT_CANCELED) {    
@@ -147,6 +176,12 @@ public class MainActivity extends MenuFileActivity {
 		alert.show();
 	}
 	
+	
+	@Override
+    public void onConfigurationChanged(Configuration newConfig) 
+    {
+        super.onConfigurationChanged(newConfig);
+    }
 	
 	public void startActionMode(int id, SoundTrack soundTrack)
 	{

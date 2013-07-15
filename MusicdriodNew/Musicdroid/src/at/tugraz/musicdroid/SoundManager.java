@@ -30,21 +30,21 @@ public class SoundManager {
      }
 
 
-    public static  void initSounds(Context theContext)
+    public  void initSounds(Context theContext)
     {
          context = theContext;
-         soundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 0);
+         soundPool = new SoundPool(400, AudioManager.STREAM_MUSIC, 0);
          soundPoolMap = new HashMap<Integer, Integer>();
          soundPlayMap = new HashMap<Integer, Integer>();
          audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
     } 
 
-    public static void addSound(int Index,int SoundID)
+    public void addSound(int Index,int SoundID)
     {
             soundPoolMap.put(Index, soundPool.load(context, SoundID, 1));
     }
 
-    public static int addSoundByPath(String path)
+    public int addSoundByPath(String path)
     {
     	int soundId = soundPool.load(path,1);
     	int position = soundPoolMap.size()+1;
@@ -52,20 +52,20 @@ public class SoundManager {
     	return position;
     }
     
-    public static int loadSound(int raw_id)
+    public int loadSound(int raw_id)
     {
     	int position = soundPoolMap.size()+1;
     	soundPoolMap.put(position, soundPool.load(context, raw_id, 1));
     	return position;
     }    
 
-    public static void loadSounds()
+    public void loadSounds()
     {
             soundPoolMap.put(soundPlayMap.size()+1, soundPool.load(context, R.raw.test_midi, 1));
             soundPoolMap.put(soundPlayMap.size()+1, soundPool.load(context, R.raw.test_wav, 1));
     }
 
-    public static void playSoundByRawId(int raw_id, float speed)
+    public void playSoundByRawId(int raw_id, float speed)
     {
         Iterator<Entry<Integer, Integer>> it = soundPoolMap.entrySet().iterator();
         while (it.hasNext()) {
@@ -78,7 +78,7 @@ public class SoundManager {
         }
     }
     
-    public static void stopSoundByRawId(int raw_id)
+    public void stopSoundByRawId(int raw_id)
     {
         Iterator<Entry<Integer, Integer>> it = soundPoolMap.entrySet().iterator();
         while (it.hasNext()) {
@@ -91,8 +91,7 @@ public class SoundManager {
         }
     }
 
-    
-    public static void playSound(int index, float speed, float volume)
+    public void playSound(int index, float speed, float volume)
     {
             float streamVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
             streamVolume = streamVolume / audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
@@ -103,9 +102,19 @@ public class SoundManager {
             Log.e("PUT: ", "" + index + " " + stream_id);
             soundPlayMap.put(index, stream_id);
     }
+    
+    public void playSingleSound(int index, float speed, float volume)
+    {
+            float streamVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+            streamVolume = streamVolume / audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+            
+            Log.i("SoundManager", "SoundPoolID = " + index);
+            int poolId = soundPoolMap.get(index);
+            Integer stream_id = soundPool.play(poolId, volume, volume, 1, 0, speed);
+    }
 
     
-    public static void stopAllSounds()
+    public void stopAllSounds()
     {
         Iterator<Entry<Integer, Integer>> it = soundPlayMap.entrySet().iterator();
         while (it.hasNext()) {
@@ -117,14 +126,14 @@ public class SoundManager {
     }
     
 
-    public static void stopSound(int index)
+    public void stopSound(int index)
     {
             soundPool.stop(soundPlayMap.get(index));
             soundPlayMap.remove(index);
     }
 
     
-    public static void cleanup()
+    public void cleanup()
     {
         soundPool.release();
         soundPool = null;
@@ -134,14 +143,14 @@ public class SoundManager {
     }
     
     
-    public static int getSoundfileDuration(int soundfile_id)
+    public int getSoundfileDuration(int soundfile_id)
     {
 		MediaPlayer player = MediaPlayer.create(context, soundfile_id);
 		int duration = player.getDuration();
 		return duration/1000; 	
     }
     
-    public static int getSoundfileDurationByPath(String path)
+    public  int getSoundfileDurationByPath(String path)
     {
 		Log.i("Player", "playRecorderFile");
 		MediaPlayer player = new MediaPlayer();

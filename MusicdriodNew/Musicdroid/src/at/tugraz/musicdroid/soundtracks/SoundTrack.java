@@ -23,6 +23,7 @@ public class SoundTrack implements Observer {
 	
 	public SoundTrack(SoundTrack s)
 	{
+		Log.i("SoundTrack", "CC");
 	  this.type = s.getType();
 	  this.name = s.getName();
 	  this.duration = s.duration;
@@ -74,10 +75,10 @@ public class SoundTrack implements Observer {
 	@Override
 	public void update(Observable observable, Object data) {
 		int cur_time = (Integer)data;
-		Log.i("Incoming Object: ", "" + cur_time);
+		//Log.i("Incoming Object: ", "Update " + cur_time);
 		if(cur_time == startPoint)
 		{
-			SoundManager.playSound(soundpoolId, 1, volume);
+			SoundManager.getInstance().playSound(soundpoolId, 1, volume);
 		}
 	}
 

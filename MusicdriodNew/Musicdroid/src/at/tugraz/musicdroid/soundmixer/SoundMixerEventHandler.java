@@ -11,7 +11,6 @@ import at.tugraz.musicdroid.preferences.PreferenceManager;
 import at.tugraz.musicdroid.soundmixer.timeline.TimelineEventHandler;
 
 public class SoundMixerEventHandler extends Observable {
-	private SoundMixer mixer;
 	private int longestTrack = 0;
 	private int endPoint = 0;
 	private int startPoint = 0;
@@ -21,9 +20,8 @@ public class SoundMixerEventHandler extends Observable {
 	private int secondInPixel;
 	private boolean shouldContinue;
 	
-	public SoundMixerEventHandler(SoundMixer m)
+	public SoundMixerEventHandler()
 	{
-		mixer = m;
 		setEndPoint(PreferenceManager.getInstance().getPreference(PreferenceManager.SOUNDTRACK_DEFAULT_LENGTH_KEY));
 		screenWidth = Helper.getInstance().getScreenWidth();
 		secondInPixel = screenWidth/PreferenceManager.getInstance().getPreference(PreferenceManager.SOUNDTRACK_DEFAULT_LENGTH_KEY);
@@ -49,7 +47,7 @@ public class SoundMixerEventHandler extends Observable {
 		                }
 		            }
 		            Log.i("TIME: " + time, "EndPoint: " + endPoint);
-		            SoundManager.stopAllSounds();
+		            SoundManager.getInstance().stopAllSounds();
 		            return;
 		        }
 		    }).start();
@@ -59,7 +57,10 @@ public class SoundMixerEventHandler extends Observable {
 	public void stopNotifyThread()
 	{
 		stopPoint = time;
+		Log.i("SoundMixerEventHandler", "Stop Notify Thread");
 		shouldContinue = false;
+		setChanged();
+		notifyObservers(-1);
 	}
 	
 	public void rewind()
@@ -123,7 +124,7 @@ public class SoundMixerEventHandler extends Observable {
 	
 	private void sendTrackPositionMessage(int time)
 	{
-		Log.i("Set position message", "");
+		//Log.i("Set position message", "");
 		Message msg = new Message();
         Bundle b = new Bundle();
         b.putInt("position", time);

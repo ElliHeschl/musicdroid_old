@@ -1,5 +1,6 @@
 package at.tugraz.musicdroid.dialog;
 
+import piano.PianoActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -66,8 +67,10 @@ OnItemLongClickListener {
 				parent.addSoundTrack(new SoundTrackView(parent, stvd));
 				break;
 			case PIANO:
-				SoundTrackPiano stvp = new SoundTrackPiano();
-				parent.addSoundTrack(new SoundTrackView(parent, stvp));
+				//SoundTrackPiano stvp = new SoundTrackPiano();
+				//parent.addSoundTrack(new SoundTrackView(parent, stvp));
+				Intent i = new Intent(parent, PianoActivity.class);
+				parent.startActivityForResult(i, 1);
 				break;
 			case MIC:
 				//SoundTrackMic stvm = new SoundTrackMic();

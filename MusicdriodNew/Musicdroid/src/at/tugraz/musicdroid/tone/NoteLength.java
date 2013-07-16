@@ -1,5 +1,5 @@
 package at.tugraz.musicdroid.tone;
 
-public enum NoteValue {
+public enum NoteLength {
 	WHOLE, HALF, QUARTER, EIGHT, SIXTEENTH;
 }

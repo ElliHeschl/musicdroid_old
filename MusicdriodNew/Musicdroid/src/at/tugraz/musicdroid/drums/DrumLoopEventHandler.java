@@ -30,7 +30,7 @@ public class DrumLoopEventHandler extends Observable {
 //		        	long expectedElapsedTime = now + sleepDuration;
 //		        	while(now < expectedElapsedTime){
 //		        	    now = System.currentTimeMillis();
-//		        	}
+//		        	} 
 		        	
 		            while (shouldContinue && (num_loops > 0 && loops < num_loops)) {
 		                try {

@@ -45,8 +45,6 @@ public class RecorderActivity extends FragmentActivity {
     	{
     		Toast.makeText(this, R.string.dialog_warning_no_headset_at_record, Toast.LENGTH_LONG).show();
     	}
-    	
-		
 	}
 
 	@Override
@@ -66,7 +64,6 @@ public class RecorderActivity extends FragmentActivity {
     	  finish();
     	
     }
-
     
     @Override
     protected void onResume()

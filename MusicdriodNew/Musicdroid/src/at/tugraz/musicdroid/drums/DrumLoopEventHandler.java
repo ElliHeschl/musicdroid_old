@@ -25,6 +25,13 @@ public class DrumLoopEventHandler extends Observable {
 		        	int loops = 0; 
 		        	int sleepDuration = computeSleep();
 		        	Log.i("DrumLoopEventHandler", "Sleep = " + sleepDuration);
+		        	
+//		        	long now = System.currentTimeMillis();
+//		        	long expectedElapsedTime = now + sleepDuration;
+//		        	while(now < expectedElapsedTime){
+//		        	    now = System.currentTimeMillis();
+//		        	}
+		        	
 		            while (shouldContinue && (num_loops > 0 && loops < num_loops)) {
 		                try {
 		        			setChanged();
@@ -34,7 +41,12 @@ public class DrumLoopEventHandler extends Observable {
 		        				beat = 0;
 		        				loops = loops + 1;
 		        			}
-		                    Thread.sleep(sleepDuration);
+		                    //Thread.sleep(sleepDuration);
+		        			long now = System.currentTimeMillis();
+				        	long expectedElapsedTime = now + sleepDuration;
+				        	while(now < expectedElapsedTime){
+				        	    now = System.currentTimeMillis();
+				        	}
 		                } catch (Exception e) {
 		                }
 		            }

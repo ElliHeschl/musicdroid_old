@@ -17,21 +17,21 @@ public class NoteMapper {
 	interval_ = interval;
 	float position = 0;  
 	int oct = 0;
-	for(int octave = 0; octave < 1; octave++)
+	for(int octave = 0; octave < 5; octave++)
 	{	
-		positionToWhiteKey.put(round(position),oct+36);   //C
+		positionToWhiteKey.put(round(position),oct+36+17);   //C
 		position += interval;
-		positionToWhiteKey.put(round(position),oct+38);   //D
+		positionToWhiteKey.put(round(position),oct+38+17);   //D
 		position += interval;
-		positionToWhiteKey.put(round(position),oct+40);   //E
+		positionToWhiteKey.put(round(position),oct+40+17);   //E
 		position += interval;
-		positionToWhiteKey.put(round(position),oct+41);   //F
+		positionToWhiteKey.put(round(position),oct+41+17);   //F
 		position += interval;
-		positionToWhiteKey.put(round(position),oct+43);   //G
+		positionToWhiteKey.put(round(position),oct+43+17);   //G
 		position += interval;
-		positionToWhiteKey.put(round(position),oct+45);   //A
+		positionToWhiteKey.put(round(position),oct+45+17);   //A
 		position += interval;
-		positionToWhiteKey.put(round(position),oct+47);  //H
+		positionToWhiteKey.put(round(position),oct+47+17);  //H
 		position += interval;
 		oct += 12;
 	}	
@@ -43,15 +43,15 @@ public class NoteMapper {
 	int oct = 0;
 	for(int octave = 0; octave < 5; octave++)
 	{	
-		positionToBlackKey.put(round(position),oct+37);   //Cis
+		positionToBlackKey.put(round(position),oct+37+17);   //Cis
 		position += interval*2;
-		positionToBlackKey.put(round(position),oct+39);   //Dis
+		positionToBlackKey.put(round(position),oct+39+17);   //Dis
 		position += interval*3;
-		positionToBlackKey.put(round(position),oct+42);   //Fis
+		positionToBlackKey.put(round(position),oct+42+17);   //Fis
 		position += interval*2;
-		positionToBlackKey.put(round(position),oct+44);   //Gis
+		positionToBlackKey.put(round(position),oct+44+17);   //Gis
 		position += interval*2;
-		positionToBlackKey.put(round(position),oct+46);  //Ais
+		positionToBlackKey.put(round(position),oct+46+17);  //Ais
 		position += interval*3;
 		oct += 12;
 	}  

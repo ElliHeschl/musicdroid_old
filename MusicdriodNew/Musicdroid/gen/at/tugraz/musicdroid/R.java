@@ -872,25 +872,29 @@ containing a value of this type.
         public static final int pause_button=0x7f020077;
         public static final int pause_button_sound_track=0x7f020078;
         public static final int piano=0x7f020079;
-        public static final int piano_button=0x7f02007a;
-        public static final int play_button=0x7f02007b;
-        public static final int play_button_sound_track=0x7f02007c;
-        public static final int play_loop_button=0x7f02007d;
-        public static final int record_button=0x7f02007e;
-        public static final int rewind_button=0x7f02007f;
-        public static final int save_drum_preset=0x7f020080;
-        public static final int scrollbar_layout=0x7f020081;
-        public static final int settings_button=0x7f020082;
-        public static final int sm_action_bpm=0x7f020083;
-        public static final int sm_action_length=0x7f020084;
-        public static final int timeline_arrow=0x7f020085;
-        public static final int timeline_end_point=0x7f020086;
-        public static final int timeline_icon_end=0x7f020087;
-        public static final int timeline_icon_start=0x7f020088;
-        public static final int timeline_start_point=0x7f020089;
-        public static final int violine=0x7f02008a;
-        public static final int volume_button=0x7f02008b;
-        public static final int volume_button_mute=0x7f02008c;
+        public static final int piano1=0x7f02007a;
+        public static final int piano2=0x7f02007b;
+        public static final int piano3=0x7f02007c;
+        public static final int piano4=0x7f02007d;
+        public static final int piano_button=0x7f02007e;
+        public static final int play_button=0x7f02007f;
+        public static final int play_button_sound_track=0x7f020080;
+        public static final int play_loop_button=0x7f020081;
+        public static final int record_button=0x7f020082;
+        public static final int rewind_button=0x7f020083;
+        public static final int save_drum_preset=0x7f020084;
+        public static final int scrollbar_layout=0x7f020085;
+        public static final int settings_button=0x7f020086;
+        public static final int sm_action_bpm=0x7f020087;
+        public static final int sm_action_length=0x7f020088;
+        public static final int timeline_arrow=0x7f020089;
+        public static final int timeline_end_point=0x7f02008a;
+        public static final int timeline_icon_end=0x7f02008b;
+        public static final int timeline_icon_start=0x7f02008c;
+        public static final int timeline_start_point=0x7f02008d;
+        public static final int violine=0x7f02008e;
+        public static final int volume_button=0x7f02008f;
+        public static final int volume_button_mute=0x7f020090;
     }
     public static final class id {
         public static final int PlayMidiButton=0x7f060071;
@@ -2364,7 +2368,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          */
         public static final int[] SherlockSpinner = {
             0x010100af, 0x01010175, 0x01010176, 0x0101017b,
-            0x01010262, 0x010102ac, 0x010102ad, 0x010103ef
+            0x01010262, 0x010102ac, 0x010102ad, 0x01010411
         };
         /**
           <p>

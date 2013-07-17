@@ -24,6 +24,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -181,6 +182,13 @@ public class PianoActivity extends Activity implements OnTouchListener {
 	private void init() {
 		scroll = (HorizontalScrollView) findViewById(R.id.scrollView);
 		piano = (ImageView) findViewById(R.id.piano);
+		
+		
+		Display dis = getWindowManager().getDefaultDisplay();
+		int a = dis.getWidth();
+		//float b = -a/2 + (300);
+		//piano.setX(b);
+		
 		stopMidi = (Button) findViewById(R.id.StopMidiButton);
 		stopMidi.setEnabled(false);
 		playMidi = (Button) findViewById(R.id.PlayMidiButton);
@@ -208,11 +216,11 @@ public class PianoActivity extends Activity implements OnTouchListener {
 
 		scroll.postDelayed(new Runnable() {
 			public void run() {
-				int x = piano.getWidth();
-				float white_key_width = (x / (float) 35);
+				int x = 600;
+				float white_key_width = (x / (float) 7);
 				float position = white_key_width * 10;
 
-				float black_key_width = (x / (float) 60.0);
+				float black_key_width = (x / (float) 12.0);
 				String pos = "" + x;
 				Log.e("position", pos);
 

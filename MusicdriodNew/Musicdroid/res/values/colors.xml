@@ -21,6 +21,7 @@
    You should have received a copy of the GNU Affero General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
+<resources>
 		<color name="dialog_title_color">#33B5E5</color>
         <color name="add_sound_text_color">#efefef</color>
         <color name="attribute_button_active">#33B5E5</color>

@@ -1,3 +1,25 @@
+/*******************************************************************************
+ * Catroid: An on-device visual programming system for Android devices
+ *  Copyright (C) 2010-2013 The Catrobat Team
+ *  (<http://developer.catrobat.org/credits>)
+ *  
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ * 
+ *  An additional term exception under section 7 of the GNU Affero
+ *  General Public License, version 3, is available at
+ *  http://www.catroid.org/catroid/licenseadditionalterm
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Affero General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ******************************************************************************/
 package at.tugraz.musicdroid;
 
 import android.app.AlertDialog;
@@ -22,8 +44,9 @@ import at.tugraz.musicdroid.soundmixer.Statusbar;
 
 public class RecorderActivity extends FragmentActivity {
 	private RecorderLayout layout = null;
-	
+
 	@Override
+<<<<<<< HEAD
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 	    getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
@@ -46,6 +69,17 @@ public class RecorderActivity extends FragmentActivity {
     		Toast.makeText(this, R.string.dialog_warning_no_headset_at_record, Toast.LENGTH_LONG).show();
     	}
 	}
+=======
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		Log.i("RecorderActivitiy", "ONCREATE");
+
+		setContentView(R.layout.activity_recorder);
+		initTopStatusBar();
+		Statusbar.getInstance().initStatusbar(this);
+		Statusbar.getInstance().modifyStatusbarForRecorderActivity();
+	}
+>>>>>>> master
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -54,6 +88,7 @@ public class RecorderActivity extends FragmentActivity {
 		inflater.inflate(R.menu.recorder_menu, menu);
 		return true;
 	}
+<<<<<<< HEAD
     
     @Override
     public void onBackPressed()
@@ -73,53 +108,72 @@ public class RecorderActivity extends FragmentActivity {
 
     	setContentView(R.layout.activity_recorder);
     	
+=======
+
+	@Override
+	public void onBackPressed() {
+		if (layout.isSoundRecorded())
+			showSecurityQuestionBeforeExit();
+		else
+			finish();
+
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Log.i("RecorderActivity", "ON RESUME");
+
+		setContentView(R.layout.activity_recorder);
+
+>>>>>>> master
 		layout = new RecorderLayout();
 		layout.init(this);
-		
-		AudioHandler.getInstance().init(this, layout);
-    	AudioHandler.getInstance().setContext(this);
-    }
 
-    @Override
-    protected void onPause()
-    {
-    	super.onPause();
-    	layout.reset();
-    	AudioHandler.getInstance().reset();
-    	Log.i("RecorderActivity", "OnPause: "+ ((LinearLayout)findViewById(R.id.recorder_activity_layout)).getChildCount());
-    }
-    
-    
+		AudioHandler.getInstance().init(this, layout);
+		AudioHandler.getInstance().setContext(this);
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		layout.reset();
+		AudioHandler.getInstance().reset();
+		Log.i("RecorderActivity",
+				"OnPause: "
+						+ ((LinearLayout) findViewById(R.id.recorder_activity_layout))
+								.getChildCount());
+	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		Log.i("RecorderActivity", "onOptionsItemSelected");
 		switch (item.getItemId()) {
 		case R.id.btn_settings:
-			RecorderMenuCallback callbackSoundMixerMenu = new RecorderMenuCallback(this);
+			RecorderMenuCallback callbackSoundMixerMenu = new RecorderMenuCallback(
+					this);
 			startActionMode(callbackSoundMixerMenu);
 			return true;
 		}
 		return false;
 	}
-	
-    private void initTopStatusBar()
-    {
+
+	private void initTopStatusBar() {
 		getActionBar().setCustomView(R.layout.status_bar);
 		getActionBar().setDisplayShowHomeEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
 		getActionBar().setDisplayShowCustomEnabled(true);
-		getActionBar().setIcon(R.drawable.ic_launcher); 		
-    }
-	
-    
-    public void returnToMainActivtiy()
-    {
-    	 Intent returnIntent = new Intent();
-    	 returnIntent.putExtra("mic_filename",AudioHandler.getInstance().getFilenameFullPath());
-    	 setResult(RESULT_OK,returnIntent);
-    	 finish();
-    }
+		getActionBar().setIcon(R.drawable.ic_launcher);
+	}
+
+	public void returnToMainActivtiy() {
+		Intent returnIntent = new Intent();
+		returnIntent.putExtra("mic_filename", AudioHandler.getInstance()
+				.getFilenameFullPath());
+		setResult(RESULT_OK, returnIntent);
+		finish();
+	}
 
 	private void showSecurityQuestionBeforeExit() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);

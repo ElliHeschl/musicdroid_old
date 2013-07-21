@@ -4,6 +4,7 @@ MusicdriodNew/Musicdroid/bin/R.txt
 MusicdriodNew/Musicdroid/bin/jarlist.cache
 MusicdriodNew/Musicdroid/bin/res/**/*
 MusicdriodNew/Musicdroid/bin/Musicdroid
+MusicdriodNew/Musicdroid/gen/at/tugraz/musicdroid/BuildConfig.java
 
 MusicdriodNew/Musicdroid/bin/Musicdroid.apk
 MusicdriodNew/Musicdroid/bin/dexedLibs/android-support-v4-69800eaf6cb3fc3a1b4a23b1df70948a.jar
@@ -12,3 +13,10 @@ MusicdriodNew/Musicdroid/bin/classes.dex
 MusicdriodNew/Musicdroid/bin/resources.ap_
 *.class
 MusicdriodNew/Musicdroid/bin/jarlist.cache
+
+MusicdriodNew/MusicdroidTests/bin/AndroidManifest.xml
+MusicdriodNew/MusicdroidTests/bin/MusicdroidTests.apk
+MusicdriodNew/MusicdroidTests/bin/classes.dex
+MusicdriodNew/MusicdroidTests/bin/dexedLibs/robotium-solo-4.1-a8a71b3d370e82b92467fc98c55dfaa6.jar
+MusicdriodNew/MusicdroidTests/bin/resources.ap_
+

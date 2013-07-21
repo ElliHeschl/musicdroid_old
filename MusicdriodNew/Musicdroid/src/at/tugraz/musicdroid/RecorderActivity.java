@@ -46,7 +46,6 @@ public class RecorderActivity extends FragmentActivity {
 	private RecorderLayout layout = null;
 
 	@Override
-<<<<<<< HEAD
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 	    getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
@@ -69,17 +68,7 @@ public class RecorderActivity extends FragmentActivity {
     		Toast.makeText(this, R.string.dialog_warning_no_headset_at_record, Toast.LENGTH_LONG).show();
     	}
 	}
-=======
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		Log.i("RecorderActivitiy", "ONCREATE");
 
-		setContentView(R.layout.activity_recorder);
-		initTopStatusBar();
-		Statusbar.getInstance().initStatusbar(this);
-		Statusbar.getInstance().modifyStatusbarForRecorderActivity();
-	}
->>>>>>> master
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -88,27 +77,7 @@ public class RecorderActivity extends FragmentActivity {
 		inflater.inflate(R.menu.recorder_menu, menu);
 		return true;
 	}
-<<<<<<< HEAD
-    
-    @Override
-    public void onBackPressed()
-    {
-    	if(layout.isSoundRecorded())
-    	  showSecurityQuestionBeforeExit();
-    	else
-    	  finish();
-    	
-    }
-    
-    @Override
-    protected void onResume()
-    {
-    	super.onResume();
-    	Log.i("RecorderActivity", "ON RESUME");
 
-    	setContentView(R.layout.activity_recorder);
-    	
-=======
 
 	@Override
 	public void onBackPressed() {
@@ -126,7 +95,6 @@ public class RecorderActivity extends FragmentActivity {
 
 		setContentView(R.layout.activity_recorder);
 
->>>>>>> master
 		layout = new RecorderLayout();
 		layout.init(this);
 

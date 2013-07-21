@@ -36,20 +36,14 @@ public class SoundTrackMic extends SoundTrack {
 		type = SoundType.MIC;
 		name = "SoundfileMic";
 		soundfileRawId = R.raw.test_wav;
-<<<<<<< HEAD
 		duration =  SoundManager.getInstance().getSoundfileDuration(soundfileRawId);
 		soundpoolId = SoundManager.getInstance().loadSound(soundfileRawId);
-=======
-		duration = SoundManager.getSoundfileDuration(soundfileRawId);
-		soundpoolId = SoundManager.loadSound(soundfileRawId);
->>>>>>> master
 		Log.i("SoundTrackMIC", "SoundpoolID = " + soundpoolId);
 	}
 
 	public SoundTrackMic(String path) {
 		type = SoundType.MIC;
 		name = Helper.getInstance().getFilenameFromPath(path);
-<<<<<<< HEAD
 		soundpoolId = SoundManager.getInstance().addSoundByPath(path);
 		duration = SoundManager.getInstance().getSoundfileDurationByPath(path);		
 	}
@@ -60,26 +54,20 @@ public class SoundTrackMic extends SoundTrack {
 		name = stm.name;
 		soundpoolId = stm.soundpoolId;
 		duration = stm.duration;
-=======
 		soundpoolId = SoundManager.addSoundByPath(path);
 		duration = SoundManager.getSoundfileDurationByPath(path);
 	}
 
-	public SoundTrackMic(SoundTrackMic stm) {
-		Log.e("Calling copy constr", "mic");
->>>>>>> master
-	}
-	
 	 
-		@Override
-		public void update(Observable observable, Object data) {
-			int cur_time = (Integer)data;
-			Log.i("Incoming ObjectMic: ", "" + cur_time);
-			if(cur_time == startPoint)
-			{
-				Log.i("SoundTrackMic ", "PlaySound");
-				SoundManager.getInstance().playSound(soundpoolId, 1, volume);
-			}
+	@Override
+	public void update(Observable observable, Object data) {
+		int cur_time = (Integer)data;
+		Log.i("Incoming ObjectMic: ", "" + cur_time);
+		if(cur_time == startPoint)
+		{
+			Log.i("SoundTrackMic ", "PlaySound");
+			SoundManager.getInstance().playSound(soundpoolId, 1, volume);
 		}
+	}
 
 }

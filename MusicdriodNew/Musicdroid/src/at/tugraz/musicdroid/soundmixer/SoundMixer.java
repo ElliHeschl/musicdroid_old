@@ -77,14 +77,9 @@ public class SoundMixer implements HorizontalScrollViewListener {
 				PreferenceManager.SOUNDTRACK_DEFAULT_LENGTH_KEY);
 		parent = activity;
 		horScrollView = scrollView;
-<<<<<<< HEAD
-		parentLayout = (RelativeLayout) horScrollView.findViewById(R.id.sound_mixer_relative); 
-		eventHandler = new SoundMixerEventHandler();
-=======
 		parentLayout = (RelativeLayout) horScrollView
 				.findViewById(R.id.sound_mixer_relative);
 		eventHandler = new SoundMixerEventHandler(this);
->>>>>>> master
 		timeline = new Timeline(parent);
 
 		TimelineEventHandler.getInstance().init(timeline);
@@ -118,7 +113,6 @@ public class SoundMixer implements HorizontalScrollViewListener {
 	public SoundMixer() {
 		viewId = 1234;
 	}
-<<<<<<< HEAD
 	
 	public void handleCopy()
 	{
@@ -154,29 +148,6 @@ public class SoundMixer implements HorizontalScrollViewListener {
 		}
 	}
 	
-	public void addSoundTrackViewToSoundMixer(SoundTrackView track)
-	{
-		track.setId(getNewViewID());
-		checkLongestTrack(track.getSoundTrack().getDuration());
-		RelativeLayout.LayoutParams params = positionTrack(track);
-        tracks.add(track);
-        parentLayout.addView(track, params);    
-        eventHandler.addObserver(track.getSoundTrack());
-        Log.i("SoundMixer", "Obsver Count = " + eventHandler.countObservers());
-        timeline.addNewTrackPosition(track.getId(), track.getSoundTrack().getType().getColorResource());
-	}
-	
-	public boolean playAllSoundsInSoundmixer()
-	{		
-		if(tracks.size() == 0)
-		{
-=======
-
-	public void handleCopy() {
-		SoundTrack copy = new SoundTrack(callingTrack);
-		addSoundTrackViewToSoundMixer(new SoundTrackView(parent, copy));
-	}
-
 	public void addSoundTrackViewToSoundMixer(SoundTrackView track) {
 		track.setId(getNewViewID());
 		checkLongestTrack(track.getSoundTrack().getDuration());
@@ -187,10 +158,10 @@ public class SoundMixer implements HorizontalScrollViewListener {
 		timeline.addNewTrackPosition(track.getId(), track.getSoundTrack()
 				.getType().getColorResource());
 	}
-
-	public boolean playAllSoundsInSoundmixer() {
+	
+	public boolean playAllSoundsInSoundmixer()
+	{		
 		if (tracks.size() == 0) {
->>>>>>> master
 			return false;
 		}
 
@@ -206,18 +177,11 @@ public class SoundMixer implements HorizontalScrollViewListener {
 		if (PreferenceManager.getInstance().getPreference(
 				PreferenceManager.METRONOM_VISUALIZATION_KEY) > 0)
 			stopMetronom();
-<<<<<<< HEAD
+
 		SoundManager.getInstance().stopAllSounds(); 
 	}
 	
-	public void stopAllSoundsInSoundMixerAndRewind()
-	{
-=======
-		SoundManager.stopAllSounds();
-	}
-
 	public void stopAllSoundInSoundMixerAndRewind() {
->>>>>>> master
 		stopAllSoundsInSoundmixer();
 		eventHandler.rewind();
 		timeline.rewind();

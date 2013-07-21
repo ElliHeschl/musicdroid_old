@@ -42,23 +42,12 @@ public class SoundTrack implements Observer {
 	public SoundTrack() {
 		volume = 1;
 	}
-<<<<<<< HEAD
-	
-	public SoundTrack(SoundTrack s)
-	{
-		Log.i("SoundTrack", "CC");
-	  this.type = s.getType();
-	  this.name = s.getName();
-	  this.duration = s.duration;
-	  this.volume = s.volume;
-=======
 
 	public SoundTrack(SoundTrack s) {
 		this.type = s.getType();
 		this.name = s.getName();
 		this.duration = s.duration;
 		this.volume = s.volume;
->>>>>>> master
 	}
 
 	public void setStartPoint(int start) {
@@ -101,18 +90,11 @@ public class SoundTrack implements Observer {
 
 	@Override
 	public void update(Observable observable, Object data) {
-<<<<<<< HEAD
 		int cur_time = (Integer)data;
 		//Log.i("Incoming Object: ", "Update " + cur_time);
 		if(cur_time == startPoint)
 		{
 			SoundManager.getInstance().playSound(soundpoolId, 1, volume);
-=======
-		int cur_time = (Integer) data;
-		Log.i("Incoming Object: ", "" + cur_time);
-		if (cur_time == startPoint) {
-			SoundManager.playSound(soundpoolId, 1, volume);
->>>>>>> master
 		}
 	}
 

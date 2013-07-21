@@ -96,7 +96,6 @@ public class SoundTrackView extends RelativeLayout implements OnClickListener,
 		if (collapse)
 			collapse();
 	}
-<<<<<<< HEAD
 	
 	public void updateSoundTrackView()
 	{
@@ -108,10 +107,6 @@ public class SoundTrackView extends RelativeLayout implements OnClickListener,
 	
 	private int computeWidthRelativeToDuration()
 	{
-=======
-
-	private int computeWidthRelativeToDuration() {
->>>>>>> master
 		int duration = soundTrack.getDuration();
 		int width = duration * SoundMixer.getInstance().getPixelPerSecond();
 		if (width < 280) {
@@ -189,8 +184,6 @@ public class SoundTrackView extends RelativeLayout implements OnClickListener,
 			isMuted = true;
 		}
 	}
-<<<<<<< HEAD
-	
 	
 	private void handleOnClickPlayButton()
 	{
@@ -219,22 +212,6 @@ public class SoundTrackView extends RelativeLayout implements OnClickListener,
 				((SoundTrackDrums)soundTrack).stopLoop();
 			else
 				SoundManager.getInstance().stopSound(soundTrack.getSoundPoolId());
-=======
-
-	private void handleOnClickPlayButton() {
-		if (displayPlayButton) {
-			displayPlayButton = false;
-			playImageButton
-					.setImageResource(R.drawable.pause_button_sound_track);
-			Log.e("VOLUME: ", "" + soundTrack.getVolume());
-			SoundManager.playSound(soundTrack.getSoundPoolId(), 1,
-					soundTrack.getVolume());
-		} else {
-			displayPlayButton = true;
-			playImageButton
-					.setImageResource(R.drawable.play_button_sound_track);
-			SoundManager.stopSound(soundTrack.getSoundPoolId());
->>>>>>> master
 		}
 	}
 

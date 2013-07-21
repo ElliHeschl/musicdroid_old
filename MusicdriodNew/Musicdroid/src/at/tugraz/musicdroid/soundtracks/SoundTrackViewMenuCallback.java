@@ -79,52 +79,7 @@ public class SoundTrackViewMenuCallback implements ActionMode.Callback {
 			mode.finish();
 			break;
 		}
-<<<<<<< HEAD
-	
-        @Override
-        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-            return false;
-        }
 
-        @Override
-        public void onDestroyActionMode(ActionMode mode) {
-            SoundMixer.getInstance().enableUnselectedViews();
-        }
-
-        @Override
-        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            parent.getMenuInflater().inflate(R.menu.sound_track_dialog_menu, menu);
-            SoundMixer.getInstance().disableUnselectedViews();
-            
-            String name = null;
-            if((name = SoundMixer.getInstance().getCallingTrack().getName()) != null)
-            	mode.setTitle(name);
-            else
-            	mode.setTitle("Fix this");
-            return true;
-        }
-
-        /** This is called when an item in the context menu is selected */
-        @Override
-        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-            switch(item.getItemId()){
-            case R.id.soundtrack_context_edit:
-                SoundMixer.getInstance().handleEdit();
-                mode.finish();    
-                break;
-            case R.id.soundtrack_context_copy:
-				SoundMixer.getInstance().handleCopy();
-				mode.finish();
-                break;
-            case R.id.soundtrack_context_delete:
-				SoundMixer.getInstance().deleteCallingTrack();
-                mode.finish();
-                break;
-            }
-            return false;
-        }
-=======
 		return false;
 	}
->>>>>>> master
 }

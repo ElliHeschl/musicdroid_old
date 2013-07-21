@@ -37,32 +37,19 @@ import at.tugraz.musicdroid.preferences.PreferenceManager;
 import at.tugraz.musicdroid.types.SoundType;
 
 public class SoundTrackDrums extends SoundTrack {
-<<<<<<< HEAD
 	private DrumLoopEventHandler eventHandler = null;
 	private DrumPreset preset = null;
 	private String path = null;
 	
-=======
-
->>>>>>> master
 	public SoundTrackDrums() {
 		type = SoundType.DRUMS;
 		name = "SoundfileDrums";
 		soundfileRawId = R.raw.test_midi;
-<<<<<<< HEAD
 		duration =  SoundManager.getInstance().getSoundfileDuration(soundfileRawId);
 		soundpoolId = SoundManager.getInstance().loadSound(soundfileRawId);
 	}
-	public SoundTrackDrums(SoundTrackDrums stm)
-	{
-		super(stm);
-=======
-		duration = SoundManager.getSoundfileDuration(soundfileRawId);
-		soundpoolId = SoundManager.loadSound(soundfileRawId);
-	}
 
 	public SoundTrackDrums(SoundTrackDrums stm) {
->>>>>>> master
 		Log.e("Calling copy constr", "drums");
 		path = stm.path;
 		DrumPresetHandler presetHandler = new DrumPresetHandler();

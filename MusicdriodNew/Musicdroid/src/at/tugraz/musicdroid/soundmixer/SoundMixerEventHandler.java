@@ -41,18 +41,13 @@ public class SoundMixerEventHandler extends Observable {
 	private int screenWidth;
 	private int secondInPixel;
 	private boolean shouldContinue;
-<<<<<<< HEAD
 	
 	public SoundMixerEventHandler()
 	{
-		setEndPoint(PreferenceManager.getInstance().getPreference(PreferenceManager.SOUNDTRACK_DEFAULT_LENGTH_KEY));
-=======
-
-	public SoundMixerEventHandler(SoundMixer m) {
-		mixer = m;
+	
 		setEndPoint(PreferenceManager.getInstance().getPreference(
 				PreferenceManager.SOUNDTRACK_DEFAULT_LENGTH_KEY));
->>>>>>> master
+		
 		screenWidth = Helper.getInstance().getScreenWidth();
 		secondInPixel = screenWidth
 				/ PreferenceManager.getInstance().getPreference(
@@ -62,7 +57,6 @@ public class SoundMixerEventHandler extends Observable {
 	public void play() {
 		if (countObservers() > 0) {
 			new Thread(new Runnable() {
-<<<<<<< HEAD
 		        @Override
 		        public void run() {
 		        	time = setStartTime();
@@ -82,28 +76,7 @@ public class SoundMixerEventHandler extends Observable {
 		            return;
 		        }
 		    }).start();
-=======
-				@Override
-				public void run() {
-					time = setStartTime();
-					shouldContinue = true;
-					while (shouldContinue && time <= endPoint) {
-						try {
-							Thread.sleep(1000);
-							setChanged();
-							notifyObservers(time);
-							time = time + 1;
-							if (shouldContinue && time < endPoint)
-								sendTrackPositionMessage(time);
-						} catch (Exception e) {
-						}
-					}
-					Log.i("TIME: " + time, "EndPoint: " + endPoint);
-					SoundManager.stopAllSounds();
-					return;
-				}
-			}).start();
->>>>>>> master
+
 		}
 	}
 
@@ -169,16 +142,10 @@ public class SoundMixerEventHandler extends Observable {
 		else
 			return startPoint;
 	}
-<<<<<<< HEAD
 	
 	private void sendTrackPositionMessage(int time)
 	{
 		//Log.i("Set position message", "");
-=======
-
-	private void sendTrackPositionMessage(int time) {
-		Log.i("Set position message", "");
->>>>>>> master
 		Message msg = new Message();
 		Bundle b = new Bundle();
 		b.putInt("position", time);

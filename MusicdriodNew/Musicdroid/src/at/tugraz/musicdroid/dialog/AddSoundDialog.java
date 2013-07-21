@@ -78,7 +78,6 @@ public class AddSoundDialog extends BaseDialog implements OnItemClickListener,
 	public void onItemClick(AdapterView<?> adapterView, View button,
 			int position, long id) {
 		SoundType toolType = addSoundButtonAdapter.getSoundType(position);
-<<<<<<< HEAD
 		
 		switch(toolType) {
 			case DRUMS:
@@ -100,26 +99,6 @@ public class AddSoundDialog extends BaseDialog implements OnItemClickListener,
 				break;		
 			default:
 				break;
-=======
-
-		switch (toolType) {
-		case DRUMS:
-			SoundTrackDrums stvd = new SoundTrackDrums();
-			parent.addSoundTrack(new SoundTrackView(parent, stvd));
-			break;
-		case PIANO:
-			SoundTrackPiano stvp = new SoundTrackPiano();
-			parent.addSoundTrack(new SoundTrackView(parent, stvp));
-			break;
-		case MIC:
-			// SoundTrackMic stvm = new SoundTrackMic();
-			// parent.addSoundTrack(new SoundTrackView(parent, stvm));
-			Intent intent = new Intent(parent, RecorderActivity.class);
-			parent.startActivityForResult(intent, 1);
-			break;
-		default:
-			break;
->>>>>>> master
 		}
 		dismiss();
 	}

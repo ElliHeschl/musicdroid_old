@@ -81,40 +81,10 @@ public class MainActivity extends MenuFileActivity {
 
 		// TESTING
 		SoundManager.getInstance();
-		SoundManager.initSounds(this);
+		//SoundManager.initSounds(this);
 		// SoundManager.loadSounds();
 	}
 
-	@Override
-<<<<<<< HEAD
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        super.prepareFolderStructure();
-	    getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
-        Log.i("MainActivity", "ON CREATE");
-        
-        AddSoundDialog.init(this);
-    			
-    	Helper helper = Helper.getInstance();
-    	helper.init(this);
-    	
-        setContentView(R.layout.activity_main);
-        
-        initTopStatusBar();
-        Statusbar.getInstance().initStatusbar(this);
-
-        SoundMixer.getInstance().initSoundMixer(this, (ObservableHorizontalScrollView)findViewById(R.id.sound_mixer_view));
-        
-        //TESTING 
-	    SoundManager.getInstance().initSounds(this);
-	   // SoundManager.loadSounds(); 
-
-    }
-
-    
-    @Override
-=======
->>>>>>> master
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 
@@ -168,8 +138,6 @@ public class MainActivity extends MenuFileActivity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-<<<<<<< HEAD
 		  if (requestCode == 1) {
 
 		     if(resultCode == Activity.RESULT_OK){
@@ -202,23 +170,6 @@ public class MainActivity extends MenuFileActivity {
 		         //probably not needed
 		     }
 		  }
-=======
-		if (requestCode == 1) {
-
-			if (resultCode == Activity.RESULT_OK) {
-				if (data.hasExtra("mic_filename")) {
-					String result = data.getStringExtra("mic_filename");
-					Log.i("MainActivity", "Received String from Activity "
-							+ result);
-					SoundTrackMic stm = new SoundTrackMic(result);
-					addSoundTrack(new SoundTrackView(this, stm));
-				}
-			}
-			if (resultCode == Activity.RESULT_CANCELED) {
-				// probably not needed
-			}
-		}
->>>>>>> master
 	}
 
 	private void showSecurityQuestionBeforeExit() {
@@ -243,8 +194,6 @@ public class MainActivity extends MenuFileActivity {
 		AlertDialog alert = builder.create();
 		alert.show();
 	}
-<<<<<<< HEAD
-	
 	
 	@Override
     public void onConfigurationChanged(Configuration newConfig) 
@@ -256,13 +205,6 @@ public class MainActivity extends MenuFileActivity {
 	{
 		SoundMixer.getInstance().setCallingParameters(id, soundTrack); 
         SoundTrackViewMenuCallback callbackSoundTrackViewMenu = new SoundTrackViewMenuCallback(this);
-=======
-
-	public void startActionMode(int id, SoundTrack soundTrack) {
-		SoundMixer.getInstance().setCallingParameters(id, soundTrack);
-		SoundTrackViewMenuCallback callbackSoundTrackViewMenu = new SoundTrackViewMenuCallback(
-				this);
->>>>>>> master
 		startActionMode(callbackSoundTrackViewMenu);
 	}
 

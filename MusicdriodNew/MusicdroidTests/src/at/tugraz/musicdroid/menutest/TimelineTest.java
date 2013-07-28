@@ -22,26 +22,19 @@
  ******************************************************************************/
 package at.tugraz.musicdroid.menutest;
 
-<<<<<<< HEAD
-
 import com.jayway.android.robotium.solo.Solo;
-
-=======
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
->>>>>>> 79fb4bde2c7b2624386de430e704334b63f19675
 import at.tugraz.musicdroid.MainActivity;
 import at.tugraz.musicdroid.R;
 import at.tugraz.musicdroid.helper.Helper;
 import at.tugraz.musicdroid.soundmixer.SoundMixer;
 import at.tugraz.musicdroid.soundmixer.timeline.Timeline;
 import at.tugraz.musicdroid.types.SoundType;
-
-import com.jayway.android.robotium.solo.Solo;
 
 public class TimelineTest extends ActivityInstrumentationTestCase2<MainActivity> {
 	protected Solo solo = null;
@@ -74,8 +67,10 @@ public class TimelineTest extends ActivityInstrumentationTestCase2<MainActivity>
 		solo.waitForText(getActivity().getString(R.string.soundmixer_context_title));
 		solo.clickOnView(getActivity().findViewById(R.id.soundmixer_context_length));
 		solo.sleep(1000);
-		solo.drag(Helper.getInstance().getScreenWidth()/2-50, Helper.getInstance().getScreenHeight()/2, 
-				  Helper.getInstance().getScreenWidth()/2-50, Helper.getInstance().getScreenHeight()/3, 1);
+		solo.drag(Helper.getScreenWidth(getInstrumentation().getContext())/2-50, 
+				  Helper.getScreenHeight(getInstrumentation().getContext())/2, 
+				  Helper.getScreenWidth(getInstrumentation().getContext())/2-50, 
+				  Helper.getScreenHeight(getInstrumentation().getContext())/3, 1);
 		solo.sleep(1000);
 		solo.clickOnText(getActivity().getString(R.string.settings_button_apply));
 		solo.sleep(1000);
